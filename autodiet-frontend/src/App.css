@@ -38,3 +38,18 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.navbar ul{
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.navbar ul li{
+  margin: auto;
+  cursor: pointer;
+}
+
+.navbar ul li:hover{
+  text-decoration: underline;
+}
