@@ -1,0 +1,20 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* Landing Page */
+.translucent-overlay{
+  background: linear-gradient(110.75deg, rgba(0, 0, 0, 0.8) 0.73%, rgba(0, 0, 0, 0.3) 88.25%);
+  position: absolute;
+  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index: -1;
+  filter: blur(4px);
+}
