@@ -85,3 +85,21 @@
   border: 1px solid #FDAD00;
   border-radius: 10px;
 }
+
+.hero-content{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  padding-top: 10px;
+  width: 100%;
+  height: calc(100vh - 150px);
+}
+
+.hero-image{
+  position: absolute;
+  height: 100%;
+  z-index: -2;
+  filter: blur(4px);
+  width: 100%;
+  object-fit: cover;
+}
