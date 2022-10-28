@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
+import { LandingPageNavBar } from './Components/LandingPage/LandingPageNavBar';
+import { Overlay } from './Components/Overlay';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
-    </div>
+    <>
+      <div className='translucent-overlay'></div>
+
+    </>
   );
 }
 
