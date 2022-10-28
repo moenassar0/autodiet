@@ -20,13 +20,25 @@ export const Home = () => {
             <div className="container">
                 <div className="topnavbar"></div>
                 <div className="mealplan-container">
-                    <div className="meals-container">
+                    <div className="meals-container scrollbar">
+                        <div className="meal">
+                            <div className="meal-title"><span>Meal 1</span></div>
+                        </div>
+                        <div className="meal">
+
+                        </div>
+                        <div className="meal">
+
+                        </div>
+                        <div className="meal">
+
+                        </div>
                         <div className="meal">
 
                         </div>
                     </div>
                     <div className="nutrition-container">
-
+                        asdasdasd
                     </div>
                 </div>
             </div>
