@@ -71,3 +71,17 @@
   color: black;
   font-weight:600;
 }
+
+.navbar-line{
+  width: 100%;
+  display: flex;
+  padding: 0 15px;
+  justify-content: center;
+}
+
+.navbar-line hr{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #FDAD00;
+  border-radius: 10px;
+}
