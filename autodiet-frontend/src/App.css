@@ -209,20 +209,22 @@
   display: flex;
   flex-direction: column;
   margin: 5px 5px;
-  height: 220px;
+  height: 200px;
   width: 300px;
   max-width: 100%;
   background-color: #000000;
   border-radius: 5px;
   padding: 10px 10px;
+  justify-content: flex-start;
 }
 
 .meal-title{
   display: flex;
   width: 100%;
-  height: 20%;
+  height: 30%;
   color: #FDAD00;
   justify-content: flex-start;
+  flex-direction: column;
 }
 
 .meal-content{
@@ -286,5 +288,10 @@
     flex-direction: column;
     
   }
+}
+
+/* Utilities */
+.text-small{
+  font-size: small;
 }
 
