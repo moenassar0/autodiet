@@ -22,19 +22,17 @@ export const Home = () => {
                 <div className="mealplan-container">
                     <div className="meals-container scrollbar">
                         <div className="meal">
-                            <div className="meal-title"><span>Meal 1</span></div>
-                        </div>
-                        <div className="meal">
-
-                        </div>
-                        <div className="meal">
-
-                        </div>
-                        <div className="meal">
-
-                        </div>
-                        <div className="meal">
-
+                            <div className="meal-title">
+                                <span>Meal 1</span>
+                                <span className="text-small">671 Calories</span>
+                            </div>
+                            <div className="meal-content">
+                                <img src="../logo512.png"></img>
+                                <span>Overnight Oats</span>
+                            </div>
+                            <div className="meal-title">
+                                <span>Protein: </span>
+                            </div>
                         </div>
                     </div>
                     <div className="nutrition-container">
