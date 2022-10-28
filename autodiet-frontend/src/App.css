@@ -207,6 +207,7 @@
 
 .meal{
   display: flex;
+  flex-direction: column;
   margin: 5px 5px;
   height: 220px;
   width: 300px;
@@ -222,6 +223,24 @@
   height: 20%;
   color: #FDAD00;
   justify-content: flex-start;
+}
+
+.meal-content{
+  display: flex;
+  width: 100%;
+  height: 30%;
+  color: white;
+  background-color: #363636;
+  border-radius: 15px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.meal-content img{
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  margin: 5px;
 }
 
 /* CUSTOM SCROLLBAR STYLE */
