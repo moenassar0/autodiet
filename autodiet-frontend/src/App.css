@@ -121,3 +121,27 @@
   padding: 15px;
   color: white;
 }
+
+picture {
+  display: block;
+  position: relative;
+  padding-top: 75%;
+  
+}
+
+/* Responsitivity */
+@media only screen and (max-width: 678px) {
+  .navbar ul{
+    display: none;
+  }
+  .hero-subtitle{
+    font-size: 36px;
+    padding: 15px;
+    color: white;
+  }
+  
+  .hero-description{
+    text-align: center;
+  }
+}
+
