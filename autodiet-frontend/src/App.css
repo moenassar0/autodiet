@@ -188,6 +188,20 @@
   background-color: #363636;
 }
 
+.meals-container{
+  display: flex;
+  width: 80%;
+  height: 100%;
+  flex-direction: column;
+}
+
+.nutrition-container{
+  display: flex;
+  width: 20%;
+  height: 100%;
+  background: rebeccapurple;
+}
+
 /* CUSTOM SCROLLBAR STYLE */
 .scrollbar::-webkit-scrollbar {
   width: 10px;
