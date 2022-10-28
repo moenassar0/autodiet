@@ -53,3 +53,12 @@
 .navbar ul li:hover{
   text-decoration: underline;
 }
+
+.navbar-register{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
