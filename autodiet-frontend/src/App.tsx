@@ -20,7 +20,9 @@ function App() {
         </div>
       </div>
       <div className='navbar-line'><hr></hr></div>
-
+      <div className='hero-content'>
+        <img className='hero-image' src="../../hero.png"></img>
+      </div>
     </>
   );
 }
