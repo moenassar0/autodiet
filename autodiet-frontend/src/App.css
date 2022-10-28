@@ -103,3 +103,21 @@
   width: 100%;
   object-fit: cover;
 }
+
+.hero-title{
+  font-size: 64px;
+  padding: 15px;
+  color: #FDAD00;
+}
+
+.hero-subtitle{
+  font-size: 36px;
+  padding: 15px;
+  color: white;
+}
+
+.hero-description{
+  font-size: 24px;
+  padding: 15px;
+  color: white;
+}
