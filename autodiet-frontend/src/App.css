@@ -122,11 +122,13 @@
   color: white;
 }
 
-picture {
-  display: block;
-  position: relative;
-  padding-top: 75%;
-  
+/* User Homepage */
+.sidenavbar{
+  display: flex;
+  height: 100vh;
+  width: 20%;
+  background-color: black;
+  flex-direction: column;
 }
 
 /* Responsitivity */
