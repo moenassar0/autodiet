@@ -19,6 +19,8 @@ function App() {
           <span>Already have an account? Login.</span>
         </div>
       </div>
+      <div className='navbar-line'><hr></hr></div>
+
     </>
   );
 }
