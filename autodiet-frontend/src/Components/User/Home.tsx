@@ -17,7 +17,20 @@ export const Home = () => {
                     <div className='sidenavbar-item'><hr></hr></div>
                 </div> 
             </div>
-            <div className="topnavbar"></div>
+            <div className="container">
+                <div className="topnavbar"></div>
+                <div className="mealplan-container">
+                    <div className="meals-container">
+                        <div className="meal">
+
+                        </div>
+                    </div>
+                    <div className="nutrition-container">
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     )
 }
