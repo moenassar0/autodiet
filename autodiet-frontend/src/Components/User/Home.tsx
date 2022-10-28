@@ -1,4 +1,24 @@
+import { useEffect } from "react";
+import axios from "../../api/axios"
+
 export const Home = () => {
+
+    useEffect(() => {
+        fetch();
+    }, [])
+
+    const fetch = async () => {
+        try{
+            console.time('Execution Time');
+            const response = await axios.get('/meals');
+            console.log(response);
+            console.timeEnd('Execution Time');
+
+        }catch{
+            
+        }
+    }
+
     return(
         <div className="flex">
             <div className="sidenavbar">
