@@ -14,6 +14,8 @@ export const Login = () => {
                     <div className="flex flex-col w-full items-center gap-10">
                         <input type="text" className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
                         <input type="text" className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
+                        <button className="w-4/5 py-2 px-4 bg-ad-golden text-black rounded">Login</button>
+                        <p className="w-4/5 text-ad-golden">Create a new account?</p>
                     </div>
                 </div>
                 <img className='hero-image' src="../../hero.png"></img>
