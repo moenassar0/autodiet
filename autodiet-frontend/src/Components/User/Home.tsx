@@ -1,7 +1,16 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "../../api/axios"
-
+import Meal from "./Meal";
+interface MealProps {
+    id: number,
+    title: string,
+    calories: number,
+    protein: number,
+    carbohydrate: number
+  }
 export const Home = () => {
+
+    const [meals, setMeals] = useState([]);
 
     useEffect(() => {
         fetch();
@@ -13,7 +22,8 @@ export const Home = () => {
             const response = await axios.get('/meals');
             console.log(response);
             console.timeEnd('Execution Time');
-
+            setMeals(response.data.meals);
+            console.log(meals);
         }catch{
             
         }
@@ -41,19 +51,7 @@ export const Home = () => {
                 <div className="topnavbar"></div>
                 <div className="mealplan-container">
                     <div className="meals-container scrollbar">
-                        <div className="meal">
-                            <div className="meal-title">
-                                <span>Meal 1</span>
-                                <span className="text-small">671 Calories</span>
-                            </div>
-                            <div className="meal-content">
-                                <img src="../logo512.png"></img>
-                                <span>Overnight Oats</span>
-                            </div>
-                            <div className="meal-title">
-                                <span>Protein: </span>
-                            </div>
-                        </div>
+                        {meals.map((meal: MealProps) => (<Meal {...meal}></Meal>))}
                     </div>
                     <div className="nutrition-container">
                         asdasdasd
