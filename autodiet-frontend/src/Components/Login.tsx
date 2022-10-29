@@ -1,13 +1,16 @@
 import { useState } from "react";
+import axios from "../api/axios";
 import { Navbar } from "./LandingPage/Navbar"
 
 export const Login = () => {
 
-    const [user, setUser] = useState('');
-    const [pwd, setPwd] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    function login(){
-        
+    const [waitingForResponse, setWaitingForResponse] = useState(false);
+
+    const login = async () => {
+
     }
 
     return(
@@ -21,9 +24,9 @@ export const Login = () => {
                         LOGIN
                     </div>
                     <div className="flex flex-col w-full items-center gap-10">
-                        <input type="text" onChange={(e) => setUser(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
-                        <input type="text" onChange={(e) => setPwd(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
-                        <button onClick={login} className="w-4/5 py-2 px-4 bg-ad-golden text-black rounded">Login</button>
+                        <input type="text" onChange={(e) => setEmail(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
+                        <input type="text" onChange={(e) => setPassword(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
+                        <button onClick={login} className="flex justify-center w-4/5 py-2 px-4 bg-ad-golden text-black rounded">{waitingForResponse ? <img className="h-8 w-8" src="../loading1.gif"></img> : "Login"}</button>
                         <p className="w-4/5 text-ad-golden">Create a new account?</p>
                     </div>
                 </div>
