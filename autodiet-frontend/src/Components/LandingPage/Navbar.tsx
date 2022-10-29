@@ -1,3 +1,4 @@
+import { BrowserRouter as Router, Link, Routes, Route, useNavigate } from 'react-router-dom';
 export const Navbar = () => {
     return(
         <div className='navbar'>
@@ -9,7 +10,9 @@ export const Navbar = () => {
         </ul>
         <div className='navbar-register'>
           <button>Sign Up</button>
-          <span>Already have an account? Login.</span>
+          <Link to="/login">
+            <span>Already have an account? Login.</span>
+          </Link>
         </div>
       </div>
     )
