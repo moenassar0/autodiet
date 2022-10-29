@@ -11,7 +11,15 @@ export const Register = () => {
                 <div className="flex items-center justify-center w-full h-12 bg-black mb-8 rounded-t text-ad-golden font-bold text-lg">
                     Create a new account
                 </div>
-                <div className="flex flex-col w-full items-center gap-10">
+                <div className="flex flex-col w-full justify-center gap-10">
+                    <div className="flex items-center place-content-between w-full h-10">
+                        <span className="w-2/5 text-ad-golden text-lg">Email</span>
+                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                    </div>
+                    <div className="flex items-center place-content-between w-full h-10">
+                        <span className="w-2/5 text-ad-golden text-lg">Repeat password</span>
+                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                    </div>
                 </div>
             </div>
             <img className='hero-image' src="../../hero.png"></img>
