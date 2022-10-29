@@ -9,7 +9,9 @@ export const Navbar = () => {
           <li>Features</li>
         </ul>
         <div className='navbar-register'>
-          <button>Sign Up</button>
+          <Link to="/register">
+            <button>Sign Up</button>
+          </Link>
           <Link to="/login">
             <span>Already have an account? Login.</span>
           </Link>
