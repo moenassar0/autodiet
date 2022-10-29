@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Link, Routes, Route, useNavigate } from 'react
 export const Navbar = () => {
     return(
         <div className='navbar'>
-        <div className='navbar-icon'></div>
+        <Link to="/"><div className='navbar-icon'></div></Link>
         <ul>
           <li>Why use AutoDiet?</li>
           <li>Features</li>
