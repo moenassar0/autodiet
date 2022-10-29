@@ -284,9 +284,12 @@
   }
   
   .mealplan-container{
-    
     flex-direction: column;
-    
+  }
+  
+  .navbar-register{
+    align-items: center;
+    flex:1;
   }
 }
 
