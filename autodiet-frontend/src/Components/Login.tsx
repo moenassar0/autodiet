@@ -10,7 +10,14 @@ export const Login = () => {
     const [waitingForResponse, setWaitingForResponse] = useState(false);
 
     const login = async () => {
-
+        try{
+            setWaitingForResponse(true);
+            const response = await axios.post('/login', {email, password});
+            console.log(response);
+        }catch(err){
+            console.log("Error from http request: ", err);
+        }
+        setWaitingForResponse(false);
     }
 
     return(
