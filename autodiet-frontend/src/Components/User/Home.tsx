@@ -11,6 +11,7 @@ interface MealProps {
 export const Home = () => {
 
     const [meals, setMeals] = useState([]);
+    const [currentlyFetching, setCurrentlyFetching] = useState(false);
 
     useEffect(() => {
         fetch();
@@ -18,12 +19,14 @@ export const Home = () => {
 
     const fetch = async () => {
         try{
+            setCurrentlyFetching(true);
             console.time('Execution Time');
             const response = await axios.get('/meals');
             console.log(response);
             console.timeEnd('Execution Time');
             setMeals(response.data.meals);
             console.log(meals);
+            setCurrentlyFetching(false);
         }catch{
             
         }
@@ -51,7 +54,9 @@ export const Home = () => {
                 <div className="topnavbar"></div>
                 <div className="mealplan-container">
                     <div className="meals-container scrollbar">
-                        {meals.map((meal: MealProps) => (<Meal {...meal}></Meal>))}
+                        {currentlyFetching 
+                        ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
+                        : meals.map((meal: MealProps) => (<Meal {...meal}></Meal>))}
                     </div>
                     <div className="nutrition-container">
                         asdasdasd
