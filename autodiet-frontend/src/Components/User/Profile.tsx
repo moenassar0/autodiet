@@ -11,7 +11,12 @@ export const Profile = () => {
     const [sex, setSex] = useState('');
     const [weight, setWeight] = useState('');
     const [age, setAge] = useState('');
+    const [height, setHeight] = useState('');
     const [bodyFatPercentage, setBodyFatPercentage] = useState('');
+
+    function editDetails(){
+        console.log(activeGoal, sex, weight, height, age, bodyFatPercentage);
+    }
 
     useEffect(() => {
         const check = async () => {if(! await validateUser()){
@@ -48,32 +53,32 @@ export const Profile = () => {
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Height</div>
                             <div className="flex w-3/5 h-1/2 justify-start">
-                                <input type="text" className="w-1/2 h-full rounded"></input>
+                                <input onChange={(e) => setHeight(e.target.value)} type="text" className="w-1/2 h-full rounded"></input>
                             </div>
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Age</div>
                             <div className="flex w-3/5 h-1/2 justify-start">
-                                <input type="text" className="w-1/2 h-full rounded"></input>
+                                <input type="text" onChange={(e) => setAge(e.target.value)} className="w-1/2 h-full rounded"></input>
                             </div>
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Weight</div>
                             <div className="flex w-3/5 h-1/2 justify-start">
-                                <input type="text" className="w-1/2 h-full rounded"></input>
+                                <input type="text" onChange={(e) => setWeight(e.target.value)} className="w-1/2 h-full rounded"></input>
                             </div>
                         </div>
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Body Percentage</div>
                             <div className="flex w-3/5 h-full items-center justify-end">
-                                <button onClick={() => {setBodyFatPercentage("Lean")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-l-lg " + (activeGoal==="LoseWeight" ? "bg-ad-golden" : "bg-white")}>Lean</button>
-                                <button onClick={() => {setBodyFatPercentage("Medium")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 " + (activeGoal==="Maintain" ? "bg-ad-golden" : "bg-white")}>Medium</button>
-                                <button onClick={() => {setBodyFatPercentage("High")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-r-lg " + (activeGoal==="GainMuscle" ? "bg-ad-golden" : "bg-white")}>High</button>
+                                <button onClick={() => {setBodyFatPercentage("Lean")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-l-lg " + (bodyFatPercentage==="Lean" ? "bg-ad-golden" : "bg-white")}>Lean</button>
+                                <button onClick={() => {setBodyFatPercentage("Medium")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 " + (bodyFatPercentage==="Medium" ? "bg-ad-golden" : "bg-white")}>Medium</button>
+                                <button onClick={() => {setBodyFatPercentage("High")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-r-lg " + (bodyFatPercentage==="High" ? "bg-ad-golden" : "bg-white")}>High</button>
                             </div>
                         </div>
                         <div className="flex w-full h-1/6">
                             <div className="flex w-3/5 h-full items-center justify-end">
-                                <button onClick={() => {setBodyFatPercentage("Lean")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded bg-ad-golden"}>Save Changes</button>
+                                <button onClick={() => editDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded bg-ad-golden"}>Save Changes</button>
                             </div>
                         </div>
                     </div>
