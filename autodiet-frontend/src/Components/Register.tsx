@@ -26,6 +26,9 @@ export const Register = () => {
     const register = async () => {
         try{
             setWaitingForResponse(true);
+            if(validEmail && validPassword && validUsername && password === rPassword){
+                console.log(email, username, password);
+            }
         }catch(err){
             console.log("Error from http request: ", err);
         }
@@ -45,17 +48,23 @@ export const Register = () => {
                 <div className="flex flex-col w-full justify-center gap-10 px-2">
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Email</span>
-                        <input onChange={(e) => setEmail(e.target.value)} className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                        <input 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            className={"w-3/5 py-2 px-4 text-white bg-black rounded focus:outline-none focus:ring-2 focus:border-ad-golden focus:ring-ad-golden" +
+                            (!validEmail && email ? "focus:border-red-500 focus:ring-red-500 border-red-500 text-red-600" : "")} type="email">
+                        </input>
                     </div>
-                    {!validEmail && email ? <p className="error-instructions" id="uidnote">Invalid Email!</p> : ""}
+                    {!validEmail && email ? <div className="w-3/5 flex self-end text-red-600 font-bold">Invalid Email!</div> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Username</span>
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
                     </div>
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Password</span>
-                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                        <input onChange={(e) => setPassword(e.target.value)} className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
                     </div>
+
+                    {!validPassword && password ? <p className="error-instructions">Invalid Email!</p> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Repeat password</span>
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
