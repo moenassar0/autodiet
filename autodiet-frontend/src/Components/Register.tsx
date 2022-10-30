@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { Navbar } from "./LandingPage/Navbar"
-import {validEmail, checkStringLength} from "../HelperFunctions";
+import {checkEmail, checkPassword, checkStringLength} from "../HelperFunctions";
 
 export const Register = () => {
     
     const [username, setUsername] = useState('');
-    const [validUsername, setValidUsername] = useState('');
+    const [validUsername, setValidUsername] = useState(false);
 
     const [email, setEmail] = useState('');
-    const [validEmail, setValidEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
 
     const [password, setPassword] = useState('');
-    const [validPassword, setValidPassword] = useState('');
+    const [validPassword, setValidPassword] = useState(false);
     const [rPassword, setRPassword] = useState('');
 
     const [waitingForResponse, setWaitingForResponse]  = useState(false);
 
     useEffect(() => {
+        setValidEmail(checkEmail(email));
+        setValidUsername(checkStringLength(username, 8));
+        setValidPassword(checkPassword(password));
     }, [username, email, password])
 
     const register = async () => {
@@ -42,8 +45,9 @@ export const Register = () => {
                 <div className="flex flex-col w-full justify-center gap-10 px-2">
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Email</span>
-                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                        <input onChange={(e) => setEmail(e.target.value)} className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
                     </div>
+                    {!validEmail && email ? <p className="error-instructions" id="uidnote">Invalid Email!</p> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Username</span>
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
