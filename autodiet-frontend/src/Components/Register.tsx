@@ -57,14 +57,22 @@ export const Register = () => {
                     {!validEmail && email ? <div className="w-3/5 flex self-end text-red-600 font-bold">Invalid Email!</div> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Username</span>
-                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                        <input 
+                            onChange={(e) => setUsername(e.target.value)} 
+                            className={"w-3/5 py-2 px-4 text-white bg-black rounded focus:outline-none focus:ring-2 focus:border-ad-golden focus:ring-ad-golden" +
+                            (!validUsername && username ? "focus:border-red-500 focus:ring-red-500 border-red-500 text-red-600" : "")} type="text">
+                        </input>
                     </div>
+                    {!validUsername && username ? <div className="w-3/5 flex self-end text-red-600 font-bold">Usernames should be atleast 8 characters long!</div> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Password</span>
-                        <input onChange={(e) => setPassword(e.target.value)} className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                        <input 
+                            onChange={(e) => setPassword(e.target.value)} 
+                            className={"w-3/5 py-2 px-4 text-white bg-black rounded focus:outline-none focus:ring-2 focus:border-ad-golden focus:ring-ad-golden" +
+                            (!validPassword && password ? "focus:border-red-500 focus:ring-red-500 border-red-500 text-red-600" : "")} type="password">
+                        </input>
                     </div>
-
-                    {!validPassword && password ? <p className="error-instructions">Invalid Email!</p> : ""}
+                    {!validPassword && password ? <p className="w-3/5 flex self-end text-red-600">Passwords should include one uppercase character and be atleast 8 characters long!!</p> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Repeat password</span>
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
