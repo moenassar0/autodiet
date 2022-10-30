@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios"
 import Meal from "./Meal";
 import PlanGenerator from "../../PlanGenerator";
+import { Link, Outlet } from "react-router-dom";
 interface MealProps {
     id: number,
     title: string,
@@ -49,7 +50,7 @@ export const Home = () => {
                     <div className="sidenavbar-item">Username</div>
                     <div className='sidenavbar-item'><hr></hr></div>
                     <div className="sidenavbar-item">Meals</div>
-                    <div className="sidenavbar-item">Profile</div>
+                    <Link to="/user/profile"><div className="cursor-pointer sidenavbar-item">Profile</div></Link>
                     <div className="sidenavbar-item">Preferences</div>
                     <div className='sidenavbar-item'><hr></hr></div>
                     <div className="sidenavbar-item">Browse meals</div>
@@ -74,7 +75,7 @@ export const Home = () => {
                     </div>
                 </div>
             </div>
-
+            <Outlet />
         </div>
     )
 }
