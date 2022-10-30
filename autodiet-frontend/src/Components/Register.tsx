@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "../api/axios";
 import { Navbar } from "./LandingPage/Navbar"
+import {validEmail, checkStringLength} from "../HelperFunctions";
 
 export const Register = () => {
     
@@ -15,6 +16,9 @@ export const Register = () => {
     const [rPassword, setRPassword] = useState('');
 
     const [waitingForResponse, setWaitingForResponse]  = useState(false);
+
+    useEffect(() => {
+    }, [username, email, password])
 
     const register = async () => {
         try{
