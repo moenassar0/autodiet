@@ -1,9 +1,20 @@
+import { useState } from "react";
+import axios from "../api/axios";
 import { Navbar } from "./LandingPage/Navbar"
 
 export const Register = () => {
     
-    function register(){
-        
+
+
+    const [waitingForResponse, setWaitingForResponse]  = useState(false);
+
+    const register = async () => {
+        try{
+            setWaitingForResponse(true);
+        }catch(err){
+            console.log("Error from http request: ", err);
+        }
+        setWaitingForResponse(false);
     }
 
     return(
