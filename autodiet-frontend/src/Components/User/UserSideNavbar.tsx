@@ -8,8 +8,8 @@ export const UserSideNavbar = () =>{
                 <div className="sidenavbar-item"></div>
                 <div className="sidenavbar-item">Username</div>
                 <div className='sidenavbar-item'><hr></hr></div>
-                <Link to="/user/home"><div className="sidenavbar-item">Meals</div></Link>
-                <Link to="/user/profile"><div className="cursor-pointer sidenavbar-item">Profile</div></Link>
+                <Link to="/user/home"><div className="cursor-pointer sidenavbar-item hover:underline">Meals</div></Link>
+                <Link to="/user/profile"><div className="cursor-pointer sidenavbar-item hover:underline">Profile</div></Link>
                 <div className="sidenavbar-item">Preferences</div>
                 <div className='sidenavbar-item'><hr></hr></div>
                 <div className="sidenavbar-item">Browse meals</div>
