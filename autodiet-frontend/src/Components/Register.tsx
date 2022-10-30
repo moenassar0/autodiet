@@ -28,7 +28,8 @@ export const Register = () => {
         try{
             setWaitingForResponse(true);
             if(validEmail && validPassword && validUsername && password === rPassword){
-                console.log(email, username, password);
+                const response = await axios.post('/users', {email, password, user_role: "User", username});
+                console.log(response);
             }
         }catch(err){
             console.log("Error from http request: ", err);
@@ -76,7 +77,7 @@ export const Register = () => {
                         </div>
                         {!(password === rPassword) && rPassword ? <p className="w-3/5 flex self-end text-red-600">Passwords don't match!</p> : ""}
                         <div className="flex items-center self-end w-3/5 h-10">
-                            <button onClick={register} className="w-full h-full mb-10 bg-ad-golden text-black rounded">Register</button>
+                            <button onClick={register} className="w-full h-full mb-10 bg-ad-golden text-black rounded">{waitingForResponse ? <img className="h-6 w-6" src="../loading1.gif"></img> : "Register"}</button>
                         </div>
                     </div>
                 </div>
