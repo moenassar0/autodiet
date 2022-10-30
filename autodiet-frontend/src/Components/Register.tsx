@@ -1,6 +1,11 @@
 import { Navbar } from "./LandingPage/Navbar"
 
 export const Register = () => {
+    
+    function register(){
+        
+    }
+
     return(
         <>
         <div className='translucent-overlay'></div>
@@ -24,8 +29,12 @@ export const Register = () => {
                         <span className="w-2/5 text-ad-golden text-lg">Password</span>
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
                     </div>
+                    <div className="flex items-center place-content-between w-full h-10">
+                        <span className="w-2/5 text-ad-golden text-lg">Repeat password</span>
+                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                    </div>
                     <div className="flex items-center self-end w-3/5 h-10">
-                        <button className="w-full h-full mb-10 bg-ad-golden text-black rounded">Register</button>
+                        <button onClick={register} className="w-full h-full mb-10 bg-ad-golden text-black rounded">Register</button>
                     </div>
                 </div>
             </div>
