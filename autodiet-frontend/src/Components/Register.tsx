@@ -4,7 +4,15 @@ import { Navbar } from "./LandingPage/Navbar"
 
 export const Register = () => {
     
+    const [username, setUsername] = useState('');
+    const [validUsername, setValidUsername] = useState('');
 
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState('');
+
+    const [password, setPassword] = useState('');
+    const [validPassword, setValidPassword] = useState('');
+    const [rPassword, setRPassword] = useState('');
 
     const [waitingForResponse, setWaitingForResponse]  = useState(false);
 
