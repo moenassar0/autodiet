@@ -7,7 +7,7 @@ export const Register = () => {
         <Navbar />
         <div className='navbar-line'><hr></hr></div>
         <div className='hero-content flex items-center px-6'>
-            <div className="flex flex-col w-full max-w-lg h-96 items-center bg-ad-lightgrey rounded-t">
+            <div className="flex flex-col w-full max-w-lg min-h-96 h-auto items-center bg-ad-lightgrey rounded-t">
                 <div className="flex items-center justify-center w-full h-12 bg-black mb-8 rounded-t text-ad-golden font-bold text-lg">
                     Create a new account
                 </div>
@@ -17,11 +17,15 @@ export const Register = () => {
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
                     </div>
                     <div className="flex items-center place-content-between w-full h-10">
-                        <span className="w-2/5 text-ad-golden text-lg">Repeat password</span>
+                        <span className="w-2/5 text-ad-golden text-lg">Username</span>
+                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                    </div>
+                    <div className="flex items-center place-content-between w-full h-10">
+                        <span className="w-2/5 text-ad-golden text-lg">Password</span>
                         <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
                     </div>
                     <div className="flex items-center self-end w-3/5 h-10">
-                        <button className="w-full h-full bg-ad-golden text-black rounded">Register</button>
+                        <button className="w-full h-full mb-10 bg-ad-golden text-black rounded">Register</button>
                     </div>
                 </div>
             </div>
