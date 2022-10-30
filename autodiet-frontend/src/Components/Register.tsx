@@ -36,7 +36,7 @@ export const Register = () => {
     }
 
     return(
-        <>
+        <div className="relative min-h-screen h-auto w-full">
         <div className='translucent-overlay'></div>
         <Navbar />
         <div className='navbar-line'><hr></hr></div>
@@ -75,8 +75,13 @@ export const Register = () => {
                     {!validPassword && password ? <p className="w-3/5 flex self-end text-red-600">Passwords should include one uppercase character and be atleast 8 characters long!!</p> : ""}
                     <div className="flex items-center place-content-between w-full h-10">
                         <span className="w-2/5 text-ad-golden text-lg">Repeat password</span>
-                        <input className="w-3/5 py-2 px-4 bg-black text-white"type="text"></input>
+                        <input 
+                            onChange={(e) => setRPassword(e.target.value)} 
+                            className={"w-3/5 py-2 px-4 text-white bg-black rounded focus:outline-none focus:ring-2 focus:border-ad-golden focus:ring-ad-golden" +
+                            (!(password === rPassword) && rPassword ? "focus:border-red-500 focus:ring-red-500 border-red-500 text-red-600" : "")} type="password">
+                        </input>
                     </div>
+                    {!(password === rPassword) && rPassword ? <p className="w-3/5 flex self-end text-red-600">Passwords don't match!</p> : ""}
                     <div className="flex items-center self-end w-3/5 h-10">
                         <button onClick={register} className="w-full h-full mb-10 bg-ad-golden text-black rounded">Register</button>
                     </div>
@@ -84,6 +89,6 @@ export const Register = () => {
             </div>
             <img className='hero-image' src="../../hero.png"></img>
         </div>
-    </>
+    </div>
     )
 }
