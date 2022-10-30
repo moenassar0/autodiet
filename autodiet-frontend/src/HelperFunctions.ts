@@ -1,3 +1,5 @@
+import axios from "./api/axios";
+
 //Declare helper function's variables
 const EMAIL_REGEX = /.+@.+\..+/;
 const PASSWORD_REGEX = /[A-Z]/;
@@ -15,5 +17,18 @@ export const checkStringLength = (string:string, length:number):boolean => {
 
 export const checkPassword = (password:string):boolean => {
     if(PASSWORD_REGEX.test(password) && checkStringLength(password, 8)) return true;
+    return false;
+}
+
+export const validateUser = async() => {
+    const token = localStorage.getItem("token");
+    const headers = {headers:{'Authorization' : "Bearer " + token}};
+    try{
+        const response = await axios.post("/me", {}, headers);
+        console.log(response);
+        return true;
+    }catch{
+        
+    }
     return false;
 }
