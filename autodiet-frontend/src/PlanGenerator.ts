@@ -19,7 +19,16 @@ function PlanGenerator (meals:Array<MealProps>):any{
     let protein = 0;
 
     //Call function
+    loopOverFind();
+
+async function loopOverFind(){
+    
+    for(let y = 0; y < 1; y++){
     find(0);
+    //console.log(mealplan)
+    return mealplan;
+    //proteinPercentage = getRandomInt(20,40);
+}}
 
     async function find(loops:number){
         if(loops >= 20){
@@ -67,6 +76,7 @@ function PlanGenerator (meals:Array<MealProps>):any{
         }
     }
     console.log("protein got: ", protein, "protein wanted: ", (proteinPercentage/100 * totalcalories)/4);
+    return mealplan;
 }
 
 export default PlanGenerator;

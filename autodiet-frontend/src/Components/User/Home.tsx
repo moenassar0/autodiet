@@ -24,15 +24,19 @@ export const Home = () => {
         fetch();
     }, [])
 
+    useEffect(() => {
+        console.log(DBMeals);
+    }, [DBMeals])
+
     const fetch = async () => {
         try{
             setCurrentlyFetching(true);
-            console.time('Execution Time');
+            console.time('Execution Time 2');
             const response = await axios.get('/meals', headers);
             console.log(response);
-            console.timeEnd('Execution Time');
+            console.timeEnd('Execution Time 2');
             setDBMeals(response.data.meals);
-            console.log(meals);
+            
             setCurrentlyFetching(false);
             //console.log(PlanGenerator(response.data.meals));
             let meals2:Array<MealProps> = response.data.meals;
