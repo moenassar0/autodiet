@@ -34,7 +34,21 @@ async function find(loops:number){
         mealplan = [];
         protein = 0;
         while(calories > 50){
+
+            let x = Math.floor(Math.random()*tempMeals.length);
+            console.log("index: ", x, "tempmeals: ", tempMeals.length);
+            if(tempMeals.length == 0) return;
+            let mult = multiplier(tempMeals[x]['calories'], calorieForEachmeal)
     
+            //Protein condition
+            if((protein + tempMeals[x]['protein'])*4 > (proteinPercentage/100 * totalcalories)){
+                console.log("protein overflow");
+            }
+
+            if(mealplan.includes(tempMeals[x])){
+                console.log(tempMeals[x]['title'], " is repeated")
+                continue
+            }
         }
     }
 }
