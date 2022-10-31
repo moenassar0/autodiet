@@ -38,3 +38,7 @@ export const getRandomInt = (min:number, max:number) => {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min);
 }
+
+export const multiplier = (num1:number, num2:number) => {
+    return num2/num1;
+}
