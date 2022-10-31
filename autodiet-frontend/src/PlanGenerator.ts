@@ -18,10 +18,10 @@ function PlanGenerator (meals:Array<MealProps>):any{
     let acceptableError = 50;
     let protein = 0;
 
-    console.log("protein got: ", protein, "protein wanted: ", (proteinPercentage/100 * totalcalories)/4)
-///////////////////////////////////
+    //Call function
+    find(0);
 
-async function find(loops:number){
+    async function find(loops:number){
         if(loops >= 20){
             console.log("timeout");
             acceptableError += 25
@@ -49,8 +49,24 @@ async function find(loops:number){
                 console.log(tempMeals[x]['title'], " is repeated")
                 continue
             }
+    
+            tempMeals[x]['calories'] *= mult;
+            tempMeals[x]['carbohydrate'] *= mult;
+            tempMeals[x]['protein'] *= mult;
+            tempMeals[x]['fat'] *= mult;
+            mealplan.push(tempMeals[x]);
+            calories -= calorieForEachmeal;
+            protein += tempMeals[x]['protein'];
+        }
+        if(protein*4 - acceptableError > proteinPercentage/100 * totalcalories){
+            console.log("should repeat, protein needed:", (proteinPercentage/100 * totalcalories)/4);
+            find(loops + 1);
+        }
+        else if(protein*4 + acceptableError < proteinPercentage/100 * totalcalories){
+            find(loops + 1);
         }
     }
+    console.log("protein got: ", protein, "protein wanted: ", (proteinPercentage/100 * totalcalories)/4);
 }
 
 export default PlanGenerator;
