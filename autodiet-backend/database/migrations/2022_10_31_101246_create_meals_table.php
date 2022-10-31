@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('carbohydrate');
             $table->integer('fat');
             $table->integer('protein_percentage');
+            $table->string('picture_url');
             $table->timestamps();
         });
     }
