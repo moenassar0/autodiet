@@ -19,7 +19,7 @@ class IsUser
         if (!auth()->user()) 
         return response()->json('Unauthorized');
 
-        if(!auth()->user()->user_role === "User") 
+        if(!(auth()->user()->user_role === "User")) 
             return response()->json('Unauthorized');
 
         return $next($request);

@@ -19,8 +19,10 @@ class IsAdmin
         if (!auth()->user()) 
         return response()->json('Unauthorized');
 
-        if(!auth()->user()->user_role === "User") 
+        if(!(auth()->user()->user_role === "Admin")) 
             return response()->json('Unauthorized');
+
+        echo (auth()->user()->user_role == "Admin");
 
         return $next($request);
     }
