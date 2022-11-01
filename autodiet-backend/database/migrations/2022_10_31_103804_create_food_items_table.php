@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('food_items', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer('serving_size');
             $table->integer('calories');
             $table->integer('protein');
             $table->integer('carbohydrate');
