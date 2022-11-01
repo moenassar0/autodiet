@@ -22,8 +22,6 @@ class IsAdmin
         if(!(auth()->user()->user_role === "Admin")) 
             return response()->json('Unauthorized');
 
-        echo (auth()->user()->user_role == "Admin");
-
         return $next($request);
     }
 }
