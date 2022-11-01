@@ -43,3 +43,8 @@ export const getRandomInt = (min:number, max:number) => {
 export const multiplier = (num1:number, num2:number) => {
     return num2/num1;
 }
+
+export const getToken = () => {
+    const token = localStorage.getItem("token");
+    return {headers:{'Authorization' : "Bearer " + token}};
+}
