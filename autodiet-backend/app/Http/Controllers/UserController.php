@@ -39,6 +39,31 @@ class UserController extends Controller
         //Find user's detail or create new one in DB
         if($user->detail == NULL) $detail = new UserDetail;
         else $detail = $user->detail;
-        echo $detail;
+        //return response()->json(["message" => $detail]);
+
+        //if(!($user->userDetail == NULL)){
+        
+        /*$detail->goal = $request->goal;
+        $detail->sex = $request->sex;
+        $detail->activity_level = $request->activity_level;
+        $detail->bodyfat_percentage = $request->bodyfat_percentage;
+        $detail->height = $request->height;
+        $detail->weight = $request->weight;
+        $detail->age = $request->age;*/
+
+        $validator = Validator::make($request->all(),[
+            'user_id' => 'required',
+            'goal' => 'required',
+            'sex' => 'required',
+            'activity_level' => 'required',
+            'bodyfat_percentage' => 'required',
+            'height' => 'required',
+            'weight' => 'required',
+            'age' => 'required',
+        ]);
+
+        if($validator->fails())
+        return response()->json($validator->errors()->toJson(), 400);
+
     }
 }
