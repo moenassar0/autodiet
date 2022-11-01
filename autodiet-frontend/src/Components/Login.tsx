@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "../api/axios";
 import { Navbar } from "./LandingPage/Navbar"
+import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {
 
@@ -8,6 +9,8 @@ export const Login = () => {
     const [password, setPassword] = useState('');
 
     const [waitingForResponse, setWaitingForResponse] = useState(false);
+    
+    const navigate = useNavigate();
 
     const login = async () => {
         try{
@@ -15,6 +18,7 @@ export const Login = () => {
             const response = await axios.post('/login', {email, password});
             console.log(response);
             localStorage.setItem("token", response.data.access_token)
+            navigate("/user/profile");
         }catch(err){
             console.log("Error from http request: ", err);
         }
