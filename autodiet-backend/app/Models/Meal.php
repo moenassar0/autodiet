@@ -10,6 +10,7 @@ class Meal extends Model
 {
     public function recipe()
     {
-        return $this->hasMany(MealRecipe::class);
+        return $this->belongsToMany(FoodItem::class, 'meal_recipes','meal_id','recipe_item_id')
+        ->withPivot('multiplier');
     }
 }
