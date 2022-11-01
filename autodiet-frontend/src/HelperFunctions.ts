@@ -22,15 +22,16 @@ export const checkPassword = (password:string):boolean => {
 
 export const validateUser = async() => {
     const token = localStorage.getItem("token");
+    if(!token) return false;
+
     const headers = {headers:{'Authorization' : "Bearer " + token}};
     try{
-        const response = await axios.post("/me", {}, headers);
+        const response = await axios.get("/me", headers);
         console.log(response);
         return true;
     }catch{
-        
+        return false;   
     }
-    return false;
 }
 
 export const getRandomInt = (min:number, max:number) => {
