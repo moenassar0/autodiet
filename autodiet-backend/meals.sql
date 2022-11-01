@@ -43,7 +43,14 @@ CREATE TABLE `meals` (
 -- Dumping data for table `meals`
 --
 
- 
+ INSERT INTO `meals` (`id`, `title`, `calories`, `protein`, `carbohydrate`, `fat`, `protein_percentage`, `picture_url`, `created_at`, `updated_at`) VALUES
+(1, 'Overnight Oats', 815, 30, 120, 23, 14, '', NULL, NULL),
+(2, 'Overnight Oats (Lowfat Milk)', 723, 32, 121, 12, 18, '', NULL, NULL),
+(3, 'Tuna on Toast', 448, 42, 27, 18, 40, '', NULL, NULL),
+(4, 'White Rice and Chicken Breast', 702, 31, 89, 17, 20, '', NULL, NULL),
+(5, 'Fish and Chips (Hake)', 740, 51, 82, 23, 28, '', NULL, NULL),
+(6, 'Homemade Chicken Caesar Salad', 410, 42, 14, 21, 42, '', NULL, NULL),
+(7, 'Spaghetti and Ground Beef', 763, 48, 93, 27, 24, '', NULL, NULL);
 
 --
 -- Indexes for dumped tables
