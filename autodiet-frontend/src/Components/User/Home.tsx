@@ -4,6 +4,7 @@ import Meal from "./Meal";
 import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "./UserSideNavbar";
+import { getToken } from "../../HelperFunctions";
 interface MealProps {
     id: number,
     title: string,
@@ -18,7 +19,6 @@ export const Home = () => {
     const [meals, setMeals] = useState([]);
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [generate, setGenerate] = useState(false);
-    const headers = {headers:{'Authorization' : "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjY3MDQ3NTQ3LCJleHAiOjE2NjcwNTExNDcsIm5iZiI6MTY2NzA0NzU0NywianRpIjoibkxZclNFbk9LSm1qUmNuWSIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.f173l2m_MfWBeUyFjp4AO5v561J9qjg0Jv7Mg-b_4vw"}};
 
     useEffect(() => {
         fetch();
@@ -32,7 +32,7 @@ export const Home = () => {
         try{
             setCurrentlyFetching(true);
             console.time('Execution Time 2');
-            const response = await axios.get('/meals', headers);
+            const response = await axios.get('/meals', getToken());
             console.log(response);
             console.timeEnd('Execution Time 2');
             setDBMeals(response.data.meals);
