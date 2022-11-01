@@ -8,7 +8,8 @@ module.exports = {
       colors: {
         "ad-golden": "#FDAD00",
         "ad-darkgrey": "#141414",
-        "ad-lightgrey": "#363636"
+        "ad-lightgrey": "#363636",
+        "ad-hoveredblack": "#0d0d0d",
       }
     },
   },
