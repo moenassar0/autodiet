@@ -11,7 +11,8 @@ interface MealProps {
     calories: number,
     protein: number,
     carbohydrate: number,
-    fat: number
+    fat: number,
+    multiplier: number,
   }
 export const Home = () => {
 
