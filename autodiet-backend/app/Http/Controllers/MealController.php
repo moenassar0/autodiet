@@ -7,9 +7,14 @@ use App\Models\Meal;
 
 class MealController extends Controller
 {
-    public function getMeals(Request $request){
+    public function getMeals(){
 
         $meals = Meal::all();
         return response()->json(["meals" => $meals], 200);
+    }
+
+    public function getMealRecipe($id){
+        $meal = Meal::find($id);
+        return response()->json(["recipe" => $meal->recipe]);
     }
 }
