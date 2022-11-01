@@ -2,14 +2,32 @@ import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { getToken } from "../../HelperFunctions";
 
+interface Recipe{
+    "id": number,
+    "title": string,
+    "serving_size": number,
+    "calories": number,
+    "protein": number,
+    "carbohydrate": number,
+    "fat": number,
+    "picture_url": string,
+    "pivot": {
+        "meal_id": number,
+        "recipe_item_id": number,
+        "multiplier": string
+    }
+}
+
 type Props = {
     setTrigger:any,
-    meal_id: number
+    meal_id: number,
+    meal_multiplier: number,
 };
 
-export const MealRecipePopup: React.FC<Props> = ({setTrigger, meal_id}) => {
+export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, meal_id}) => {
 
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
+    const [recipe, setRecipe] = useState([]);
 
     useEffect(() => {
         const fetch = async () => {
@@ -27,6 +45,7 @@ export const MealRecipePopup: React.FC<Props> = ({setTrigger, meal_id}) => {
             setCurrentlyFetching(true);
             const response = await axios.get('/meal/' + meal_id, getToken());
             console.log(response);
+            setRecipe(response.data.recipe)
             setCurrentlyFetching(false);
         }catch(error){
             console.log(error);
@@ -45,10 +64,7 @@ export const MealRecipePopup: React.FC<Props> = ({setTrigger, meal_id}) => {
                     </div>
                     <div className='px-2'><hr className="border border-ad-golden"></hr></div>
                     <div className="flex items-start justify-start flex-col w-full px-2 gap-10">
-                    <div className="h-10">test</div><div className="h-10">test</div><div className="h-10">test</div>
-                        <div className="h-10">test</div>
-                        <div className="h-10">test</div>
-                        <div className="h-10">test</div>
+                    {recipe.map((recipe:Recipe) => (<div className="text-ad-golden" key={recipe.id}>{recipe.title + "   " + recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)}</div>))}
                     </div>
                 </div>
             </div>
