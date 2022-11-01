@@ -20,7 +20,7 @@ const Meal: React.FC<Props> = ({meal}) => {
 
     return(
         <section>
-            {popup ? <MealRecipePopup  setTrigger={setPopup} /> : ""}
+            {popup ? <MealRecipePopup  meal_id={meal.id} setTrigger={setPopup} /> : ""}
             <div onClick={() => {setPopup(!popup)}} className="meal cursor-pointer hover:bg-ad-hoveredblack">
                 <div className="meal-title">
                     <span>Meal {}</span>
