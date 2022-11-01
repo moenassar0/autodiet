@@ -16,10 +16,6 @@ export const Profile = () => {
     const [height, setHeight] = useState('');
     const [bodyFatPercentage, setBodyFatPercentage] = useState('');
 
-    function editDetails(){
-        console.log(activeGoal, sex, weight, height, age, bodyFatPercentage);
-    }
-
     useEffect(() => {
         const check = async () => {if(! await validateUser()){
             navigate("/");

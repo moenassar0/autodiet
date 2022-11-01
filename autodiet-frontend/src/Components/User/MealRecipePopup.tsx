@@ -12,7 +12,10 @@ export const MealRecipePopup: React.FC<Props> = ({setTrigger, meal_id}) => {
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
 
     useEffect(() => {
-        fetchUserData();
+        const fetch = async () => {
+            await fetchUserData();
+        }
+        fetch();
     }, [])
 
     useEffect(() => {
@@ -23,6 +26,7 @@ export const MealRecipePopup: React.FC<Props> = ({setTrigger, meal_id}) => {
         try{
             setCurrentlyFetching(true);
             const response = await axios.get('/meal/' + meal_id, getToken());
+            console.log(response);
             setCurrentlyFetching(false);
         }catch(error){
             console.log(error);
