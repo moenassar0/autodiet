@@ -1,8 +1,35 @@
+import { useEffect, useState } from "react";
+import axios from "../../api/axios";
+import { getToken } from "../../HelperFunctions";
+
 type Props = {
-    setTrigger:any;
+    setTrigger:any,
+    meal_id: number
 };
 
-export const MealRecipePopup: React.FC<Props> = ({setTrigger}) => {
+export const MealRecipePopup: React.FC<Props> = ({setTrigger, meal_id}) => {
+
+    const [currentlyFetching, setCurrentlyFetching] = useState(false);
+
+    useEffect(() => {
+        fetchUserData();
+    }, [])
+
+    useEffect(() => {
+        console.log(meal_id);
+    }, [setTrigger])
+
+    async function fetchUserData(){
+        try{
+            setCurrentlyFetching(true);
+            const response = await axios.get('/meal/' + meal_id, getToken());
+            setCurrentlyFetching(false);
+        }catch(error){
+            console.log(error);
+        }
+        setCurrentlyFetching(false);
+    }
+
     return(
         <>
             <div className="absolute bg-black top-0 left-0 h-screen w-full opacity-50 z-10"></div>
@@ -22,6 +49,5 @@ export const MealRecipePopup: React.FC<Props> = ({setTrigger}) => {
                 </div>
             </div>
         </>
-
     )
 }
