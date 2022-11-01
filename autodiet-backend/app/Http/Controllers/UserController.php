@@ -32,16 +32,12 @@ class UserController extends Controller
     }
 
     public function updateUserDetail(Request $request){
-        //return response()->json(["message" => "User not found"], 400);
         $user = User::find($request->user_id);
         if(!$user) return response()->json(["message" => "User not found"], 400);
 
         //Find user's detail or create new one in DB
         if($user->detail == NULL) $detail = new UserDetail;
         else $detail = $user->detail;
-        //return response()->json(["message" => $detail]);
-
-        //if(!($user->userDetail == NULL)){
         
         /*$detail->goal = $request->goal;
         $detail->sex = $request->sex;
@@ -62,8 +58,10 @@ class UserController extends Controller
             'age' => 'required',
         ]);
 
-        if($validator->fails())
-        return response()->json($validator->errors()->toJson(), 400);
+        if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
 
+        $detail->fill($validator->validated());
+        $detail->save();    
+        return response()->json(['user detail added:' => $user->detail], 201);
     }
 }
