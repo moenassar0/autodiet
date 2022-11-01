@@ -16,6 +16,12 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
+        if (!auth()->user()) 
+        return response()->json('Unauthorized');
+
+        if(!auth()->user()->user_role === "User") 
+            return response()->json('Unauthorized');
+
         return $next($request);
     }
 }
