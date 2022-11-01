@@ -6,7 +6,8 @@ interface MealProps {
     calories: number,
     protein: number,
     carbohydrate: number,
-    fat: number
+    fat: number,
+    multiplier: number,
 }
 function PlanGenerator (meals:Array<MealProps>):any{
     let tempMeals = meals;
@@ -63,6 +64,7 @@ async function loopOverFind(){
             tempMeals[x]['carbohydrate'] *= mult;
             tempMeals[x]['protein'] *= mult;
             tempMeals[x]['fat'] *= mult;
+            tempMeals[x]['multiplier'] = mult;
             mealplan.push(tempMeals[x]);
             calories -= calorieForEachmeal;
             protein += tempMeals[x]['protein'];
