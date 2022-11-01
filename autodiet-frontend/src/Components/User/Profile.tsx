@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
-import { validateUser } from "../../HelperFunctions";
+import { validateUser, getToken } from "../../HelperFunctions";
 import { UserSideNavbar } from "./UserSideNavbar"
 import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
+import axios from "../../api/axios";
 
 export const Profile = () => {
 
     const navigate = useNavigate();
 
+    const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [activeGoal, setActiveGoal] = useState('');
     const [sex, setSex] = useState('');
     const [weight, setWeight] = useState('');
@@ -23,16 +25,38 @@ export const Profile = () => {
             navigate("/");
         }}
         check();
+        fetchUserData();
     }, [])
+
     useEffect(() => {
         console.log(activeGoal);
     }, [activeGoal])
+
+    async function fetchUserData(){
+        try{
+            setCurrentlyFetching(true);
+            const response = await axios.get('/user', getToken());
+            const user_detail = (response.data.user_detail);
+            setActiveGoal(user_detail.goal);
+            setAge(user_detail.age);
+            setWeight(user_detail.weight);
+            setHeight(user_detail.height);
+            setSex(user_detail.sex);
+            setBodyFatPercentage(user_detail.bodyfat_percentage);
+            setCurrentlyFetching(false);
+        }catch{
+            
+        }
+    }
 
     return(
         <div className="flex h-min-screen w-full">
             <UserSideNavbar />
             <div className="flex flex-col h-screen w-4/5">
                 <div className="topnavbar"></div>
+                {currentlyFetching 
+                ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div> 
+                : 
                 <div className="flex h-4/5 w-full bg-ad-lightgrey">
                     <div className="flex flex-col h-4/5 w-full py-2 px-2">
                         <div className="flex w-full h-1/6">
@@ -53,19 +77,19 @@ export const Profile = () => {
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Height</div>
                             <div className="flex w-3/5 h-1/2 justify-start">
-                                <input onChange={(e) => setHeight(e.target.value)} type="text" className="w-1/2 h-full rounded"></input>
+                                <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} className="w-1/2 h-full rounded px-1 py-1"></input>
                             </div>
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Age</div>
                             <div className="flex w-3/5 h-1/2 justify-start">
-                                <input type="text" onChange={(e) => setAge(e.target.value)} className="w-1/2 h-full rounded"></input>
+                                <input type="text" value={age} onChange={(e) => setAge(e.target.value)} className="w-1/2 h-full rounded px-1 py-1"></input>
                             </div>
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Weight</div>
                             <div className="flex w-3/5 h-1/2 justify-start">
-                                <input type="text" onChange={(e) => setWeight(e.target.value)} className="w-1/2 h-full rounded"></input>
+                                <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} className="w-1/2 h-full rounded px-1 py-1"></input>
                             </div>
                         </div>
                         <div className="flex w-full h-1/6">
@@ -82,7 +106,7 @@ export const Profile = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     )
