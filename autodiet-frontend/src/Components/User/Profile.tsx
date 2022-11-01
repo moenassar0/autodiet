@@ -45,7 +45,18 @@ export const Profile = () => {
             setBodyFatPercentage(user_detail.bodyfat_percentage);
             setCurrentlyFetching(false);
         }catch{
-            
+            setCurrentlyFetching(false);
+        }
+    }
+
+    async function updateUserDetails(){
+        try{
+            setCurrentlyFetching(true);
+            const response = await axios.post('/user', {goal: activeGoal, sex, weight, height, age, bodyfat_percentage: bodyFatPercentage, activity_level: "Medium"}, getToken());
+            console.log(response);
+            setCurrentlyFetching(false);
+        }catch{
+            setCurrentlyFetching(false);
         }
     }
 
@@ -102,7 +113,7 @@ export const Profile = () => {
                         </div>
                         <div className="flex w-full h-1/6">
                             <div className="flex w-3/5 h-full items-center justify-end">
-                                <button onClick={() => editDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded bg-ad-golden"}>Save Changes</button>
+                                <button onClick={() => updateUserDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded bg-ad-golden"}>Save Changes</button>
                             </div>
                         </div>
                     </div>
