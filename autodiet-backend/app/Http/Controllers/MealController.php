@@ -18,7 +18,8 @@ class MealController extends Controller
         return response()->json(["recipe" => $meal->recipe]);
     }
 
-    public function getMealsByTitle(Request $request){
-        $meals = Meal::where('title', 'like', '%' . $request->search_string . '%')->get();
+    public function getMealsByTitle($search_string){
+        $meals = Meal::where('title', 'like', '%' . $search_string . '%')->get();
+        return response()->json(["meals" => $meals]);
     }
 }
