@@ -5,6 +5,7 @@ import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "./UserSideNavbar";
 import { getToken } from "../../HelperFunctions";
+import PlanGenerator2 from "../../PlanGenerator2";
 interface MealProps {
     id: number,
     title: string,
@@ -17,6 +18,7 @@ interface MealProps {
 export const Home = () => {
 
     const [DBMeals, setDBMeals] = useState([]);
+    const [generatedMeals, setGeneratedMeals] = useState(false);
     const [meals, setMeals] = useState([]);
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [generate, setGenerate] = useState(false);
@@ -24,10 +26,6 @@ export const Home = () => {
     useEffect(() => {
         fetch();
     }, [])
-
-    useEffect(() => {
-        console.log(DBMeals);
-    }, [DBMeals])
 
     const fetch = async () => {
         try{
@@ -39,8 +37,7 @@ export const Home = () => {
             setDBMeals(response.data.meals);
             
             setCurrentlyFetching(false);
-            //console.log(PlanGenerator(response.data.meals));
-            let meals2:Array<MealProps> = response.data.meals;
+            //let meals2:Array<MealProps> = response.data.meals;
             //await PlanGenerator(meals2);
         }catch{
             
@@ -54,15 +51,16 @@ export const Home = () => {
                 <div className="topnavbar"></div>
                 <div className="mealplan-container">
                     <div className="meals-container scrollbar">
-                        {currentlyFetching 
+                        {generatedMeals 
                         ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
                         : meals.map((meal: MealProps) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                     </div>
                     <div className="nutrition-container">
-                        <button onClick={() => {
+                        <button onClick={async () => {
                             let generatedMeals = PlanGenerator(DBMeals);
                             console.log(generatedMeals);
-                            setMeals(generatedMeals)}}>Generate</button>
+                            setMeals(generatedMeals);
+                            setGeneratedMeals(false)}}>Generate</button>
                     </div>
                 </div>
             </div>
