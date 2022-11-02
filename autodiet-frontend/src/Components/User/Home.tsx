@@ -48,19 +48,19 @@ export const Home = () => {
         <div className="flex h-min-screen w-full">
             <UserSideNavbar />
             <div className="container">
-                <div className="topnavbar"></div>
+                <div className="topnavbar">
+                    <button className="w-20 h-10 rounded bg-ad-golden"
+                    onClick={async () => {
+                                let generatedMeals = PlanGenerator(DBMeals);
+                                console.log(generatedMeals);
+                                setMeals(generatedMeals);
+                                setGeneratedMeals(false)}}>Generate</button>
+                    </div>
                 <div className="mealplan-container">
                     <div className="meals-container scrollbar">
                         {generatedMeals 
                         ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
                         : meals.map((meal: MealProps) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
-                    </div>
-                    <div className="nutrition-container">
-                        <button onClick={async () => {
-                            let generatedMeals = PlanGenerator(DBMeals);
-                            console.log(generatedMeals);
-                            setMeals(generatedMeals);
-                            setGeneratedMeals(false)}}>Generate</button>
                     </div>
                 </div>
             </div>
