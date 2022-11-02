@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react"
+import axios from "../../api/axios";
+import { getToken } from "../../HelperFunctions";
 import { UserSideNavbar } from "./UserSideNavbar"
 
 export const BrowseMeals = () => {
@@ -7,10 +9,12 @@ export const BrowseMeals = () => {
 
     useEffect(() => {
         searchQuery();
-    }, [])
+    }, [searchInput])
 
     const searchQuery = async () => {
         try{
+            const response = await axios.get('/meals/' + searchInput, getToken());
+            console.log(response);
 
         }catch{
             
