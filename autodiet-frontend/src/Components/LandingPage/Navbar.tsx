@@ -8,12 +8,12 @@ export const Navbar = () => {
           <li>Features</li>
           <li>Features</li>
         </ul>
-        <div className='navbar-register'>
+        <div className='w-1/4 flex flex-col items-center justify-center'>
           <Link to="/register">
-            <button>Sign Up</button>
+            <button className='w-20 h-10 rounded bg-ad-golden'>Sign Up</button>
           </Link>
           <Link to="/login">
-            <span>Already have an account? Login.</span>
+            <div className='w-full text-center h-full'>Already have an account? Login.</div>
           </Link>
         </div>
       </div>
