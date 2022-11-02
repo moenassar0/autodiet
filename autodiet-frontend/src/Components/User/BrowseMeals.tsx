@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react"
 import axios from "../../api/axios";
 import { getToken } from "../../HelperFunctions";
+import MealCard from "./MealCard";
 import { UserSideNavbar } from "./UserSideNavbar"
+import { Meal } from "../../types/types";
 
 export const BrowseMeals = () => {
 
     const [searchInput, setSearchInput] = useState('');
+    const [fetchedMeals, setFetchedMeals] = useState<any[]>([])
 
     useEffect(() => {
         searchQuery();
@@ -14,8 +17,8 @@ export const BrowseMeals = () => {
     const searchQuery = async () => {
         try{
             const response = await axios.get('/meals/' + searchInput, getToken());
-            console.log(response);
-
+            console.log(response.data.meals);
+            setFetchedMeals(response.data.meals);
         }catch{
             
         }
@@ -31,13 +34,9 @@ export const BrowseMeals = () => {
                         <input onChange={(e) => setSearchInput(e.target.value)} type="text" className="w-full h-full flex px-2 py-2 rounded" />
                     </div>
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
-                        <div className="flex flex-col h-48 w-60 mr-2 mb-2 rounded-t cursor-pointer hover:opacity-70 hover:scale-105 ease-linear duration-600">
-                            <div className="h-3/6 w-full rounded-t">
-                                <img src="../oat.png" className="w-full h-full rounded-t"></img>
-                            </div>
-                            <div className="bg-white h-2/6 w-full"></div>
-                            <div className="bg-black h-1/6 w-full rounded-b"></div>
-                        </div>
+                    {!(fetchedMeals.length > 0) 
+                        ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
+                        : fetchedMeals.map((meal: Meal) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
                     </div>
                 </div>
             </div>
