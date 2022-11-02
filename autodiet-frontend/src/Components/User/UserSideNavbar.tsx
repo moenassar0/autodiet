@@ -10,10 +10,9 @@ export const UserSideNavbar = () =>{
                 <div className='sidenavbar-item'><hr></hr></div>
                 <Link to="/user/home"><div className="cursor-pointer sidenavbar-item hover:underline">Meals</div></Link>
                 <Link to="/user/profile"><div className="cursor-pointer sidenavbar-item hover:underline">Profile</div></Link>
-                <div className="sidenavbar-item">Preferences</div>
                 <div className='sidenavbar-item'><hr></hr></div>
-                <div className="sidenavbar-item">Browse meals</div>
-                <div className="sidenavbar-item">Browse foods</div>
+                <Link to="/user/meals"><div className="cursor-pointer sidenavbar-item hover:underline">Browse meals</div></Link>
+                <Link to="/user/foods"><div className="cursor-pointer sidenavbar-item hover:underline">Browse foods</div></Link>
                 <div className="sidenavbar-item">Browse diets</div>
                 <div className='sidenavbar-item'><hr></hr></div>
             </div>
