@@ -4,6 +4,7 @@ import { getToken } from "../../HelperFunctions";
 import MealCard from "./MealCard";
 import { UserSideNavbar } from "./UserSideNavbar"
 import { Meal } from "../../types/types";
+import { EmptyState } from "../utility/EmptyState";
 
 export const BrowseMeals = () => {
 
@@ -35,7 +36,7 @@ export const BrowseMeals = () => {
                     </div>
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
                     {!(fetchedMeals.length > 0) 
-                        ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
+                        ? <EmptyState/>
                         : fetchedMeals.map((meal: Meal) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
                     </div>
                 </div>
