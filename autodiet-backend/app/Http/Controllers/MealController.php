@@ -17,4 +17,8 @@ class MealController extends Controller
         $meal = Meal::find($id);
         return response()->json(["recipe" => $meal->recipe]);
     }
+
+    public function getMealsByTitle(Request $request){
+        $meals = Meal::where('title', 'like', '%' . $request->search_string . '%')->get();
+    }
 }
