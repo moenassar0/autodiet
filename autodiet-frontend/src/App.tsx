@@ -7,6 +7,7 @@ import { LandingPage } from './Components/LandingPage/LandingPage';
 import { Login } from './Components/Login';
 import { Register } from './Components/Register';
 import { Profile } from './Components/User/Profile';
+import { BrowseMeals } from './Components/User/BrowseMeals';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/user" element={ <div><Outlet /></div> }>
           <Route path="/user/home" element={<Home />}></Route>
           <Route path="/user/profile" element={<Profile />}></Route>
+          <Route path="/user/meals" element={<BrowseMeals />}></Route>
+          <Route path="/user/foods" element={<BrowseMeals />}></Route>
         </Route>
       </Routes>
     </>
