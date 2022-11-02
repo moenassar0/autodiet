@@ -57,7 +57,7 @@ export const Home = () => {
                                 setGeneratedMeals(false)}}>Generate</button>
                     </div>
                 <div className="mealplan-container">
-                    <div className="meals-container scrollbar">
+                    <div className="flex flex-wrap w-full h-auto overflow-y-scroll scrollbar">
                         {generatedMeals 
                         ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
                         : meals.map((meal: MealProps) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
