@@ -6,6 +6,7 @@ import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "./UserSideNavbar";
 import { getToken } from "../../HelperFunctions";
 import PlanGenerator2 from "../../PlanGenerator2";
+import { TopNavBar } from "../utility/TopNavBar";
 interface MealProps {
     id: number,
     title: string,
@@ -47,16 +48,16 @@ export const Home = () => {
     return(
         <div className="flex h-min-screen w-full">
             <UserSideNavbar />
-            <div className="flex flex-col h-screen w-4/5">
-                <div className="topnavbar">
+            <div className="flex flex-col h-min-screen w-4/5">
+                <TopNavBar title="Your Mealplan">
                     <button className="w-20 h-10 rounded bg-ad-golden"
                     onClick={async () => {
                                 let generatedMeals = PlanGenerator(DBMeals);
                                 console.log(generatedMeals);
                                 setMeals(generatedMeals);
                                 setGeneratedMeals(false)}}>Generate</button>
-                    </div>
-                <div className="mealplan-container">
+                </TopNavBar>
+                <div className="flex h-4/5 w-full bg-ad-lightgrey px-2 py-2">
                     <div className="flex flex-wrap w-full h-auto overflow-y-scroll scrollbar">
                         {generatedMeals 
                         ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
