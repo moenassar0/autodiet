@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\FoodItemController;
 use App\Http\Middleware\IsUser;
 use App\Http\Middleware\IsAdmin;
 
@@ -22,6 +23,7 @@ Route::middleware([IsUser::class])->group(function () {
 
 Route::middleware([IsAdmin::class])->group(function () {
     Route::post("/meal", [MealController::class, "addMeal"]);
+    Route::post("/food_item", [FoodItemController::class, "addMeal"]);
 
     Route::delete("/user/{id}", [UserController::class, "deleteUser"]);
     Route::delete("/meal/{id}", [MealController::class, "deleteMeal"]);
