@@ -64,7 +64,7 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                     </div>
                     <div className='px-2'><hr className="border border-ad-golden"></hr></div>
                     <div className="flex items-start justify-start flex-col w-full px-2 gap-10">
-                    {recipe.map((recipe:Recipe) => (<div className="text-ad-golden" key={recipe.id}>{recipe.title + "   " + recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)}</div>))}
+                    {recipe.map((recipe:Recipe) => (<div className="text-ad-golden" key={recipe.id}>{recipe.title + "   " + Math.round(recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)) + "g"}</div>))}
                     </div>
                 </div>
             </div>
