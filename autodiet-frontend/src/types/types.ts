@@ -1,4 +1,4 @@
-export interface Meal{
+export interface MealInterface{
     id: number,
     title: string,
     calories: number,
