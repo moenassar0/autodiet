@@ -1,7 +1,8 @@
-type Props = {
-    title:string, error:string, state:string, setHook:any, valid:boolean
-};
-const InputField: React.FC<Props> = ({title, error, state, setHook, valid}) => {
+import { InputFieldInterface } from "../types/types"
+
+
+//change to interface
+const InputField: React.FC<InputFieldInterface> = ({title, error, state, setHook, valid}) => {
 
     return(
         <>
