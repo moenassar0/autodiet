@@ -64,4 +64,10 @@ class UserController extends Controller
         $detail->save();    
         return response()->json(['user detail added:' => $user->detail], 201);
     }
+
+    public function deleteUser($id){
+        $user = User::find($id);
+        if($user) $user->delete(); return response()->json(['deleted:' => $user], 200);
+        return response()->json(['message' => 'user not found'], 200);
+    }
 }
