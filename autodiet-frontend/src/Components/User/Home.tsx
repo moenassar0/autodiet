@@ -47,7 +47,7 @@ export const Home = () => {
     return(
         <div className="flex h-min-screen w-full">
             <UserSideNavbar />
-            <div className="container">
+            <div className="flex flex-col h-screen w-4/5">
                 <div className="topnavbar">
                     <button className="w-20 h-10 rounded bg-ad-golden"
                     onClick={async () => {
