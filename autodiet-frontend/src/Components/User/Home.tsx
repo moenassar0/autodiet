@@ -7,15 +7,7 @@ import { UserSideNavbar } from "./UserSideNavbar";
 import { getToken } from "../../HelperFunctions";
 import PlanGenerator2 from "../../PlanGenerator2";
 import { TopNavBar } from "../utility/TopNavBar";
-interface MealProps {
-    id: number,
-    title: string,
-    calories: number,
-    protein: number,
-    carbohydrate: number,
-    fat: number,
-    multiplier: number,
-  }
+import { MealInterface } from "../../types/types";
 export const Home = () => {
 
     const [DBMeals, setDBMeals] = useState([]);
@@ -46,7 +38,7 @@ export const Home = () => {
     }
 
     return(
-        <div className="flex h-min-screen w-full">
+        <div className="flex h-screen w-full">
             <UserSideNavbar />
             <div className="flex flex-col h-min-screen w-4/5">
                 <TopNavBar title="Your Mealplan">
@@ -61,7 +53,7 @@ export const Home = () => {
                     <div className="flex flex-wrap w-full h-auto overflow-y-scroll scrollbar">
                         {generatedMeals 
                         ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div>
-                        : meals.map((meal: MealProps) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
+                        : meals.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                     </div>
                 </div>
             </div>

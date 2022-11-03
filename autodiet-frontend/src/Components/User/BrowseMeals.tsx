@@ -3,7 +3,7 @@ import axios from "../../api/axios";
 import { getToken } from "../../HelperFunctions";
 import MealCard from "./MealCard";
 import { UserSideNavbar } from "./UserSideNavbar"
-import { Meal } from "../../types/types";
+import { MealInterface } from "../../types/types";
 import { EmptyState } from "../utility/EmptyState";
 
 export const BrowseMeals = () => {
@@ -37,7 +37,7 @@ export const BrowseMeals = () => {
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
                     {!(fetchedMeals.length > 0) 
                         ? <EmptyState/>
-                        : fetchedMeals.map((meal: Meal) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
+                        : fetchedMeals.map((meal: MealInterface) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
                     </div>
                 </div>
             </div>

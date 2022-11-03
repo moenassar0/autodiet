@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { MealRecipePopup } from "./MealRecipePopup";
-import { Meal } from "../../types/types";
+import { MealInterface } from "../../types/types";
 
 type Props = {
-    meal: Meal
+    meal: MealInterface
 };
 
 const MealCard: React.FC<Props> = ({meal}) => {
