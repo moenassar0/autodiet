@@ -25,14 +25,14 @@ const Meal: React.FC<Props> = ({meal}) => {
             <div onClick={() => {setPopup(!popup)}} className="meal cursor-pointer hover:bg-ad-hoveredblack">
                 <div className="meal-title">
                     <span>Meal {}</span>
-                    <span className="text-small">{meal.calories} Calories</span>
+                    <span className="text-small">{Math.round(meal.calories)} Calories</span>
                 </div>
                 <div className="meal-content">
                     <img src="../logo512.png"></img>
                     <span>{meal.title}</span>
                 </div>
                 <div className="meal-title">
-                    <span>Protein: {meal.protein}</span>
+                    <span>Protein: {Math.round(meal.protein)}</span>
                 </div>
             </div>
         </section>
