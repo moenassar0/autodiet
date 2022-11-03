@@ -22,4 +22,10 @@ class MealController extends Controller
         $meals = Meal::where('title', 'like', '%' . $search_string . '%')->get();
         return response()->json(["meals" => $meals]);
     }
+
+    public function deleteMeal($id){
+        $meal = Meal::find($id);
+        if($meal) $meal->delete(); return response()->json(['deleted:' => $meal], 200);
+        return response()->json(['message' => 'meal not found'], 200);
+    }
 }
