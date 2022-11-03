@@ -8,6 +8,13 @@ use App\Models\MealRecipe;
 
 class MealController extends Controller
 {
+    public function addMeal(){
+        $meal = new Meal;
+
+        $meal->save();
+
+        return response()->json(["result" => "ok", 'meal added:' => $meal], 201);
+    }
     public function getMeals(){
         $meals = Meal::all();
         return response()->json(["meals" => $meals], 200);
