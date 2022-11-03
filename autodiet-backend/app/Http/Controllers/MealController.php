@@ -11,10 +11,18 @@ class MealController extends Controller
     public function addMeal(){
         $meal = new Meal;
 
+        $meal->title = $request->title;
+        $meal->calories = $request->calories;
+        $meal->protein = $request->protein;
+        $meal->carbohydrate = $request->carbohydrate;
+        $meal->fat = $request->fat;
+        $meal->picture_url = $request->picture_url;
+
         $meal->save();
 
         return response()->json(["result" => "ok", 'meal added:' => $meal], 201);
     }
+    
     public function getMeals(){
         $meals = Meal::all();
         return response()->json(["meals" => $meals], 200);
