@@ -19,3 +19,7 @@ Route::middleware([IsUser::class])->group(function () {
     Route::get("/user", [UserController::class, "getUserDetail"]);
     Route::post("/user", [UserController::class, "updateUserDetail"]);
 });
+
+Route::middleware([IsAdmin::class])->group(function () {
+    Route::delete("/user/{id}", [UserController::class, "deleteUser"]);
+});
