@@ -8,7 +8,7 @@ use App\Models\MealRecipe;
 
 class MealController extends Controller
 {
-    public function addMeal(){
+    public function addMeal(Request $request){
         $meal = new Meal;
 
         $meal->title = $request->title;
@@ -22,7 +22,7 @@ class MealController extends Controller
 
         return response()->json(["result" => "ok", 'meal added:' => $meal], 201);
     }
-    
+
     public function getMeals(){
         $meals = Meal::all();
         return response()->json(["meals" => $meals], 200);
