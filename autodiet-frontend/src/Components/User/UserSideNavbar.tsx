@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export const UserSideNavbar = () =>{
     return(
-        <div className="sidenavbar">
+        <div className="flex h-min-screen w-1/5 bg-ad-darkgrey flex-col px-2 py-4">
             <div className="flex items-center justify-start"><div className="navbar-icon"></div></div>
             <div className="sidenavbar-items scrollbar">
                 <div className="flex w-full h-16 text-ad-golden items-center justify-start">Username</div>
