@@ -10,6 +10,10 @@ module.exports = {
         "ad-darkgrey": "#141414",
         "ad-lightgrey": "#363636",
         "ad-hoveredblack": "#0d0d0d",
+        "admin-main": "#2E3845",
+        "admin-grey-background": "#F3F4F8",
+        "admin-button": "#737DF4",
+        "admin-misc": "#DDDFFC"
       }
     },
   },
