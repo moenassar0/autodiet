@@ -1,5 +1,17 @@
 export const AdminHome = () => {
     return(
-        <div className="h-screen w-full bg-black"></div>
+        <div className="flex h-screen w-full">
+            <div className="h-full w-1/6 bg-admin-main">
+                
+            </div>
+            <div className="flex flex-col w-5/6 h-full">
+                <div className="h-16 w-full bg-white">
+                    <div className=""><img src=""></img></div>
+                </div>
+                <div className="h-screen w-full bg-admin-grey-background">
+
+                </div>
+            </div>
+        </div>
     )
 }
