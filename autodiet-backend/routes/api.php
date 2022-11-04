@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\FoodItemController;
+use App\Http\Controllers\WeightEntryController;
 use App\Http\Middleware\IsUser;
 use App\Http\Middleware\IsAdmin;
 
@@ -21,6 +22,7 @@ Route::middleware([IsUser::class])->group(function () {
     Route::get("/weightentries/{id}", [UserController::class, "getUserWeightEntries"]);
 
     Route::post("/user", [UserController::class, "updateUserDetail"]);
+    Route::put("/weightentries", [WeightEntryController::class, "addOrUpdateWeightEntry"]);
 });
 
 Route::middleware([IsAdmin::class])->group(function () {
