@@ -47,7 +47,7 @@ class MealController extends Controller
 
     public function updateMeal(Request $request){
         $meal = Meal::find($request->id);
-        if(!$meal) return response()->json(['message' => 'meal not found'], 200);
+        if(!$meal) return response()->json(['message' => 'meal not found'], 400);
 
         $validator = Validator::make($request->all(),[
             'title' => 'required',
