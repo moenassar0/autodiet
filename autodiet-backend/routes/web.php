@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Mail\SendMealPlan;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +15,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/email', function () {
+    return view('email.mealplan-email');
+});
+
+Route::get('send-email', function(){
+    $mailData = ['name' => 'testasd'];
+
+    Mail::to("mnassar57@gmail.com")->send(new SendMealPlan($mailData));
+
+    dd("success");
 });
