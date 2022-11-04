@@ -33,20 +33,13 @@ class UserController extends Controller
 
     public function updateUserDetail(Request $request){
         $user = auth()->user();
-        $user_id = auth()->user()->id;
+        $user_id = $user->id;
         if(!$user) return response()->json(["message" => "User not found"], 400);
 
         //Find user's detail or create new one in DB
         if($user->detail == NULL) $detail = new UserDetail;
         else $detail = $user->detail;
-        
-        /*$detail->goal = $request->goal;
-        $detail->sex = $request->sex;
-        $detail->activity_level = $request->activity_level;
-        $detail->bodyfat_percentage = $request->bodyfat_percentage;
-        $detail->height = $request->height;
-        $detail->weight = $request->weight;
-        $detail->age = $request->age;*/
+    
 
         $validator = Validator::make($request->all(),[
             'goal' => 'required',
