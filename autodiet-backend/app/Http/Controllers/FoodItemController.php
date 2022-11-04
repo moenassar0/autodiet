@@ -36,4 +36,13 @@ class FoodItemController extends Controller
 
         return response()->json(["result" => "ok", 'food_item added:' => $food_item], 201);
     }
+
+    public function updateFoodItem(Request $request){
+        $food_item = FoodItem::find($request->id);
+        if(!$food_item) return response()->json(['message' => 'food item not found'], 400);
+
+
+        
+        return response()->json(['updated meal' => $food_item], 200);
+    }
 }
