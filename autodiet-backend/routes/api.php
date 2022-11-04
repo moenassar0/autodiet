@@ -17,7 +17,7 @@ Route::middleware([IsUser::class])->group(function () {
     Route::get("/meals", [MealController::class, "getMeals"]);
     Route::get("/meal/{id}", [MealController::class, "getMealRecipe"]);
     Route::get("/meals/{search_string}", [MealController::class, "getMealsByTitle"]);
-    Route::get("/user", [UserController::class, "getUserDetail"]);
+    Route::get("/user/{id}", [UserController::class, "getUserDetail"]);
     Route::post("/user", [UserController::class, "updateUserDetail"]);
 });
 
@@ -25,8 +25,9 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post("/meal", [MealController::class, "addMeal"]);
     Route::post("/food_item", [FoodItemController::class, "addFoodItem"]);
 
-    Route::put("/meal/{id}", [MealController::class, "updateMeal"]);
+    Route::put("/meal", [MealController::class, "updateMeal"]);
     Route::put("/food_item", [FoodItemController::class, "updateFoodItem"]);
+    Route::put("/user", [UserController::class, "updateUser"]);
 
     Route::delete("/user/{id}", [UserController::class, "deleteUser"]);
     Route::delete("/meal/{id}", [MealController::class, "deleteMeal"]);
