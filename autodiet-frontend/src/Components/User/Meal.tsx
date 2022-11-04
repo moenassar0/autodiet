@@ -1,18 +1,8 @@
 import { useState } from "react";
 import { MealRecipePopup } from "./MealRecipePopup";
-
-interface MealProps {
-    id: number,
-    title: string,
-    calories: number,
-    protein: number,
-    carbohydrate: number,
-    fat: number,
-    multiplier: number,
-  }
-
+import { MealInterface } from "../../types/types"
 type Props = {
-    meal: MealProps
+    meal: MealInterface
 };
 
 const Meal: React.FC<Props> = ({meal}) => {
@@ -22,17 +12,15 @@ const Meal: React.FC<Props> = ({meal}) => {
     return(
         <section>
             {popup ? <MealRecipePopup  meal_title={meal.title} meal_multiplier={meal.multiplier} meal_id={meal.id} setTrigger={setPopup} /> : ""}
-            <div onClick={() => {setPopup(!popup)}} className="meal cursor-pointer hover:bg-ad-hoveredblack">
-                <div className="meal-title">
-                    <span>Meal {}</span>
-                    <span className="text-small">{Math.round(meal.calories)} Calories</span>
-                </div>
-                <div className="meal-content">
-                    <img src="../logo512.png"></img>
+            <div onClick={() => {setPopup(!popup)}}
+            className="flex flex-col m-2 h-32 w-72 bg-black rounded px-2 py-2 justify-start cursor-pointer hover:bg-ad-hoveredblack">
+                <div className="flex flex-col justify-start text-ad-golden w-full h-1/3">
+                    <span className="w-full h-2/3 text-lg">Meal {}</span>
+                    <span className="w-full h-1/3 text-small">{Math.round(meal.calories)} Calories</span>
+                </div>{/*212 160*/ }
+                <div className="flex w-full justify-start items-center h-2/3 text-white rounded px-2">
+                    <img className="w-14 h-12 mr-2 rounded" src={meal.picture_url}></img>
                     <span>{meal.title}</span>
-                </div>
-                <div className="meal-title">
-                    <span>Protein: {Math.round(meal.protein)}</span>
                 </div>
             </div>
         </section>
