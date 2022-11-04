@@ -38,6 +38,11 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(WeightEntry::class);
     }
 
+    public function meals()
+    {
+        return $this->hasMany(UserMeal::class);
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
