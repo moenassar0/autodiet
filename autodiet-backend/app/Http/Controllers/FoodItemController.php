@@ -58,4 +58,10 @@ class FoodItemController extends Controller
         
         return response()->json(['updated meal' => $food_item], 200);
     }
+
+    public function deleteFoodItem($id){
+        $food_item = FoodItem::find($id);
+        if($food_item) $food_item->delete(); return response()->json(['deleted:' => $food_item], 200);
+        return response()->json(['message' => 'meal not found'], 400);
+    }
 }
