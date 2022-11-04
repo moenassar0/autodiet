@@ -6,6 +6,7 @@ export interface MealInterface{
     carbohydrate: number,
     fat: number,
     multiplier: number,
+    picture_url:string,
 }
 
 export interface InputFieldInterface{
