@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Meal;
 use App\Models\MealRecipe;
+use Validator;
 
 class MealController extends Controller
 {
@@ -42,5 +43,27 @@ class MealController extends Controller
         $meal = Meal::find($id);
         if($meal) $meal->delete(); return response()->json(['deleted:' => $meal], 200);
         return response()->json(['message' => 'meal not found'], 200);
+    }
+
+    public function updateMeal(Request $request){
+        $meal = Meal::find($request->id);
+        if(!$meal) return response()->json(['message' => 'meal not found'], 200);
+
+        $validator = Validator::make($request->all(),[
+            'title' => 'required',
+            'calories' => 'required',
+            'protein' => 'required',
+            'carbohydrate' => 'required',
+            'fat' => 'required',
+            'protein_percentage' => 'required',
+            'picture_url' => 'required',
+        ]);
+
+        if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
+        
+        $meal->fill($validator->validated());
+        $meal->save();
+        
+        return response()->json(['updated meal' => $meal], 200);
     }
 }
