@@ -8,33 +8,32 @@ interface MealProps {
     carbohydrate: number,
     fat: number,
     multiplier: number,
+    type:string,
 }
-function PlanGenerator (meals:Array<MealProps>):any{
+function PlanGenerator (meals:Array<MealProps>, staticMeal:any):any{
     //let tempMeals = meals.slice();
     //console.log(tempMeals);
     let totalcalories = 2000;
     let mealplan:Array<MealProps> = [];
     let mealsAmount = getRandomInt(3,7);
     let calorieForEachmeal = totalcalories/mealsAmount;
-    let proteinPercentage = getRandomInt(18,40);
+    let proteinPercentage = getRandomInt(18,31);
     let acceptableError = 50;
     let protein = 0;
 
     //Call function
-    loopOverFind(meals);
+    loopOverFind(meals, staticMeal);
 
-async function loopOverFind(meals:Array<MealProps>){
+async function loopOverFind(meals:Array<MealProps>, staticMeal:MealProps){
     
     for(let y = 0; y < 1; y++){
-    await find(0, meals);
+    await find(0, meals, staticMeal);
     //console.log(mealplan)
     return mealplan;
     //proteinPercentage = getRandomInt(20,40);
 }}
 
-    async function find(loops:number, meals:Array<MealProps>){
-        console.log("loop number: ", loops, "meals: ", meals);
-        let tempMeals = JSON.parse(JSON.stringify(meals));
+    async function find(loops:number, meals:Array<MealProps>, staticMeal:MealProps){
         if(loops >= 20){
             console.log("timeout");
             acceptableError += 25
@@ -43,15 +42,39 @@ async function loopOverFind(meals:Array<MealProps>){
             console.log("Couldn't find!");
             return [];
         }
-        let calories = totalcalories;
-        mealplan = [];
-        protein = 0;
-        while(calories > 50){
 
+        console.log("loop number: ", loops, "meals: ", meals);
+        let tempMeals = JSON.parse(JSON.stringify(meals));
+        let calories = totalcalories;
+        protein = 0;
+        mealplan = [];
+        let x:MealProps = {
+            id: 10,
+            title: "apple",
+            calories: 100,
+            protein: 2,
+            carbohydrate: 20,
+            fat: 0,
+            multiplier: 1,
+            type: "asd",
+        };
+        mealplan.push(staticMeal);        
+        
+        calories -= staticMeal.calories;
+        calorieForEachmeal = calories/(mealsAmount-1);
+        
+        while(calories > 50){
             let x = Math.floor(Math.random()*tempMeals.length);
             //console.log("index: ", x, "tempmeals: ", tempMeals.length);
             if(tempMeals.length == 0) return;
+            
             let mult = multiplier(tempMeals[x]['calories'], calorieForEachmeal)
+
+            if(tempMeals[x].type == "Static"){
+                mult = Math.round(mult);
+                if(mult === 0) mult = 1;
+            }
+            
             //Protein condition
             if((protein + tempMeals[x]['protein'])*4 > (proteinPercentage/100 * totalcalories)){
                 console.log("protein overflow");
@@ -59,6 +82,7 @@ async function loopOverFind(meals:Array<MealProps>){
 
             if(mealplan.includes(tempMeals[x])){
                 console.log(tempMeals[x]['title'], " is repeated")
+                tempMeals.splice(x);
                 continue
             }
             //const originalCalories = tempMeals[x]['calories'];
@@ -69,15 +93,17 @@ async function loopOverFind(meals:Array<MealProps>){
             tempMeals[x]['multiplier'] = mult;
         
             mealplan.push(tempMeals[x]);
+
             calories -= calorieForEachmeal;
+            
             protein += tempMeals[x]['protein'];
         }
         if(protein*4 - acceptableError > proteinPercentage/100 * totalcalories){
             console.log("should repeat, protein needed:", (proteinPercentage/100 * totalcalories)/4);
-            find(loops + 1, meals);
+            find(loops + 1, meals, staticMeal);
         }
         else if(protein*4 + acceptableError < proteinPercentage/100 * totalcalories){
-            find(loops + 1, meals);
+            find(loops + 1, meals, staticMeal);
         }
     }
     console.log("protein got: ", protein, "protein wanted: ", (proteinPercentage/100 * totalcalories)/4);
