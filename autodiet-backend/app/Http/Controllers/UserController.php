@@ -88,4 +88,11 @@ class UserController extends Controller
         $user->save();    
         return response()->json(['user updated:' => $user], 200);
     }
+
+    public function getUserWeightEntries($id){
+        $user = User::find($id);
+        if(!$user) return response()->json(['message' => 'user not found'], 400);
+
+        return response()->json(['user_weight_entries' => $user->weightEntries], 200);
+    }
 }
