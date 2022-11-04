@@ -41,7 +41,20 @@ class FoodItemController extends Controller
         $food_item = FoodItem::find($request->id);
         if(!$food_item) return response()->json(['message' => 'food item not found'], 400);
 
+        $validator = Validator::make($request->all(),[
+            'title' => 'required',
+            'calories' => 'required',
+            'protein' => 'required',
+            'carbohydrate' => 'required',
+            'fat' => 'required',
+            'serving_size' => 'required',
+            'picture_url' => 'required',
+        ]);
 
+        if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
+        
+        $food_item->fill($validator->validated());
+        $food_item->save();
         
         return response()->json(['updated meal' => $food_item], 200);
     }
