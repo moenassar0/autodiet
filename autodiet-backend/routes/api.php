@@ -26,10 +26,11 @@ Route::middleware([IsAdmin::class])->group(function () {
     Route::post("/food_item", [FoodItemController::class, "addFoodItem"]);
 
     Route::put("/meal/{id}", [MealController::class, "updateMeal"]);
-    Route::put("/food_item/{id}", [FoodItemController::class, "updateFoodItem"]);
+    Route::put("/food_item", [FoodItemController::class, "updateFoodItem"]);
 
     Route::delete("/user/{id}", [UserController::class, "deleteUser"]);
     Route::delete("/meal/{id}", [MealController::class, "deleteMeal"]);
+    Route::delete("/food_item/{id}", [FoodItemController::class, "deleteFoodItem"]);
 });
 
 
