@@ -19,7 +19,9 @@ Route::middleware([IsUser::class])->group(function () {
     Route::get("/meal/{id}", [MealController::class, "getMealRecipe"]);
     Route::get("/meals/{search_string}", [MealController::class, "getMealsByTitle"]);
     Route::get("/user/{id}", [UserController::class, "getUserDetail"]);
-    Route::get("/weightentries/{id}", [UserController::class, "getUserWeightEntries"]);
+    
+    Route::get("/user/entries/{id}", [UserController::class, "getUserWeightEntries"]);
+    Route::get("/user/meals/{id}", [UserController::class, "getUserMeals"]);
 
     Route::post("/user", [UserController::class, "updateUserDetail"]);
     Route::put("/weightentries", [WeightEntryController::class, "addOrUpdateWeightEntry"]);
