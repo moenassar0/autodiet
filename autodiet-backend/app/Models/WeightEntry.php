@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class WeightEntry extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'date',
+        'weight',
+    ];
 }
