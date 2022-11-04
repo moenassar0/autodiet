@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('weight_entries', function (Blueprint $table) {
+            $table->id();
             $table
             ->foreignId('user_id')
             ->constrained()
@@ -21,7 +22,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->date('date');
             $table->float('weight', 8, 3);
-            $table->primary(array('user_id', 'date'));
+            //$table->primary(array('user_id', 'date'));
             $table->timestamps();
         });
     }
