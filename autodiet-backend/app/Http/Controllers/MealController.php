@@ -25,8 +25,26 @@ class MealController extends Controller
     }
 
     public function getMeals(){
+        //Pick a higher protein meal
+
+        //Pick a snack
+
+        //Pick a random set from db
         $meals = Meal::all();
         return response()->json(["meals" => $meals], 200);
+    }
+
+    public function getCustomizedMeals(){
+        //Pick a higher protein meal
+
+        //Pick a snack
+
+        //Pick a static meal
+        $static_meal = Meal::where('type', '=', 'Static')->first();
+        //Pick a random set from db
+        //$meals = Meal::all();
+        $meals = Meal::where('type', '!=', 'Static')->get();
+        return response()->json(["meals" => $meals, "static_meal" => $static_meal], 200);
     }
 
     public function getMealRecipe($id){
