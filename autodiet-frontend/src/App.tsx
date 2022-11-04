@@ -9,6 +9,7 @@ import { Register } from './Components/Register';
 import { Profile } from './Components/User/Profile';
 import { BrowseMeals } from './Components/User/BrowseMeals';
 import { UserWeightEntries } from './Components/User/UserWeightEntries';
+import { AdminHome } from './Components/AdminHome';
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
           <Route path="/user/meals" element={<BrowseMeals />}></Route>
           <Route path="/user/foods" element={<BrowseMeals />}></Route>
           <Route path="/user/weight" element={<UserWeightEntries />}></Route>
+        </Route>
+
+        <Route path="/admin" element={ <div><Outlet /></div> }>
+          <Route path="/admin/home" element={<AdminHome />}></Route>
         </Route>
 
       </Routes>
