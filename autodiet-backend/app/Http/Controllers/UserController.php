@@ -70,4 +70,12 @@ class UserController extends Controller
         if($user) $user->delete(); return response()->json(['deleted:' => $user], 200);
         return response()->json(['message' => 'user not found'], 200);
     }
+
+    public function updateUser(Request $request){
+        $user = User::find($request->id);
+        if(!$user) return response()->json(['message' => 'user not found'], 400);
+
+
+        return response()->json(['user updated:' => $user], 200);
+    }
 }
