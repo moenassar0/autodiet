@@ -7,6 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class FoodItem extends Model
 {
+    protected $fillable = [
+        'serving_size',
+        'title',
+        'calories',
+        'protein',
+        'carbohydrate',
+        'fat',
+        'picture_url',
+    ];
+
     public function recipe()
     {
         return $this->belongsToMany(FoodItem::class, 'meal_recipes','meal_id','recipe_item_id')
