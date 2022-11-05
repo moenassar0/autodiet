@@ -16,3 +16,10 @@ export interface InputFieldInterface{
     setHook:any,
     valid:boolean
 }
+
+//Admin
+export interface SideNavBarItemInterface{
+    title:string,
+    icon:any,
+    condition:boolean
+}
