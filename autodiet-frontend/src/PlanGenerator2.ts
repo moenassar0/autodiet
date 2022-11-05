@@ -4,10 +4,11 @@ interface MealProps {
     calories: number,
     protein: number,
     carbohydrate: number,
-    fat: number
+    fat: number,
+    multiplier: number
   }
 function PlanGenerator (meals:Array<MealProps>):any {
-let tempMeals = meals;
+let tempMeals = meals.slice();
 let totalcalories = 2000;
 let mealplan:Array<MealProps> = [];
 let key = '';
@@ -42,6 +43,7 @@ console.log("protein got: ", protein, "protein wanted: ", (proteinPercentage/100
 ///////////////////////////////////
 
 async function find(loops:number){
+    tempMeals = meals.slice();
         if(loops >= 20){
             console.log("timeout");
             acceptableError += 25
@@ -76,7 +78,10 @@ async function find(loops:number){
             tempMeals[x]['calories'] *= mult;
             tempMeals[x]['carbohydrate'] *= mult;
             tempMeals[x]['protein'] *= mult;
+            console.log(tempMeals[x]['fat'])
             tempMeals[x]['fat'] *= mult;
+            console.log(tempMeals[x]['fat'])
+            tempMeals[x]['multiplier'] = mult;
             mealplan.push(tempMeals[x]);
             calories -= calorieForEachmeal;
             protein += tempMeals[x]['protein'];
