@@ -68,7 +68,7 @@ export const Profile = () => {
                     <div className="flex flex-col h-4/5 w-full py-2 px-2">
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center  w-1/5 h-full text-white">Goal</div>
-                            <div className="flex w-3/5 h-full items-center justify-end">
+                            <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
                                 <button onClick={() => {setActiveGoal("LoseWeight")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-l-lg " + (activeGoal==="LoseWeight" ? "bg-ad-golden" : "bg-white")}>Lose weight</button>
                                 <button onClick={() => {setActiveGoal("Maintain")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 " + (activeGoal==="Maintain" ? "bg-ad-golden" : "bg-white")}>Maintain</button>
                                 <button onClick={() => {setActiveGoal("GainMuscle")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-r-lg " + (activeGoal==="GainMuscle" ? "bg-ad-golden" : "bg-white")}>Gain muscle</button>
@@ -83,33 +83,33 @@ export const Profile = () => {
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Height</div>
-                            <div className="flex w-3/5 h-1/2 justify-start">
+                            <div className="flex w-4/5 sm:flex w-3/5 h-1/2 justify-start">
                                 <input type="text" value={height} onChange={(e) => setHeight(e.target.value)} className="w-1/2 h-full rounded px-1 py-1"></input>
                             </div>
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Age</div>
-                            <div className="flex w-3/5 h-1/2 justify-start">
+                            <div className="flex w-4/5 sm:flex w-3/5 h-1/2 justify-start">
                                 <input type="text" value={age} onChange={(e) => setAge(e.target.value)} className="w-1/2 h-full rounded px-1 py-1"></input>
                             </div>
                         </div>
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Weight</div>
-                            <div className="flex w-3/5 h-1/2 justify-start">
+                            <div className="flex w-4/5 sm:flex w-3/5 h-1/2 justify-start">
                                 <input type="text" value={weight} onChange={(e) => setWeight(e.target.value)} className="w-1/2 h-full rounded px-1 py-1"></input>
                             </div>
                         </div>
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white">Body Percentage</div>
-                            <div className="flex w-3/5 h-full items-center justify-end">
+                            <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
                                 <button onClick={() => {setBodyFatPercentage("Lean")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-l-lg " + (bodyFatPercentage==="Lean" ? "bg-ad-golden" : "bg-white")}>Lean</button>
                                 <button onClick={() => {setBodyFatPercentage("Medium")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 " + (bodyFatPercentage==="Medium" ? "bg-ad-golden" : "bg-white")}>Medium</button>
                                 <button onClick={() => {setBodyFatPercentage("High")}} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded-r-lg " + (bodyFatPercentage==="High" ? "bg-ad-golden" : "bg-white")}>High</button>
                             </div>
                         </div>
                         <div className="flex w-full h-1/6">
-                            <div className="flex w-3/5 h-full items-center justify-end">
-                                <button onClick={() => updateUserDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded bg-ad-golden"}>Save Changes</button>
+                            <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
+                                <button onClick={() => updateUserDetails()} className={"flex w-2/4 sm:flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded bg-ad-golden"}>Save Changes</button>
                             </div>
                         </div>
                     </div>
