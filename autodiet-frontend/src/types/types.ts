@@ -7,6 +7,13 @@ export interface MealInterface{
     fat: number,
     multiplier: number,
     picture_url:string,
+    type: string,
+}
+
+export interface MealSetInterface{
+    meals:Array<MealInterface>,
+    snack:MealInterface,
+    static_meal:MealInterface
 }
 
 export interface InputFieldInterface{
