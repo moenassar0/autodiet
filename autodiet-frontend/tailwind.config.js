@@ -12,10 +12,12 @@ module.exports = {
         "ad-hoveredblack": "#0d0d0d",
         
         "admin-main": "#0E2238",
-        "admin-grey-background": "#F3F4F8",
-        "admin-button": "#737DF4",
+        "admin-grey-background": "#F1F5F7",
+        "admin-button": "#00BAC7",
+        "admin-hoveredbutton": "#009EA9",
         "admin-misc": "#DDDFFC",
         "admin-hoverednav": "#0C3549",
+        "admin-hoveredtext": "#00BAC7"
       }
     },
   },
