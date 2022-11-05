@@ -40,7 +40,7 @@ class MealController extends Controller
         //Pick a static meal
         $static_meal = Meal::where('type', '=', 'Static')->inRandomOrder()->first();
         //Pick a random set from db
-        $meals = Meal::where('type', '!=', 'Static')->get();
+        $meals = Meal::where('type', '=', 'Dynamic')->get();
 
         return response()->json(["meals" => $meals,
                                  "static_meal" => $static_meal,
