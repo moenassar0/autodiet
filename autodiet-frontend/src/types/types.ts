@@ -16,6 +16,12 @@ export interface MealSetInterface{
     static_meal:MealInterface
 }
 
+export interface UserMealData{
+    calorieForEachmeal:number,
+    totalcalories:number,
+    proteinPercentage:number
+}
+
 export interface InputFieldInterface{
     title:string,
     error:string,
