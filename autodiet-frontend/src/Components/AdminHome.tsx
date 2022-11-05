@@ -1,9 +1,17 @@
+import { useState } from "react"
+import { AdminTopNavBar } from "./AdminTopNavBar";
+
 export const AdminHome = () => {
+
+    const [openNavbar, setOpenNavbar] = useState(false);
+
+    const toggleNavbar = () => {
+        setOpenNavbar(!openNavbar);
+    }
+
     return(
         <div className="flex h-screen w-full">
-            <div className="h-screen w-1/6 bg-admin-main">
-                
-            </div>
+            <AdminTopNavBar/>
             <div className="flex flex-col w-5/6 h-screen">
                 <div className="flex h-1/6 max-h-16 w-full bg-white drop-shadow">
                     <div className="flex items-center ml-auto self-center w-40 h-10 rounded">
@@ -19,36 +27,6 @@ export const AdminHome = () => {
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Actions</th>
-                            </tr>
-                            <tr className="h-20">
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Actions</td>
-                            </tr>
-                            <tr className="h-20">
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Actions</td>
-                            </tr>
-                            <tr className="h-20">
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Actions</td>
-                            </tr>
-                            <tr className="h-20">
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Actions</td>
-                            </tr>
-                            <tr>
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Actions</td>
-                            </tr>
-                            <tr>
-                                <td>Username</td>
-                                <td>Email</td>
-                                <td>Actions</td>
                             </tr>
                             </tbody>
                         </table>
