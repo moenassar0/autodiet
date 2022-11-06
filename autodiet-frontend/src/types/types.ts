@@ -38,9 +38,10 @@ export interface UserInterface{
 
 //Admin
 export interface SideNavBarItemInterface{
-    title:string,
-    icon:any,
-    condition:boolean
+    title: string,
+    icon: any,
+    condition: boolean,
+    path: string
 }
 
 //Headers to be used in tables
