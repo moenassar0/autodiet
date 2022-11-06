@@ -10,6 +10,9 @@ import { Profile } from './pages/user/Profile';
 import { BrowseMeals } from './pages/user/BrowseMeals';
 import { UserWeightEntries } from './components/user/UserWeightEntries';
 import { AdminHome } from './pages/admin/AdminHome';
+import { AuthenticateUser } from './components/user/AuthenticateUser';
+
+//export const UserContext = React.createContext(user);
 
 function App() {
   return (
@@ -20,7 +23,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
 
-        <Route path="/user" element={ <div><Outlet /></div> }>
+        <Route path="/user" element={ <AuthenticateUser /> }>
           <Route path="/user/home" element={<Home />}></Route>
           <Route path="/user/profile" element={<Profile />}></Route>
           <Route path="/user/meals" element={<BrowseMeals />}></Route>
