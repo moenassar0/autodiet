@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { validateUser, getToken } from "../../HelperFunctions";
-import { UserSideNavbar } from "./UserSideNavbar"
+import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import axios from "../../api/axios";
 

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import axios from "../api/axios";
-import { Navbar } from "./LandingPage/Navbar"
-import {checkEmail, checkPassword, checkStringLength} from "../HelperFunctions";
-import InputField from "./InputField";
+import axios from "../../api/axios"
+import { Navbar } from "../../components/landing/Navbar"
+import {checkEmail, checkPassword, checkStringLength} from "../../HelperFunctions";
+import InputField from "../../components/utility/InputField"
 
 export const Register = () => {
     

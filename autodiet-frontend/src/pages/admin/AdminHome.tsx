@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import { AdminSideNavbar } from "./AdminSideNavbar";
+import { AdminSideNavbar } from "../../components/admin/AdminSideNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { DataTable } from "./DataTable";
-import { firebase_init } from "../api/firebase_init_test";
+import { DataTable } from "../../components/admin/DataTable";
+import { firebase_init } from "../../api/firebase_init_test";
 import axios from "axios";
-import { sendNotification } from "../HelperFunctions";
+import { sendNotification } from "../../HelperFunctions";
 
 export const AdminHome = () => {
     

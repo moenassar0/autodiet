@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "../api/axios";
-import { Navbar } from "./LandingPage/Navbar"
+import axios from "../../api/axios";
+import { Navbar } from "../../components/landing/Navbar"
 import { useNavigate } from 'react-router-dom';
 
 export const Login = () => {

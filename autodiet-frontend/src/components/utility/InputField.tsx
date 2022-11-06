@@ -1,4 +1,4 @@
-import { InputFieldInterface } from "../types/types"
+import { InputFieldInterface } from "../../types/types"
 
 
 //change to interface

@@ -1,4 +1,4 @@
-import { SideNavBarItemInterface } from "../types/types"
+import { SideNavBarItemInterface } from "../../types/types"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const SideNavbarItem: React.FC<SideNavBarItemInterface> = ({title, icon, condition}) => {

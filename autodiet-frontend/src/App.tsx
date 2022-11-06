@@ -2,14 +2,14 @@ import React from 'react';
 import './App.css';
 import { Navbar } from './components/landing/Navbar';
 import { Routes, Route, Outlet, redirect } from "react-router-dom";
-import { Home } from './components/user/Home';
-import { LandingPage } from './components/landing/LandingPage';
-import { Login } from './components/Login';
-import { Register } from './components/Register';
-import { Profile } from './components/user/Profile';
-import { BrowseMeals } from './components/user/BrowseMeals';
+import { Home } from './pages/user/Home';
+import { LandingPage } from './pages/landing/LandingPage';
+import { Login } from './pages/landing/Login';
+import { Register } from './pages/landing/Register';
+import { Profile } from './pages/user/Profile';
+import { BrowseMeals } from './pages/user/BrowseMeals';
 import { UserWeightEntries } from './components/user/UserWeightEntries';
-import { AdminHome } from './components/AdminHome';
+import { AdminHome } from './pages/admin/AdminHome';
 
 function App() {
   return (

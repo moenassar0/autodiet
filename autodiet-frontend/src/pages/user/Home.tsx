@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "../../api/axios"
-import Meal from "./Meal";
+import Meal from "../../components/user/Meal";
 import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
-import { UserSideNavbar } from "./UserSideNavbar";
+import { UserSideNavbar } from "../../components/user/UserSideNavbar";
 import { getToken } from "../../HelperFunctions";
 import PlanGenerator2 from "../../PlanGenerator2";
-import { TopNavBar } from "../utility/TopNavBar";
+import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
 

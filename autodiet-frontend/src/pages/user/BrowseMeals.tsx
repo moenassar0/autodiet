@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
 import axios from "../../api/axios";
 import { getToken } from "../../HelperFunctions";
-import MealCard from "./MealCard";
-import { UserSideNavbar } from "./UserSideNavbar"
+import MealCard from "../../components/user/MealCard";
+import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import { MealInterface } from "../../types/types";
-import { EmptyState } from "../utility/EmptyState";
+import { EmptyState } from "../../components/utility/EmptyState";
 
 export const BrowseMeals = () => {
 
