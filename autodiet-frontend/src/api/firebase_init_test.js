@@ -18,10 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // Initialize Firebase Cloud Messaging and get a reference to the service
 const messaging = getMessaging(app);
-onMessage(messaging, (payload) => {
-  console.log('Message received. ', payload);
-  // ...
-});
 function requestPermission(){
   console.log('Requesting permission...');
   Notification.requestPermission().then((permission) => {
@@ -39,11 +35,18 @@ getToken(messaging, {vapidKey: "BM9L9BDzDJoRMVhgsK9T8Od8PTcj3CmvytApjd6pTOPBeFRy
 .then((currentToken) => {
     if(currentToken){
         console.log("curr token", currentToken);
+        localStorage.setItem("firebasetoken", currentToken);
     }else{
         console.log("no token");
     }
 })
 }
+
+onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+
+  // ...
+});
 
 requestPermission();
 
