@@ -48,3 +48,30 @@ export const getToken = () => {
     const token = localStorage.getItem("token");
     return {headers:{'Authorization' : "Bearer " + token}};
 }
+
+export const sendNotification = async () => {
+    var key = 'AAAAVdmFftU:APA91bHzbdpUcQ1Huf3qMB4iaVrpXeSUxRDblVA0i_uLIZOknNaCY14L_IlI23nDCUHoH--V5hJDyDLEK9so5wCZZy7Mylx3dvGHjmRZ-g4HyE2gRva3iLQvR8yIxeBkDswHwwUe_FZ3';
+    var to = 'APA91bHhcBXec0MpvvjcOlkqMetz9DfEfgORVZA0jhTVXoenVHAQK4Pa_kSSigls520m5zCy9VCZFg0dAqxgTpbWPzhN_y5dCljYugotqO7EbcwrX55lVnMtUN3uqpAL58gBvGF_L3Ai';
+    var notification = {
+      'title': 'Portugal vs. Denmark',
+      'body': '5 to 1',
+      'icon': 'firebase-logo.png',
+      'click_action': 'http://localhost:3000'
+    };
+    
+    await fetch('https://fcm.googleapis.com/fcm/send', {
+      'method': 'POST',
+      'headers': {
+        'Authorization': 'key=' + key,
+        'Content-Type': 'application/json'
+      },
+      'body': JSON.stringify({
+        'notification': notification,
+        'to': to
+      })
+    }).then(function(response) {
+      console.log(response);
+    }).catch(function(error) {
+      console.error(error);
+    })
+}
