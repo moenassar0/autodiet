@@ -96,4 +96,9 @@ class UserController extends Controller
 
         return response()->json(['user_meals' => $user->meals], 200);
     }
+
+    public function getUsers(){
+        $users = User::all();
+        return response()->json(['users' => $users], 200);
+    }
 }
