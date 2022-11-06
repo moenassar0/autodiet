@@ -13,6 +13,7 @@ use App\Http\Middleware\IsAdmin;
 Route::post("/users", [UserController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 Route::get("/me", [AuthController::class, "me"]);
+Route::get("/users", [UserController::class, "getUsers"]);
 
 Route::middleware([IsUser::class])->group(function () {
     Route::get("/meals", [MealController::class, "getCustomizedMeals"]);
