@@ -9,8 +9,9 @@ import { Register } from './pages/landing/Register';
 import { Profile } from './pages/user/Profile';
 import { BrowseMeals } from './pages/user/BrowseMeals';
 import { UserWeightEntries } from './components/user/UserWeightEntries';
-import { AdminHome } from './pages/admin/AdminHome';
+import { AdminUsers } from './pages/admin/AdminUsers';
 import { AuthenticateUser } from './components/user/AuthenticateUser';
+import { AdminMeals } from './pages/admin/AdminMeals';
 
 //export const UserContext = React.createContext(user);
 
@@ -32,7 +33,8 @@ function App() {
         </Route>
 
         <Route path="/admin" element={ <div><Outlet /></div> }>
-          <Route path="/admin/home" element={<AdminHome />}></Route>
+          <Route path="/admin/users" element={<AdminUsers/>}></Route>
+          <Route path="/admin/meals" element={<AdminMeals />}></Route>
         </Route>
 
       </Routes>
