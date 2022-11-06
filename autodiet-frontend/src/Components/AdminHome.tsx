@@ -9,7 +9,7 @@ export const AdminHome = () => {
     return(
         <div className="flex h-screen w-full">
             <AdminSideNavbar/>
-            <div className="flex flex-col w-full h-screen">
+            <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                 <div className="flex h-1/6 max-h-16 w-full bg-white drop-shadow">
                     <div className="flex items-center ml-auto self-center w-40 h-10 rounded">
                         <img className="w-7 h-6 rounded-full mr-1" src="../logo512.png"></img>
