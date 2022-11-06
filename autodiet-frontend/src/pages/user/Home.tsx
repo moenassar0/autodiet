@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "../../api/axios"
 import Meal from "../../components/user/Meal";
 import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar";
-import { getToken } from "../../HelperFunctions";
+import { getToken, sendNotification } from "../../HelperFunctions";
 import PlanGenerator2 from "../../PlanGenerator2";
 import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
+import { firebase_init } from "../../api/firebase_init_test";
 
 export const Home = () => {
     const [generatedMeals, setGeneratedMeals] = useState(false);
@@ -18,6 +19,7 @@ export const Home = () => {
 
     useEffect(() => {
         fetch();
+        firebase_init();
     }, [])
 
     const fetch = async () => {
@@ -48,6 +50,7 @@ export const Home = () => {
                                 //setMeals(generatedMeals);
                                 //</TopNavBar>setGeneratedMeals(false)
                             }}>Generate</button>
+                    <button className="w-20 h-10 rounded bg-ad-golden" onClick={() => {sendNotification()}}>Notific</button>
                 </TopNavBar>
                 <div className="flex h-4/5 w-full bg-ad-lightgrey px-2 py-2">
                     <div className="flex flex-wrap w-full h-auto overflow-y-scroll scrollbar">
