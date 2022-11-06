@@ -30,6 +30,12 @@ export interface InputFieldInterface{
     valid:boolean
 }
 
+export interface UserInterface{
+    username: string,
+    email: string,
+    id: number
+}
+
 //Admin
 export interface SideNavBarItemInterface{
     title:string,
