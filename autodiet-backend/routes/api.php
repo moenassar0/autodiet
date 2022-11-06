@@ -15,7 +15,7 @@ Route::post("/login", [AuthController::class, "login"]);
 Route::get("/me", [AuthController::class, "me"]);
 
 Route::middleware([IsUser::class])->group(function () {
-    Route::get("/meals", [MealController::class, "getMeals"]);
+    Route::get("/meals", [MealController::class, "getCustomizedMeals"]);
     Route::get("/meal/{id}", [MealController::class, "getMealRecipe"]);
     Route::get("/meals/{search_string}", [MealController::class, "getMealsByTitle"]);
     Route::get("/user/{id}", [UserController::class, "getUserDetail"]);
