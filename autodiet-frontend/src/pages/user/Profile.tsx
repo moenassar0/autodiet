@@ -17,16 +17,8 @@ export const Profile = () => {
     const [bodyFatPercentage, setBodyFatPercentage] = useState('');
 
     useEffect(() => {
-        const check = async () => {if(! await validateUser()){
-            navigate("/");
-        }}
-        check();
         fetchUserData();
     }, [])
-
-    useEffect(() => {
-        console.log(activeGoal);
-    }, [activeGoal])
 
     async function fetchUserData(){
         try{
