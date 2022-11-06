@@ -6,16 +6,29 @@ import { DataTable } from "../../components/admin/DataTable";
 import { firebase_init } from "../../api/firebase_init_test";
 import axios from "axios";
 import { sendNotification } from "../../HelperFunctions";
+import { getUsers } from "../../api/services/Users";
+import { UserInterface } from "../../types/types";
 
 export const AdminHome = () => {
+
+    const [users, setUsers] = useState([]);
     
+    async function fetchUsers(){
+        try{
+            const response = await getUsers();
+            console.log(response.users);
+            setUsers(response.users);
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     useEffect(() => {
-        sendNotification();
+        fetchUsers();
     }, [])
-    firebase_init();
+
     return(
         <div className="flex h-screen w-full">
-
             <AdminSideNavbar/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                 {/*<!-- Topnavbar -->*/}
@@ -34,7 +47,7 @@ export const AdminHome = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            <DataTable></DataTable>
+                            <DataTable users={users}></DataTable>
                         </div>
                     </div>
                 </div>
