@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import { Navbar } from './Components/LandingPage/Navbar';
+import { Navbar } from './components/LandingPage/Navbar';
 import { Routes, Route, Outlet, redirect } from "react-router-dom";
-import { Home } from './Components/User/Home';
-import { LandingPage } from './Components/LandingPage/LandingPage';
-import { Login } from './Components/Login';
-import { Register } from './Components/Register';
-import { Profile } from './Components/User/Profile';
-import { BrowseMeals } from './Components/User/BrowseMeals';
-import { UserWeightEntries } from './Components/User/UserWeightEntries';
-import { AdminHome } from './Components/AdminHome';
+import { Home } from './components/User/Home';
+import { LandingPage } from './components/LandingPage/LandingPage';
+import { Login } from './components/Login';
+import { Register } from './components/Register';
+import { Profile } from './components/User/Profile';
+import { BrowseMeals } from './components/User/BrowseMeals';
+import { UserWeightEntries } from './components/User/UserWeightEntries';
+import { AdminHome } from './components/AdminHome';
 
 function App() {
   return (
