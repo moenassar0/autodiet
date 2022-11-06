@@ -4,9 +4,8 @@ import axios from "../axios"
 export const getUsers = async () => {
     try{
         const response = await axios.get("/users", getToken());
-        console.log(response);
+        return (response.data);
     }catch(err){
-        console.log(err);
+        return (err);
     }
-
 }
