@@ -42,3 +42,6 @@ export interface SideNavBarItemInterface{
     icon:any,
     condition:boolean
 }
+
+//Headers to be used in tables
+export const UserHeaders:Array<string> = ['id', 'username', 'email'];
