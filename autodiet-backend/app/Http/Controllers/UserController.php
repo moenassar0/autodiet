@@ -25,7 +25,8 @@ class UserController extends Controller
         return response()->json(["result" => "ok", 'user added:' => $user], 201);
     }
 
-    public function getUserDetail($id){
+    public function getUserDetail(){
+        $id = auth()->user()->id;
         $user = User::find($id);
         if(!$user) return response()->json(["message" => 'user not found'], 400);
         return response()->json(["user_detail" => $user->detail], 200);
