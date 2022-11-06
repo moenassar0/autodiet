@@ -10,7 +10,7 @@ import { getUsers } from "../../api/services/Users";
 import { UserInterface, UserHeaders } from '../../types/types'
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 
-export const AdminHome = () => {
+export const AdminUsers = () => {
 
     const [users, setUsers] = useState([]);
     
@@ -36,7 +36,7 @@ export const AdminHome = () => {
                 <div className="h-5/6 grow w-full bg-admin-grey-background px-4 py-4">
                     <div className="flex items-center justify-start h-12 w-full rounded-t bg-white px-3 pl-8">
                         <span className="text-lg font-semibold">Users</span>
-                        <div className="flex w-28 justify-center ml-auto h-2/3 bg-admin-button hover:bg-admin-hoveredbutton rounded-full px-1 py-1">
+                        <div className="flex w-28 justify-center ml-auto h-2/3 bg-admin-button text-white hover:bg-admin-hoveredbutton rounded-full px-1 py-1">
                             <button>Add User<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>
                         </div>
                     </div>
