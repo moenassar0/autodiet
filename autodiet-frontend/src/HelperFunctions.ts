@@ -50,13 +50,15 @@ export const getToken = () => {
 }
 
 export const sendNotification = async () => {
+    const myVar = setTimeout(async () => {
+        console.log("test");    
     var key = 'AAAAVdmFftU:APA91bHzbdpUcQ1Huf3qMB4iaVrpXeSUxRDblVA0i_uLIZOknNaCY14L_IlI23nDCUHoH--V5hJDyDLEK9so5wCZZy7Mylx3dvGHjmRZ-g4HyE2gRva3iLQvR8yIxeBkDswHwwUe_FZ3';
-    var to = 'APA91bHhcBXec0MpvvjcOlkqMetz9DfEfgORVZA0jhTVXoenVHAQK4Pa_kSSigls520m5zCy9VCZFg0dAqxgTpbWPzhN_y5dCljYugotqO7EbcwrX55lVnMtUN3uqpAL58gBvGF_L3Ai';
+    var to = localStorage.getItem("firebasetoken");
     var notification = {
-      'title': 'Portugal vs. Denmark',
-      'body': '5 to 1',
-      'icon': 'firebase-logo.png',
-      'click_action': 'http://localhost:3000'
+      'title': 'Autodiet',
+      'body': 'Please go to your profile to save your physical details!',
+      'icon': "./logo2.png",
+      'click_action': 'http://localhost:3000/user/profile'
     };
     
     await fetch('https://fcm.googleapis.com/fcm/send', {
@@ -74,4 +76,9 @@ export const sendNotification = async () => {
     }).catch(function(error) {
       console.error(error);
     })
+    clearTimeout(myVar);
+}, 5000)
+    
+    //}, 5000);
+    
 }
