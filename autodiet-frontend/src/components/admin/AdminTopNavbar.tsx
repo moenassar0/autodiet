@@ -27,7 +27,7 @@ export const AdminTopNavbar = () => {
 
     return(
         <div className="flex h-1/6 max-h-16 w-full bg-white drop-shadow justify-end dark:bg-admin-dark-topnav">
-            <div onClick={() => {setTheme(theme === "light" ? "dark" : "light")}} className="flex items-center justify-center self-center bg-admin-grey-background drop-shadow h-9 w-9 mr-4 rounded-full hover:bg-slate-200 cursor-pointer">
+            <div onClick={() => {setTheme(theme === "light" ? "dark" : "light")}} className="flex items-center justify-center self-center bg-admin-grey-background dark:text-black dark:bg-ad-golden drop-shadow h-9 w-9 mr-4 rounded-full hover:bg-slate-200 cursor-pointer">
                 <FontAwesomeIcon icon={faLightbulb} className="text-blue" />
             </div>
             <div className="flex items-center self-center w-40 h-10 rounded">
