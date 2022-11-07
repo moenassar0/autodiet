@@ -31,8 +31,8 @@ export const AdminTopNavbar = () => {
                 <FontAwesomeIcon icon={faLightbulb} className="text-blue" />
             </div>
             <div className="flex items-center self-center w-40 h-10 rounded">
-                <img className="w-6 h-6 rounded-full mr-1" src="../logo512.png"></img>
-                <span className="w-1/3 text-md">Admin</span>
+                <img className="w-6 h-6 rounded-full mr-2" src="../logo512.png"></img>
+                <span className="w-1/3 text-md dark:text-slate-200">Admin</span>
             </div>
         </div>
     )
