@@ -8,7 +8,7 @@ import { Login } from './pages/landing/Login';
 import { Register } from './pages/landing/Register';
 import { Profile } from './pages/user/Profile';
 import { BrowseMeals } from './pages/user/BrowseMeals';
-import { UserWeightEntries } from './components/user/UserWeightEntries';
+import { UserWeightEntries } from './pages/user/UserWeightEntries';
 import { AdminUsers } from './pages/admin/AdminUsers';
 import { AuthenticateUser } from './components/user/AuthenticateUser';
 import { AdminMeals } from './pages/admin/AdminMeals';
