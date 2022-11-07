@@ -18,13 +18,10 @@ export const AdminUsers = () => {
     const [addUsersPopup ,setAddUsersPopup] = useState(false);
     
     async function fetchUsers(){
-        try{
-            const response = await getUsers();
-            console.log(response.users);
-            setUsers(response.users);
-        }catch(err){
-            console.log(err);
-        }
+        const response = await getUsers();
+        if(response?.success){ setUsers(response.response.users);
+        console.log(response);}
+        else setUsers([]);
     }
 
     useEffect(() => {
@@ -46,7 +43,7 @@ export const AdminUsers = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            <DataTable data={users} headers={UserHeaders}></DataTable>
+                            {users ? <DataTable data={users} headers={UserHeaders}></DataTable> : ""}
                         </div>
                     </div>
                 </div>
