@@ -10,6 +10,9 @@ import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
 import { firebase_init } from "../../api/firebase_init_test";
+import { SideNavbar } from "../../components/admin/SideNavbar";
+import { userNavbarLinks } from "../../types/consts";
+import { Button } from "../../components/utility/Button";
 
 export const Home = () => {
     const [generatedMeals, setGeneratedMeals] = useState(false);
@@ -38,8 +41,8 @@ export const Home = () => {
 
     return(
         <div className="flex h-screen w-full">
-            <UserSideNavbar />
-            <div className="flex flex-col h-min-screen w-4/5">
+            <SideNavbar navbarlinks={userNavbarLinks}/>
+            <div className="flex flex-col h-min-screen w-5/6 grow">
                 <TopNavBar title="Your Mealplan">
                     <button className="w-20 h-10 rounded bg-ad-golden"
                     onClick={ async () => {
@@ -50,6 +53,7 @@ export const Home = () => {
                                 //setMeals(generatedMeals);
                                 //</TopNavBar>setGeneratedMeals(false)
                             }}>Generate</button>
+                            <Button onclickMethod={() => {console.log("test2")}} title="test" />
                     <button className="w-20 h-10 rounded bg-ad-golden" onClick={() => {sendNotification()}}>Notific</button>
                 </TopNavBar>
                 <div className="flex h-4/5 w-full bg-ad-lightgrey px-2 py-2">
