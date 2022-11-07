@@ -18,6 +18,8 @@ class MealController extends Controller
         $meal->carbohydrate = $request->carbohydrate;
         $meal->fat = $request->fat;
         $meal->picture_url = $request->picture_url;
+        $meal->protein_percentage = $request->protein_percentage;
+        $meal->type = $request->type;
 
         $meal->save();
 
