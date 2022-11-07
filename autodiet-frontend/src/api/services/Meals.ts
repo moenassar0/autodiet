@@ -1,5 +1,3 @@
-import { getToken } from "../../HelperFunctions";
-import axios from "../axios"
 import { get, post } from "./baseAPICall";
 
 export const getMeals = async () => {
@@ -8,4 +6,8 @@ export const getMeals = async () => {
 
 export const getCustomizedMeals = async () => {
     return get("/user/meals", "");
+}
+
+export const addMeal = async (data:Object) => {
+    return post("/meal", data);
 }
