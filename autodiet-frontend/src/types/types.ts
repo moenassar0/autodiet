@@ -44,6 +44,12 @@ export interface SideNavBarItemInterface{
     path: string
 }
 
+export interface SideNavBarLinkInterface{
+    title: string,
+    icon: any,
+    path: string
+}
+
 //Headers to be used in tables
 export const UserHeaders:Array<string> = ['id', 'username', 'email'];
 export const MealHeaders:Array<string> = ['id', 'title', 'calories', 'protein_percentage'];

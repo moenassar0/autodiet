@@ -9,7 +9,7 @@ export const userNavbarLinks = [
 ];
 
 //Consts for admin pages
-export const navbarlinks = [
+export const adminNavbarLinks = [
     { path: "/admin/users", icon: faUser, title: "Users" },
     { path: "/admin/meals", icon: faPlateWheat, title: "Meals" },
     { path: "/admin/food", icon: faDrumstickBite, title: "Foods" },
