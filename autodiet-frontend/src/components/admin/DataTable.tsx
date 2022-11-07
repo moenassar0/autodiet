@@ -10,7 +10,7 @@ export const DataTable: React.FC<{data:Array<Object>, headers:Array<string>}> = 
     return(          
             <div className="h-auto w-full shadow-sm">
                 <table className="border-collapse table-auto w-full text-sm">
-                    <thead className="text-center bg-[#F5F5F6]">
+                    <thead className="text-center bg-[#F5F5F6] dark:bg-[#3A3B3B]">
                         <tr>
                             {headers?.map((header, i) => (
                                 <th key={i} className="border-b dark:border-slate-600 font-medium text-slate-400 py-2 pl-8 dark:text-slate-200 text-left">
@@ -22,7 +22,7 @@ export const DataTable: React.FC<{data:Array<Object>, headers:Array<string>}> = 
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="w-60 bg-white dark:bg-slate-800">
+                    <tbody className="w-60 bg-white dark:bg-admin-dark-background">
                         {data.map((data:any, i) => (
                             <tr key={data.id}>
                             {headers?.map((header, i) => (
