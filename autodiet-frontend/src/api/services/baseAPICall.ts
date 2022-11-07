@@ -14,6 +14,13 @@ export const baseAPICall = async (url: string, params: any, callMethod: string) 
             }
             break;
 
-
+        case("post"):
+            try{
+                const response = await axios.post(url, params, getToken());
+                if(response.data) return {success: true, response: response.data};
+            }catch(err){
+                return {success: false, response: err};
+            }
+            break;
     }
 }
