@@ -6,11 +6,11 @@ export const Popup: React.FC<{message: string, submitMethod: any, title: string,
         <div className="absolute flex w-full h-screen z-20 items-center justify-center">
         <div className="w-4/5 sm:w-3/6 h-auto flex flex-wrap bg-white content-start dark:bg-admin-dark-background text-admin-main dark:text-ad-golden overflow-y-scroll gap-2 rounded-t-lg">
             <div className="flex w-full h-16 text-xl font-medium items-center px-2 rounded-t-lg border-b border-black">
-                <span>Add User {message ? message : ""}</span>
+                <span>{title + "   "} {message ? message : ""}</span>
             </div>
             {
-                inputs.map((input) => (
-                    <InputField title={input.title} 
+                inputs.map((input, i) => (
+                    <InputField key={i} title={input.title} 
                     error={input.error} setHook={input.setHook} 
                     state={input.state} 
                     valid={input.valid}></InputField>
