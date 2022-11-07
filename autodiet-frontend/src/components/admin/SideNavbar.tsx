@@ -13,6 +13,14 @@ export const AdminSideNavbar = () => {
     const toggleNavbar = () => {
         setOpenNavbar(!openNavbar);
     }
+    
+    const navbarlinks = [
+        { path: "/admin/users", icon: faUser, title: "Users" },
+        { path: "/admin/meals", icon: faPlateWheat, title: "Meals" },
+        { path: "/admin/food", icon: faDrumstickBite, title: "Foods" },
+        { path: "/admin/users", icon: faChartLine, title: "Graphs" },
+        { path: "/admin/users", icon: faRightFromBracket, title: "Logout" },
+    ];
 
     return(
         <div className={(openNavbar ? "w-2/6 sm:w-1/6" : "w-10") + " ease-in duration-150 flex flex-wrap content-start items-center h-screen bg-admin-main dark:bg-admin-dark-sidenav overflow-auto"}>
@@ -24,11 +32,11 @@ export const AdminSideNavbar = () => {
             <div className={(openNavbar ? "" : "hidden") + " flex items-center justify-center w-5/6 h-20 pl-3"}>
             <img src="../logo2.png" className="h-11 w-22"></img>
             </div>
-            <SideNavbarItem path="/admin/users" condition={openNavbar} icon={faUser} title="Users"></SideNavbarItem>
-            <SideNavbarItem path="/admin/meals" condition={openNavbar} icon={faPlateWheat} title="Meals"></SideNavbarItem>
-            <SideNavbarItem path="/admin/food" condition={openNavbar} icon={faDrumstickBite} title="Foods"></SideNavbarItem>
-            <SideNavbarItem path="/admin/users" condition={openNavbar} icon={faChartLine} title="Graphs"></SideNavbarItem>
-            <SideNavbarItem path="/admin/users" condition={openNavbar} icon={faRightFromBracket} title="Logout"></SideNavbarItem>
+            {
+                navbarlinks.map((link) => (
+                    <SideNavbarItem path={link.path} condition={openNavbar} icon={link.icon}  title={link.title}></SideNavbarItem>
+                ))
+            }
         </div>
     )
 }
