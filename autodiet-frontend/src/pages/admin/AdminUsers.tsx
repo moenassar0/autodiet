@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AdminSideNavbar } from "../../components/admin/AdminSideNavbar";
+import { AdminSideNavbar } from "../../components/admin/SideNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { DataTable } from "../../components/admin/DataTable"

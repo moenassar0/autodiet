@@ -1,7 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
-import { AdminSideNavbar } from "../../components/admin/AdminSideNavbar"
+import { AdminSideNavbar } from "../../components/admin/SideNavbar"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { DataTable } from "../../components/admin/DataTable"
 import { getMeals } from "../../api/services/Meals";
