@@ -26,8 +26,8 @@ export const SideNavbar: React.FC<{navbarlinks:Array<SideNavBarLinkInterface>}> 
             <img src="../logo2.png" className="h-11 w-22"></img>
             </div>
             {
-                navbarlinks.map((link) => (
-                    <SideNavbarItem path={link.path} condition={openNavbar} icon={link.icon}  title={link.title}></SideNavbarItem>
+                navbarlinks.map((link, i) => (
+                    <SideNavbarItem key={i} path={link.path} condition={openNavbar} icon={link.icon}  title={link.title}></SideNavbarItem>
                 ))
             }
         </div>

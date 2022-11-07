@@ -1,5 +1,4 @@
 import { PopupOverlay } from "../utility/PopupOverlay"
-import InputField from "../../components/utility/InputField"
 import { addUser } from "../../api/services/Users"
 import { useState } from "react"
 import { InputFieldInterface } from "../../types/types"
@@ -40,5 +39,4 @@ export const AddUserPopup: React.FC<{setTrigger: any, trigger: boolean}> = ({set
             ) : ("") } 
         </section>
     )
-
 }
