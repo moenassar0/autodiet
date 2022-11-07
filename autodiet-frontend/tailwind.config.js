@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -17,7 +18,14 @@ module.exports = {
         "admin-hoveredbutton": "#009EA9",
         "admin-misc": "#DDDFFC",
         "admin-hoverednav": "#0C3549",
-        "admin-hoveredtext": "#00BAC7"
+        "admin-hoveredtext": "#00BAC7",
+
+        //Darkmode
+        "admin-dark-background": "#2D2D2D",
+        "admin-dark-th": "#3A3B3B",
+        "admin-dark-topnav": "#252626",
+        "admin-dark-sidenav": "#1B1B1C",
+
       }
     },
   },
