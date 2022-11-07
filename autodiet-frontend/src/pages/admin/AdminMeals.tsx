@@ -32,7 +32,7 @@ export const AdminMeals = () => {
                 <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                     <AdminTopNavbar />
                     <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
-                        <div className="flex items-center justify-start h-12 w-full rounded-t bg-white dark:bg-admin-dark-background dark:text-slate-200 px-3 pl-8">
+                        <div className="flex items-center justify-start h-12 w-full rounded-t bg-white dark:bg-admin-dark-background dark:text-ad-golden px-3 pl-8">
                             <span className="text-lg font-semibold dark:text-ad-golden">Meals</span>
                             <div className="flex w-28 justify-center ml-auto h-2/3 bg-admin-button text-white hover:bg-admin-hoveredbutton dark:bg-ad-golden dark:text-black rounded-full px-1 py-1">
                                 <button>Add Meal<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>
