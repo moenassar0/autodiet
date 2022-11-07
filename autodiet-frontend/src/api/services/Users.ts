@@ -1,11 +1,10 @@
 import { getToken } from "../../HelperFunctions";
-import axios from "../axios"
+import { baseAPICall } from "./baseAPICall"
 
 export const getUsers = async () => {
-    try{
-        const response = await axios.get("/users", getToken());
-        return (response.data);
-    }catch(err){
-        return (err);
-    }
+    return baseAPICall("/users", {}, "get");
+}
+
+export const addUser = async (data:Object) => {
+    return baseAPICall("/users", data, "post");
 }
