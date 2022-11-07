@@ -33,7 +33,9 @@ export const AdminUsers = () => {
             <AddUserPopup trigger={addUsersPopup} setTrigger={setAddUsersPopup}/>
             <SideNavbar navbarlinks={adminNavbarLinks}/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
-                <AdminTopNavbar />
+                <AdminTopNavbar title="" username="Admin">
+                    
+                </AdminTopNavbar>
                 <div className="h-5/6 grow w-full bg-admin-grey-background px-4 py-4 dark:bg-[#1F1F1F]">
                     <div className="flex items-center justify-start h-12 w-full rounded-t bg-white px-3 pl-8 dark:bg-admin-dark-background dark:text-ad-golden">
                         <span className="text-lg font-semibold">Users</span>
