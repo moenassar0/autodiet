@@ -1,11 +1,11 @@
 import { getToken } from "../../HelperFunctions";
 import axios from "../axios"
+import { get, post } from "./baseAPICall";
 
 export const getMeals = async () => {
-    try{
-        const response = await axios.get("/meals", getToken());
-        return (response.data);
-    }catch(err){
-        return (err);
-    }
+    return get("/meals", "");
+}
+
+export const getCustomizedMeals = async () => {
+    return get("/user/meals", "");
 }
