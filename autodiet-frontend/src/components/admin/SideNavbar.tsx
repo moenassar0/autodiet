@@ -1,26 +1,19 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { UilAlignRight } from '@iconscout/react-unicons'
 import UilReact from '@iconscout/react-unicons/icons/uil-react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRightFromBracket, faChartLine, faDrumstickBite, faPlateWheat, faUser, faBars } from '@fortawesome/free-solid-svg-icons'
 import { SideNavbarItem } from "./SideNavbarItem";
 import { Link } from "react-router-dom"
+import { SideNavBarLinkInterface } from "../../types/types";
 
-export const AdminSideNavbar = () => {
+export const SideNavbar: React.FC<{navbarlinks:Array<SideNavBarLinkInterface>}> = ({navbarlinks}) => {
 
     const [openNavbar, setOpenNavbar] = useState(true);
 
     const toggleNavbar = () => {
         setOpenNavbar(!openNavbar);
     }
-    
-    const navbarlinks = [
-        { path: "/admin/users", icon: faUser, title: "Users" },
-        { path: "/admin/meals", icon: faPlateWheat, title: "Meals" },
-        { path: "/admin/food", icon: faDrumstickBite, title: "Foods" },
-        { path: "/admin/users", icon: faChartLine, title: "Graphs" },
-        { path: "/admin/users", icon: faRightFromBracket, title: "Logout" },
-    ];
 
     return(
         <div className={(openNavbar ? "w-2/6 sm:w-1/6" : "w-10") + " ease-in duration-150 flex flex-wrap content-start items-center h-screen bg-admin-main dark:bg-admin-dark-sidenav overflow-auto"}>

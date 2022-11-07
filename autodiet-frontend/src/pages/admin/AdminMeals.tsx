@@ -1,11 +1,12 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
-import { AdminSideNavbar } from "../../components/admin/SideNavbar"
+import { SideNavbar } from "../../components/admin/SideNavbar"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { DataTable } from "../../components/admin/DataTable"
 import { getMeals } from "../../api/services/Meals";
 import { MealHeaders } from "../../types/types"
+import { adminNavbarLinks } from "../../types/consts"
 
 export const AdminMeals = () => {
 
@@ -28,7 +29,7 @@ export const AdminMeals = () => {
 
     return(
             <div className="flex h-screen w-full">
-                <AdminSideNavbar/>
+                <SideNavbar navbarlinks={adminNavbarLinks}/>
                 <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                     <AdminTopNavbar />
                     <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">

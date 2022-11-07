@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { AdminSideNavbar } from "../../components/admin/SideNavbar";
+import { SideNavbar } from "../../components/admin/SideNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { DataTable } from "../../components/admin/DataTable"
@@ -9,8 +9,8 @@ import { sendNotification } from "../../HelperFunctions";
 import { getUsers } from "../../api/services/Users";
 import { UserInterface, UserHeaders } from '../../types/types'
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
-import { DarkModeTest } from "./DarkModeTest";
 import { AddUserPopup } from "../../components/admin/AddUserPopup";
+import { adminNavbarLinks } from "../../types/consts";
 
 export const AdminUsers = () => {
 
@@ -31,7 +31,7 @@ export const AdminUsers = () => {
     return(
         <div className="flex h-screen w-full">
             <AddUserPopup trigger={addUsersPopup} setTrigger={setAddUsersPopup}/>
-            <AdminSideNavbar/>
+            <SideNavbar navbarlinks={adminNavbarLinks}/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                 <AdminTopNavbar />
                 <div className="h-5/6 grow w-full bg-admin-grey-background px-4 py-4 dark:bg-[#1F1F1F]">
