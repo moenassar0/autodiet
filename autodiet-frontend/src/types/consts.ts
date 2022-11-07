@@ -1,11 +1,12 @@
-import { faRightFromBracket, faChartLine, faDrumstickBite, faPlateWheat, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarDays, faRightFromBracket, faChartLine, faDrumstickBite, faPlateWheat, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export const userNavbarLinks = [
-    { path: "/user/home", icon: faUser, title: "Users" },
-    { path: "/user/profile", icon: faPlateWheat, title: "Meals" },
-    { path: "/user/meals", icon: faDrumstickBite, title: "Foods" },
-    { path: "/user/foods", icon: faChartLine, title: "Graphs" },
-    { path: "/user/weight", icon: faRightFromBracket, title: "Logout" },
+    { path: "/user/home", icon: faCalendarDays, title: "Mealplan" },
+    { path: "/user/profile", icon: faUser, title: "Profile" },
+    { path: "/user/meals", icon: faPlateWheat, title: "Meals" },
+    { path: "/user/foods", icon: faDrumstickBite, title: "Foods" },
+    { path: "/user/weight", icon: faChartLine, title: "Weight" },
+    { path: "/user/logout", icon: faRightFromBracket, title: "Logout" },
 ];
 
 //Consts for admin pages
