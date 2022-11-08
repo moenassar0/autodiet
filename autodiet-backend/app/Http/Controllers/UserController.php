@@ -83,11 +83,18 @@ class UserController extends Controller
         return response()->json(['user updated:' => $user], 200);
     }
 
-    public function getUserWeightEntries($id){
-        $user = User::find($id);
+    public function getUserWeightEntries(){
+        //$user = User::find($id);
+        $user = auth()->user();
         if(!$user) return response()->json(['message' => 'user not found'], 400);
-
-        return response()->json(['user_weight_entries' => $user->weightEntries], 200);
+        $entries = $user->weightEntries;
+        $weights = [];
+        $dates = [];
+        foreach($entries as $entry){
+            array_push($weights, $entry->weight);
+            array_push($dates, $entry->date);
+        }
+        return response()->json(['weights' => $weights, 'dates' => $dates], 200); 
     }
 
     public function getUserMeals($id){
