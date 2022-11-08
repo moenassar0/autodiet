@@ -15,11 +15,13 @@ const Meal: React.FC<Props> = ({meal}) => {
             <div onClick={() => {setPopup(!popup)}}
             className="flex flex-col m-2 h-56 w-22 bg-white drop-shadow hover:drop-shadow-xl dark:bg-black dark:hover:bg-ad-hoveredblack rounded px-2 py-2 justify-start cursor-pointer">
                 <div className="flex flex-col justify-start dark:text-ad-golden w-full h-2/5 gap-1">
-                    <span className="w-full h-1/3 font-medium text-lg">{meal.title}</span>
+                    <span className="w-full h-min-1/3 h-2/4 font-medium text-lg">{meal.title}</span>
                     <span className="w-full h-1/3 text-small dark:text-admin-grey-background text-slate-500">{Math.round(meal.calories)} Calories</span>
                     <span className="w-full h-1/3 text-xs dark:text-admin-grey-background text-slate-500">P32 C70 F10</span>
                 </div>
-
+                <div className="flex w-full justify-start items-center h-3/5 dark:text-white">
+                    <img className="w-full h-full rounded" src={meal.picture_url}></img>
+                </div>
             </div>
         </section>
     )
