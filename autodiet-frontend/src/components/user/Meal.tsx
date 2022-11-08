@@ -13,15 +13,13 @@ const Meal: React.FC<Props> = ({meal}) => {
         <section>
             {popup ? <MealRecipePopup  meal_title={meal.title} meal_multiplier={meal.multiplier} meal_id={meal.id} setTrigger={setPopup} /> : ""}
             <div onClick={() => {setPopup(!popup)}}
-            className="flex flex-col m-2 h-32 w-72 bg-black rounded px-2 py-2 justify-start cursor-pointer hover:bg-ad-hoveredblack">
-                <div className="flex flex-col justify-start text-ad-golden w-full h-1/3">
-                    <span className="w-full h-2/3 text-lg">Meal {}</span>
-                    <span className="w-full h-1/3 text-small">{Math.round(meal.calories)} Calories</span>
-                </div>{/*212 160*/ }
-                <div className="flex w-full justify-start items-center h-2/3 text-white rounded px-2">
-                    <img className="w-14 h-12 mr-2 rounded" src={meal.picture_url}></img>
-                    <span>{meal.title}</span>
+            className="flex flex-col m-2 h-56 w-22 bg-white drop-shadow hover:drop-shadow-xl dark:bg-black dark:hover:bg-ad-hoveredblack rounded px-2 py-2 justify-start cursor-pointer">
+                <div className="flex flex-col justify-start dark:text-ad-golden w-full h-2/5 gap-1">
+                    <span className="w-full h-1/3 font-medium text-lg">{meal.title}</span>
+                    <span className="w-full h-1/3 text-small dark:text-admin-grey-background text-slate-500">{Math.round(meal.calories)} Calories</span>
+                    <span className="w-full h-1/3 text-xs dark:text-admin-grey-background text-slate-500">P32 C70 F10</span>
                 </div>
+
             </div>
         </section>
     )
