@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body{
+  height: 100%;
+}
+
 /* Landing Page */
 .translucent-overlay{
   display: flex;
@@ -229,6 +233,13 @@
   color: #FDAD00;
   justify-content: flex-start;
   flex-direction: column;
+}
+
+canvas{
+
+  width:100% !important;
+
+
 }
 
 .meal-content{
