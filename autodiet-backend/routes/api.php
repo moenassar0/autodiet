@@ -28,6 +28,7 @@ Route::middleware([IsUser::class])->group(function () {
 
     Route::post("/user", [UserController::class, "updateUserDetail"]);
     Route::put("/weightentries", [WeightEntryController::class, "addOrUpdateWeightEntry"]);
+    Route::put("/user/mealplan", [UserController::class, "addOrUpdateUserMeals"]);
 });
 
 Route::middleware([IsAdmin::class])->group(function () {
