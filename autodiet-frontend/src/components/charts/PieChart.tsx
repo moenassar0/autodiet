@@ -7,8 +7,8 @@ import { Chart as ChartJS, Tooltip, Legend } from 'chart.js';
 
 ChartJS.register(ArcElement, Tooltip);
 
-export const PieChart: React.FC<{labels: Array<string>, dataFields: Array<number>}> = ({labels, dataFields}) => {
-    console.log(dataFields);
+export const PieChart: React.FC<{nutritionData: any, labels: Array<string>, dataFields: Array<number>}> = ({nutritionData, labels, dataFields}) => {
+    console.log(nutritionData);
     const [color, setColor] = useState('rgb(75, 192, 192)')
 
       const data = {
@@ -16,7 +16,7 @@ export const PieChart: React.FC<{labels: Array<string>, dataFields: Array<number
         datasets: [
           {
             label: '# of Votes',
-            data: [58, 12, 30],
+            data: [nutritionData.carbs, nutritionData.protein, nutritionData.fats],
             backgroundColor: [
               '#FDAD00',
               '#E7CA56',
