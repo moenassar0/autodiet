@@ -11,12 +11,15 @@ export const Generator = async (meal_set:any) => {
         carbs: 0,
         fats: 0
     }
+
+    instance_set.snack.multiplier = 1;
+    instance_set.static_meal.multiplier = 1;
     meal_plan.push(instance_set.snack);
     meal_plan.push(instance_set.static_meal);
 
     let totalcalories = 3000;
     let mealsAmount = getRandomInt(3,6);
-    let proteinPercentage = getRandomInt(18,31);
+    let proteinPercentage = 20;
     let acceptableError = 50;
 
     totalcalories -= instance_set.snack['calories'];
@@ -45,9 +48,9 @@ export const Generator = async (meal_set:any) => {
 
 async function find(loops: number, meals:Array<MealInterface>, acceptableError:number, user_meal_data: UserMealData, meal_plan:Array<MealInterface>): Promise<any>{
     //Stopping conditions of this recurisve function
-    if(loops >= 20){
+    if(loops >= 15){
         console.log("timeout");
-        acceptableError += 25
+        acceptableError += 5
     }
 
     //Create temp instances of variables
