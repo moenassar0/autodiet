@@ -18,12 +18,14 @@ import { PieChart } from "../../components/charts/PieChart";
 import { getUserMeals } from "../../api/services/Users";
 
 export const Home = () => {
+    const [date, setDate] = useState(new Date());
     const [meals, setMeals] = useState([] as any);
     const [mealSet, setMealSet] = useState([]);
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [nutritionData, setNutritionData] = useState([] as any);
 
     useEffect(() => {
+        console.log(new Date().toLocaleDateString());
         fetchUsersMeals();
         fetch();
         firebase_init();
@@ -31,7 +33,8 @@ export const Home = () => {
 
     const fetchUsersMeals = async () => {
         const response = await getUserMeals();
-        console.log(response?.response);
+        console.log(response?.response?.user_meals);
+        setMeals(response?.response?.user_meals);
     }
 
     const fetch = async () => {
@@ -56,6 +59,18 @@ export const Home = () => {
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <AdminTopNavbar title="Meals" username="Test">
+                    <div className="flex w-96 h-full items-center">
+
+                        <input value={date.toISOString().slice(0, 10)} className="rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
+                        <button className="w-full h-1/2 dark:bg-ad-golden bg-blue" title=">" onClick={() => {
+                            let tomorrow = (date.getDate());
+                            console.log(tomorrow);
+                            var nextDay = new Date(date);
+                            nextDay.setDate(date.getDate() + 1);
+                            setDate(nextDay);
+                            //setDate(tomorrow)
+                            }}>{">"}</button>
+                    </div>
                     <div className="gap-4 flex w-auto h-full items-center">
                         <Button title="Send Notification" onclickMethod={() => {sendNotification()}}></Button>
                         <Button title="Generate" onclickMethod={async () => {getMealPlan()}}></Button>
