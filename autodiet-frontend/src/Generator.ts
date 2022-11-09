@@ -1,10 +1,16 @@
 import { getRandomInt, multiplier } from "./HelperFunctions";
-import { MealInterface, MealSetInterface, UserMealData } from "./types/types";
+import { MealInterface, MealSetInterface, NutritionObjectInterface, UserMealData } from "./types/types";
 
 export const Generator = async (meal_set:any) => {
+    //Copy meal_set array without having the same pointers to memory
     const instance_set: MealSetInterface = JSON.parse(JSON.stringify(meal_set));
 
     let meal_plan: Array<MealInterface> = [];
+    let nutrition: NutritionObjectInterface = {
+        protein: 0,
+        carbs: 0,
+        fats: 0
+    }
     meal_plan.push(instance_set.snack);
     meal_plan.push(instance_set.static_meal);
 
@@ -26,9 +32,13 @@ export const Generator = async (meal_set:any) => {
     }
 
     let gen_meal_plan: Array<MealInterface> = [];
-    gen_meal_plan = await find(0, instance_set.meals, acceptableError, user_meal_data, gen_meal_plan);
-    gen_meal_plan = gen_meal_plan.concat(meal_plan); 
-    return gen_meal_plan;
+    const response = await find(0, instance_set.meals, acceptableError, user_meal_data, gen_meal_plan);
+    gen_meal_plan = response.meal_plan;
+
+
+
+    gen_meal_plan = gen_meal_plan.concat(meal_plan);
+    return {gen_meal_plan};
 }
 
 async function find(loops: number, meals:Array<MealInterface>, acceptableError:number, user_meal_data: UserMealData, meal_plan:Array<MealInterface>): Promise<any>{
@@ -41,6 +51,8 @@ async function find(loops: number, meals:Array<MealInterface>, acceptableError:n
     //Create temp instances of variables
     let tempMeals: Array<MealInterface> = JSON.parse(JSON.stringify(meals));
     let protein = 0;
+    let carbs = 0;
+    let fats = 0;
     let totalcalories = user_meal_data.totalcalories;
     let proteinPercentage = user_meal_data.proteinPercentage;
     let calorieForEachmeal = user_meal_data.calorieForEachmeal;
@@ -68,6 +80,8 @@ async function find(loops: number, meals:Array<MealInterface>, acceptableError:n
 
         tempCalories -= calorieForEachmeal;
         protein += tempMeals[randI]['protein'];
+        carbs += tempMeals[randI]['carbohydrate'];
+        fats += tempMeals[randI]['fat'];
         
         meal_plan.push(tempMeals[randI]);
     }
@@ -80,6 +94,6 @@ async function find(loops: number, meals:Array<MealInterface>, acceptableError:n
         return find(loops + 1, meals, acceptableError, user_meal_data, meal_plan);
     }
     else{
-        return meal_plan;
+        return {meal_plan, carbs, fats, protein}
     }
 }
