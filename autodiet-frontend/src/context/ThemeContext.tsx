@@ -13,9 +13,16 @@ interface ThemeContextProps {
 }
 
 export const ThemeProvider: React.FC<{children: any}> = ({children}) => {
-return(
-    <></>
-)
+    const [currentTheme, setCurrentTheme] = useState<ThemeType>("light");
+
+    return(
+        <ThemeContext.Provider value={{
+            themeType: currentTheme,
+            setCurrentTheme
+        }}>
+            {children}
+        </ThemeContext.Provider>
+    )
 }
 
 export const useTheme = () => React.useContext(ThemeContext);
