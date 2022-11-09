@@ -25,14 +25,18 @@ export const Home = () => {
     const [nutritionData, setNutritionData] = useState([] as any);
 
     useEffect(() => {
-        console.log(new Date().toLocaleDateString());
         fetchUsersMeals();
         fetch();
         firebase_init();
     }, [])
 
+    useEffect(() => {
+        fetchUsersMeals();
+        console.log(date.toISOString().slice(0, 10))
+    }, [date])
+
     const fetchUsersMeals = async () => {
-        const response = await getUserMeals();
+        const response = await getUserMeals({date: date.toISOString().slice(0, 10)});
         console.log(response?.response?.user_meals);
         setMeals(response?.response?.user_meals);
     }
@@ -48,6 +52,7 @@ export const Home = () => {
     }
 
     async function getMealPlan(){
+        await fetch();
         const mealPlanResponse = (await Generator(mealSet))
         setMeals(mealPlanResponse.gen_meal_plan);
         console.log(mealPlanResponse.gen_meal_plan);
@@ -86,7 +91,7 @@ export const Home = () => {
                 <div className="flex h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
                     <div className="flex h-full w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
                         <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
-                            {meals.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
+                            {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                         </div>
                     </div>
                     <div className="flex h-5/6 grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
