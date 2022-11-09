@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserDetail;
+use App\Models\UserMeal;
 use Validator;
 
 class UserController extends Controller
@@ -100,9 +101,17 @@ class UserController extends Controller
     public function getUserMeals(){
         $user = auth()->user();
         if(!$user) return response()->json(['message' => 'user not found'], 400);
-        //$meals = UserMeal::where('user_id', $user->id);
+        $meals = UserMeal::where('user_id', $user->id)
+        ->join('meals', 'meals.id', '=', 'user_meals.meal_id')
+        ->get();
+        foreach($meals as $meal){
+            $meal['calories'] *= $meal['multiplier'];
+            $meal['protein'] *= $meal['multiplier'];
+            $meal['carbohydrate'] *= $meal['multiplier'];
+            $meal['fat'] *= $meal['multiplier'];
+        }
 
-        return response()->json(['user_meals' => $user->meals], 200);
+        return response()->json(['user_meals' => $meals], 200);
     }
 
     public function getUsers(){
