@@ -97,9 +97,10 @@ class UserController extends Controller
         return response()->json(['weights' => $weights, 'dates' => $dates], 200); 
     }
 
-    public function getUserMeals($id){
-        $user = User::find($id);
+    public function getUserMeals(){
+        $user = auth()->user();
         if(!$user) return response()->json(['message' => 'user not found'], 400);
+        //$meals = UserMeal::where('user_id', $user->id);
 
         return response()->json(['user_meals' => $user->meals], 200);
     }
