@@ -35,10 +35,12 @@ export const Generator = async (meal_set:any) => {
     const response = await find(0, instance_set.meals, acceptableError, user_meal_data, gen_meal_plan);
     gen_meal_plan = response.meal_plan;
 
-
+    nutrition.protein = response.protein;
+    nutrition.carbs = response.carbs;
+    nutrition.fats = response.fats;
 
     gen_meal_plan = gen_meal_plan.concat(meal_plan);
-    return {gen_meal_plan};
+    return {gen_meal_plan, nutrition};
 }
 
 async function find(loops: number, meals:Array<MealInterface>, acceptableError:number, user_meal_data: UserMealData, meal_plan:Array<MealInterface>): Promise<any>{
