@@ -50,6 +50,12 @@ export interface SideNavBarLinkInterface{
     path: string
 }
 
+export interface NutritionObjectInterface{
+    protein: number,
+    carbs: number,
+    fats: number
+}
+
 //Headers to be used in tables
 export const UserHeaders:Array<string> = ['id', 'username', 'email'];
 export const MealHeaders:Array<string> = ['id', 'title', 'calories', 'protein_percentage'];
