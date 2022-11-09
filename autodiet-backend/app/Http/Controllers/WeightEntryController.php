@@ -9,7 +9,8 @@ use Validator;
 class WeightEntryController extends Controller
 {
     public function addOrUpdateWeightEntry(Request $request){
-        $entry = WeightEntry::where('user_id', $request->user_id)->where('date', $request->date)->first();
+        $user_id = auth()->user()->id;
+        $entry = WeightEntry::where('user_id', $user_id)->where('date', $request->date)->first();
         if(!$entry) $entry = new WeightEntry;
         
         $validator = Validator::make($request->all(),[
@@ -20,7 +21,7 @@ class WeightEntryController extends Controller
         if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
         
         $entry->fill($validator->validated());
-        $entry->user_id = $request->user_id;
+        $entry->user_id = $user_id;
         $entry->save();    
         return response()->json(['entry:' => $entry], 200);
     }
