@@ -18,3 +18,12 @@ export const post = async (url: string, data: object) => {
         return {success: false, response: err};
     }
 }
+
+export const put = async (url: string, data: object) => {
+    try{
+        const response = await axios.put(url, data, getToken());
+        if(response.data) return {success: true, response: response.data};
+    }catch(err){
+        return {success: false, response: err};
+    }
+}
