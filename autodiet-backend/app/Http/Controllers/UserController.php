@@ -118,6 +118,16 @@ class UserController extends Controller
     public function addOrUpdateUserMeals(Request $request){
         $user = auth()->user();
         $meals = UserMeal::where('user_id', $user->id)->where('date', '=', $request->date)->delete();
+        $meals = $request->meals;
+        
+        foreach($meals as $meal){
+            $userMeal = new UserMeal;
+            $userMeal->user_id = $user->id;
+            $userMeal->meal_id = $meal['id'];
+            $userMeal->multiplier = $meal['multiplier'];
+            $userMeal->date = $request->date;
+            $userMeal->save();
+        }
 
         return response()->json(['user_meals' => $meals], 200);
     }
