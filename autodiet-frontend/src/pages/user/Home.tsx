@@ -15,6 +15,7 @@ import { Button } from "../../components/utility/Button";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
 import { PieChart } from "../../components/charts/PieChart";
+import { getUserMeals } from "../../api/services/Users";
 
 export const Home = () => {
     const [meals, setMeals] = useState([] as any);
@@ -23,9 +24,15 @@ export const Home = () => {
     const [nutritionData, setNutritionData] = useState([] as any);
 
     useEffect(() => {
+        fetchUsersMeals();
         fetch();
         firebase_init();
     }, [])
+
+    const fetchUsersMeals = async () => {
+        const response = await getUserMeals();
+        console.log(response?.response);
+    }
 
     const fetch = async () => {
         setCurrentlyFetching(true);
@@ -40,6 +47,7 @@ export const Home = () => {
     async function getMealPlan(){
         const mealPlanResponse = (await Generator(mealSet))
         setMeals(mealPlanResponse.gen_meal_plan);
+        console.log(mealPlanResponse.gen_meal_plan);
         setNutritionData(mealPlanResponse.nutrition);
     }
 
@@ -53,17 +61,17 @@ export const Home = () => {
                         <Button title="Generate" onclickMethod={async () => {getMealPlan()}}></Button>
                     </div>
                 </AdminTopNavbar>
-                <div className="flex h-5/6 w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
-                <div className="flex h-5/6 grow w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
-                    <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
-                        {meals.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
+                <div className="flex h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
+                    <div className="flex h-full w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                        <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
+                            {meals.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
+                        </div>
                     </div>
-                </div>
-                <div className="flex h-5/6 grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
-                    <div className="hidden lg:flex h-48 w-full justify-center">
-                    <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/>
+                    <div className="flex h-5/6 grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                        <div className="hidden lg:flex h-48 w-full justify-center">
+                        <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
