@@ -13,6 +13,6 @@ export const getUserEntries = async () => {
     return get("/user/entries", "");
 }
 
-export const getUserMeals = async () => {
-    return get("user/mealplan", "")
+export const getUserMeals = async (data:Object) => {
+    return post("user/mealplan", data)
 }
