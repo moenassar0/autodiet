@@ -20,6 +20,7 @@ export const Home = () => {
     const [meals, setMeals] = useState([] as any);
     const [mealSet, setMealSet] = useState([]);
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
+    const [nutritionData, setNutritionData] = useState([] as any);
 
     useEffect(() => {
         fetch();
@@ -39,6 +40,7 @@ export const Home = () => {
     async function getMealPlan(){
         const mealPlanResponse = (await Generator(mealSet))
         setMeals(mealPlanResponse.gen_meal_plan);
+        setNutritionData(mealPlanResponse.nutrition);
     }
 
     return(
@@ -59,7 +61,7 @@ export const Home = () => {
                 </div>
                 <div className="flex h-5/6 grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
                     <div className="hidden lg:flex h-48 w-full justify-center">
-                    <PieChart labels={[]} dataFields={[]}/>
+                    <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/>
                     </div>
                 </div>
                 </div>
