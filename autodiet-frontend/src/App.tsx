@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { Navbar } from './components/landing/Navbar';
 import { Routes, Route, Outlet, redirect } from "react-router-dom";
@@ -12,10 +12,15 @@ import { UserWeightEntries } from './pages/user/UserWeightEntries';
 import { AdminUsers } from './pages/admin/AdminUsers';
 import { AuthenticateUser } from './components/user/AuthenticateUser';
 import { AdminMeals } from './pages/admin/AdminMeals';
+import { useTheme } from './context/ThemeContext'
 
 //export const UserContext = React.createContext(user);
 
 function App() {
+  //const [theme, setTheme] = useState("light")
+  //const value = { theme, setTheme }
+  const {themeType} = useTheme();
+  console.log(themeType);
   return (
     <>
       <Routes>
