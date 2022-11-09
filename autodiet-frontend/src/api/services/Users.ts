@@ -1,5 +1,5 @@
 import { getToken } from "../../HelperFunctions";
-import { get, post } from "./baseAPICall";
+import { get, post, put } from "./baseAPICall";
 
 export const getUsers = async () => {
     return get("/users", "");
@@ -15,4 +15,8 @@ export const getUserEntries = async () => {
 
 export const getUserMeals = async (data:Object) => {
     return post("user/mealplan", data)
+}
+
+export const addOrUpdateUserMeals = async (data:Object) => {
+    return put("user/mealplan", data)
 }
