@@ -3,9 +3,10 @@ import ReactFrappeChart from "react-frappe-charts";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { userNavbarLinks } from "../../types/consts";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
-import { DoughnutChart } from "../../components/charts/DoughnutChart";
+import { LineChart } from "../../components/charts/LineChart";
 import { useEffect, useState } from "react";
 import { getUserEntries } from "../../api/services/Users";
+import { Button } from "../../components/utility/Button";
 
 export const UserWeightEntries = () => {
 
@@ -25,12 +26,13 @@ export const UserWeightEntries = () => {
     }
 
     return(
-        <div className="flex h-screen w-full sm:h-full flex w-full">
+        <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Your Weight History" username="Test"> 
+                <AdminTopNavbar title="Your Weight History" username="Test">
+
                 </AdminTopNavbar>
-                <div className="flex flex-col h-min-5/6 gap-2 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey px-4 py-4">
+                <div className="flex flex-col min-h-[83%] h-full gap-2 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey px-4 py-4">
                     <div className="flex flex-wrap items-start justify-start h-16 w-full rounded drop-shadow bg-white dark:bg-ad-lightgrey px-2 py-2">
                         <input className="w-1/3" type="date">
 
@@ -40,13 +42,14 @@ export const UserWeightEntries = () => {
                         </input>
                         <button className="w-1/4 dark:bg-ad-golden dark:text-black text-white bg-admin-button rounded-full">Submit</button>
                     </div>
-                    <div className="h-auto grow w-full bg-white ">
-                        <DoughnutChart labels={dates} dataFields={weights} />
+                    <div className="flex w-full h-18 rounded justify-center dark:bg-black dark:text-ad-golden ">
+                        Date Weight Entries
                     </div>
-                    <div className="flex w-full h-16 bg-black mt-1 mb-1 rounded">
-
-                    </div>  
+                    <div className="h-52 sm:h-72 flex w-full lg:h-96 justify-center  dark:text-ad-golden ">
+                        <LineChart labels={dates} dataFields={weights} />
+                    </div>
                 </div>
+                
             </div>
         </div>
     )
