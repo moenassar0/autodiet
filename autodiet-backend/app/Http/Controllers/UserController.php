@@ -98,11 +98,12 @@ class UserController extends Controller
         return response()->json(['weights' => $weights, 'dates' => $dates], 200); 
     }
 
-    public function getUserMeals(){
+    public function getUserMeals(Request $request){
         $user = auth()->user();
         if(!$user) return response()->json(['message' => 'user not found'], 400);
         $meals = UserMeal::where('user_id', $user->id)
         ->join('meals', 'meals.id', '=', 'user_meals.meal_id')
+        ->where('date', '=', $request->date)
         ->get();
         foreach($meals as $meal){
             $meal['calories'] *= $meal['multiplier'];
