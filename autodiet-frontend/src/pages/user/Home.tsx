@@ -59,8 +59,8 @@ export const Home = () => {
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <AdminTopNavbar title="Meals" username="Test">
-                    <div className="flex w-96 h-full items-center">
-                    <button className="w-full h-1/2 dark:bg-ad-golden bg-admin-button text-white" title=">" onClick={() => {
+                    <div className="flex w-1/2 h-full items-center gap-3">
+                    <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" onClick={() => {
                             let tomorrow = (date.getDate());
                             console.log(tomorrow);
                             var nextDay = new Date(date);
@@ -68,8 +68,8 @@ export const Home = () => {
                             setDate(nextDay);
                             //setDate(tomorrow)
                             }}>{"<"}</button>
-                        <input value={date.toISOString().slice(0, 10)} className="rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
-                        <button className="w-full h-1/2 dark:bg-ad-golden bg-blue" title=">" onClick={() => {
+                        <input value={date.toISOString().slice(0, 10)} className="w-2/4 h-1/2 rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
+                        <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" onClick={() => {
                             let tomorrow = (date.getDate());
                             console.log(tomorrow);
                             var nextDay = new Date(date);
