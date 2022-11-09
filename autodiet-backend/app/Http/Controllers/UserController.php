@@ -115,6 +115,13 @@ class UserController extends Controller
         return response()->json(['user_meals' => $meals], 200);
     }
 
+    public function addOrUpdateUserMeals(Request $request){
+        $user = auth()->user();
+        $meals = UserMeal::where('user_id', $user->id)->where('date', '=', $request->date)->delete();
+
+        return response()->json(['user_meals' => $meals], 200);
+    }
+
     public function getUsers(){
         $users = User::all();
         return response()->json(['users' => $users], 200);
