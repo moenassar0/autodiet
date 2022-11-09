@@ -14,6 +14,7 @@ import { userNavbarLinks } from "../../types/consts";
 import { Button } from "../../components/utility/Button";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
+import { PieChart } from "../../components/charts/PieChart";
 
 export const Home = () => {
     const [meals, setMeals] = useState([] as any);
@@ -35,6 +36,11 @@ export const Home = () => {
         setCurrentlyFetching(false);
     }
 
+    async function getMealPlan(){
+        const mealPlanResponse = (await Generator(mealSet))
+        setMeals(mealPlanResponse.gen_meal_plan);
+    }
+
     return(
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
@@ -42,13 +48,20 @@ export const Home = () => {
                 <AdminTopNavbar title="Meals" username="Test">
                     <div className="gap-4 flex w-auto h-full items-center">
                         <Button title="Send Notification" onclickMethod={() => {sendNotification()}}></Button>
-                        <Button title="Generate" onclickMethod={async () => {setMeals(await Generator(mealSet))}}></Button>
+                        <Button title="Generate" onclickMethod={async () => {getMealPlan()}}></Button>
                     </div>
                 </AdminTopNavbar>
-                <div className="flex h-5/6 grow w-full bg-ad-lightgrey px-2 py-2">
-                    <div className="flex flex-wrap w-full h-auto overflow-y-scroll scrollbar">
+                <div className="flex h-5/6 w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
+                <div className="flex h-5/6 grow w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                    <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
                         {meals.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                     </div>
+                </div>
+                <div className="flex h-5/6 grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                    <div className="hidden lg:flex h-48 w-full justify-center">
+                    <PieChart labels={[]} dataFields={[]}/>
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
