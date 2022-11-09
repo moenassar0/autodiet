@@ -3,6 +3,9 @@ import { validateUser, getToken } from "../../HelperFunctions";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import axios from "../../api/axios";
+import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
+import { userNavbarLinks } from "../../types/consts";
+import { SideNavbar } from "../../components/admin/SideNavbar";
 
 export const Profile = () => {
 
@@ -49,10 +52,12 @@ export const Profile = () => {
     }
 
     return(
-        <div className="flex h-min-screen w-full">
-            <UserSideNavbar />
-            <div className="flex flex-col h-screen w-4/5">
-                <div className="topnavbar"></div>
+        <div className="flex h-screen w-full">
+            <SideNavbar navbarlinks={userNavbarLinks}/>
+            <div className="flex flex-col h-min-screen w-4/6 grow">
+                <AdminTopNavbar title="Meals" username="Test">
+
+                </AdminTopNavbar>
                 {currentlyFetching 
                 ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div> 
                 : 
