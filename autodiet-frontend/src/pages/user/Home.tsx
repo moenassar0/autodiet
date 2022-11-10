@@ -16,6 +16,8 @@ import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
 import { PieChart } from "../../components/charts/PieChart";
 import { addOrUpdateUserMeals, getUserMeals } from "../../api/services/Users";
+import { CustomNotification } from "../../components/utility/CustomNotification";
+import { drawNotification } from "../../DrawFunctions";
 
 export const Home = () => {
     const [date, setDate] = useState(new Date());
@@ -26,9 +28,10 @@ export const Home = () => {
     const [bounce, setBounce] = useState(false);
 
     useEffect(() => {
+        drawNotification();
         fetch();
         fetchUsersMeals();
-        firebase_init();
+        
     }, [])
 
     useEffect(() => {
@@ -88,21 +91,32 @@ export const Home = () => {
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
                         <Button title="Send Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
-                        <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals.length === 0 ? "animate-bounce" : ""}></Button>
+                        <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
-                <div className="bg-black ease-in duration-150 delay-200 rounded translate-x-10 h-10 w-10">
-
-                </div>
                 <div className="flex h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
-                    <div className="flex h-full w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                    <div className="w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
                         <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
                             {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                         </div>
                     </div>
-                    <div className="flex h-5/6 grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                    <div className="hidden sm:flex flex-wrap h-full grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F] overflow-y-scroll">
                         <div className="hidden lg:flex h-48 w-full justify-center">
                         <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/>
+                        </div>
+                        <div className="flex w-full flex-col h-96 bg-white drop-shadow hover:drop-shadow-xl dark:bg-admin-dark-background dark:hover:opacity-80 rounded px-2 py-2 cursor-pointer">
+                            <div className="flex w-full">
+                                <span className="text-lg w-full">Protein:</span>
+                                <span className="text-lg">{Math.round(nutritionData.protein)}</span>
+                            </div>
+                            <div className="flex w-full">
+                                <span className="text-lg w-full">Fat:</span>
+                                <span className="text-lg">{Math.round(nutritionData.fats)}</span>
+                            </div>
+                            <div className="flex w-full">
+                                <span className="text-lg w-full">Carbohydrates:</span>
+                                <span className="flex self-end">{Math.round(nutritionData.carbs)}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
