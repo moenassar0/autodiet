@@ -55,13 +55,12 @@ export const Profile = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Meals" username="Test">
-
+                <AdminTopNavbar title="Profile" username="Test">
                 </AdminTopNavbar>
                 {currentlyFetching 
                 ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div> 
                 : 
-                <div className="flex h-4/5 w-full bg-ad-lightgrey">
+                <div className="flex h-4/5 grow w-full bg-ad-lightgrey">
                     <div className="flex flex-col h-4/5 w-full py-2 px-2">
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center  w-1/5 h-full text-white">Goal</div>
