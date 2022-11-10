@@ -14,6 +14,7 @@ import { AuthenticateUser } from './components/user/AuthenticateUser';
 import { AdminMeals } from './pages/admin/AdminMeals';
 import { useTheme } from './context/ThemeContext'
 import { useNotification } from './context/NotificationContext';
+import { AdminFoods } from './pages/admin/AdminFoods';
 
 //export const UserContext = React.createContext(user);
 
@@ -43,6 +44,7 @@ function App() {
         <Route path="/admin" element={ <div><Outlet /></div> }>
           <Route path="/admin/users" element={<AdminUsers/>}></Route>
           <Route path="/admin/meals" element={<AdminMeals />}></Route>
+          <Route path="/admin/foods" element={<AdminFoods />}></Route>
         </Route>
 
       </Routes>
