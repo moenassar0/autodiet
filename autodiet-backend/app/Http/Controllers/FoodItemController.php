@@ -11,14 +11,6 @@ class FoodItemController extends Controller
     public function addFoodItem(Request $request){
         $food_item = new FoodItem;
 
-        /*$food_item->serving_size = $request->serving_size;
-        $food_item->title = $request->title;
-        $food_item->calories = $request->calories;
-        $food_item->protein = $request->protein;
-        $food_item->carbohydrate = $request->carbohydrate;
-        $food_item->fat = $request->fat;
-        $food_item->picture_url = $request->picture_url;*/
-
         $validator = Validator::make($request->all(),[
             'serving_size' => 'required',
             'title' => 'required',
