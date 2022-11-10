@@ -20,3 +20,8 @@ export const getUserMeals = async (data:Object) => {
 export const addOrUpdateUserMeals = async (data:Object) => {
     return put("user/mealplan", data)
 }
+
+export const addOrUpdateWeightEntries = async (data:Object) => {
+    return put("weightentries", data)
+}
+
