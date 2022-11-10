@@ -25,28 +25,25 @@ export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<numbe
           borderColor: color,
           tension: 0.1
         }]
-      };
-      const lineChartOptions:any = {
-
-            scales: {
-                    x: {
-                    ticks: {
-                      color: color
-                  }
-                },
-                y:{
-                    ticks:{
-                        color:color
-                    }
+    };
+    const lineChartOptions:any = {
+        scales: {
+            x: {
+                ticks: {
+                    color: color
+                }
+            },
+            y: {
+                ticks:{
+                    color:color
                 }
             }
-       
+        }
     };
 
     return(
         <div>
-            <Button title="Dark" onclickMethod={() => { setColor('#'); } } styling={""}/>
-            <Line color="#FDAD00" data={data} options={lineChartOptions} />
+            <Line data={data} options={lineChartOptions} />
         </div>
     )
 }
