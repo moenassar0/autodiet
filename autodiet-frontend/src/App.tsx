@@ -13,6 +13,7 @@ import { AdminUsers } from './pages/admin/AdminUsers';
 import { AuthenticateUser } from './components/user/AuthenticateUser';
 import { AdminMeals } from './pages/admin/AdminMeals';
 import { useTheme } from './context/ThemeContext'
+import { useNotification } from './context/NotificationContext';
 
 //export const UserContext = React.createContext(user);
 
@@ -21,6 +22,8 @@ function App() {
   //const value = { theme, setTheme }
   const {themeType} = useTheme();
   console.log(themeType);
+  const {body, on} = useNotification();
+  console.log("Notification log from app", body, on);
   return (
     <>
       <Routes>
