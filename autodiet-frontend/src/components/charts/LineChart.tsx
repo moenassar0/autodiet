@@ -3,12 +3,19 @@ import {Chart, ArcElement, CategoryScale, LinearScale, PointElement, LineElement
 import { useEffect, useState } from "react";
 import { Button } from "../utility/Button";
 import type { ChartData, ChartOptions } from 'chart.js';
+import { useTheme } from "../../context/ThemeContext";
 Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
 export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<number>}> = ({labels, dataFields}) => {
-    console.log(dataFields);
     const [color, setColor] = useState('rgb(75, 192, 192)')
 
+    const {themeType} = useTheme();
+
+    useEffect(() => {
+      if(themeType === 'dark') setColor('');
+      else setColor('');
+    }, [themeType])
+    
     const data = {
         labels: [23, 35, 21, 45, 50, 90],
         datasets: [{
@@ -37,7 +44,7 @@ export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<numbe
 
     return(
         <div>
-            <Button title="Dark" onclickMethod={() => {setColor('#FDAD00')}}/>
+            <Button title="Dark" onclickMethod={() => { setColor('#FDAD00'); } } styling={""}/>
             <Line color="#FDAD00" data={data} options={lineChartOptions} />
         </div>
     )
