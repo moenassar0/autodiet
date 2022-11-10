@@ -59,3 +59,4 @@ export interface NutritionObjectInterface{
 //Headers to be used in tables
 export const UserHeaders:Array<string> = ['id', 'username', 'email'];
 export const MealHeaders:Array<string> = ['id', 'title', 'calories', 'protein_percentage'];
+export const FoodItemHeaders:Array<string> = ['id', 'title', 'calories', 'protein','carbohydrate', 'fat','serving_size'];
