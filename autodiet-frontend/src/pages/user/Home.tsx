@@ -15,7 +15,7 @@ import { Button } from "../../components/utility/Button";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
 import { PieChart } from "../../components/charts/PieChart";
-import { getUserMeals } from "../../api/services/Users";
+import { addOrUpdateUserMeals, getUserMeals } from "../../api/services/Users";
 
 export const Home = () => {
     const [date, setDate] = useState(new Date());
@@ -23,16 +23,16 @@ export const Home = () => {
     const [mealSet, setMealSet] = useState([]);
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [nutritionData, setNutritionData] = useState([] as any);
+    const [bounce, setBounce] = useState(false);
 
     useEffect(() => {
-        fetchUsersMeals();
         fetch();
+        fetchUsersMeals();
         firebase_init();
     }, [])
 
     useEffect(() => {
         fetchUsersMeals();
-        console.log(date.toISOString().slice(0, 10))
     }, [date])
 
     const fetchUsersMeals = async () => {
@@ -53,10 +53,13 @@ export const Home = () => {
 
     async function getMealPlan(){
         await fetch();
+        console.log(mealSet);
         const mealPlanResponse = (await Generator(mealSet))
         setMeals(mealPlanResponse.gen_meal_plan);
         console.log(mealPlanResponse.gen_meal_plan);
         setNutritionData(mealPlanResponse.nutrition);
+        const response2 = await addOrUpdateUserMeals({meals: mealPlanResponse.gen_meal_plan, date: date.toISOString().slice(0, 10)});
+        console.log(response2);
     }
 
     return(
@@ -84,10 +87,13 @@ export const Home = () => {
                             }}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
-                        <Button title="Send Notification" onclickMethod={() => {sendNotification()}}></Button>
-                        <Button title="Generate" onclickMethod={async () => {getMealPlan()}}></Button>
+                        <Button title="Send Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
+                        <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
+                <div className="bg-black ease-in duration-150 delay-200 rounded translate-x-10 h-10 w-10">
+
+                </div>
                 <div className="flex h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
                     <div className="flex h-full w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
                         <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
