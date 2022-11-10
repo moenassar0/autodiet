@@ -1,6 +1,7 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
+import { getFoods } from "../../api/services/Foods"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { DataTable } from "../../components/admin/DataTable"
 import { SideNavbar } from "../../components/admin/SideNavbar"
@@ -11,8 +12,9 @@ export const AdminFoods = () => {
 
     const [foods, setFoods] = useState([]);
 
-    function fetchFoodItems(){
-        
+    async function fetchFoodItems(){
+        const response = await getFoods();
+        if(response?.success) setFoods(response.response.foods)
     }
 
     useEffect(() => {
