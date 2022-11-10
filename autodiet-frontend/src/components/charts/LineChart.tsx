@@ -8,12 +8,13 @@ Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement
 
 export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<number>}> = ({labels, dataFields}) => {
     const [color, setColor] = useState('rgb(75, 192, 192)')
-
+    const darkColors = '#FDAD00';
+    const lightColors = 'rgb(75, 192, 192)';
     const {themeType} = useTheme();
 
     useEffect(() => {
-      if(themeType === 'dark') setColor('');
-      else setColor('');
+      if(themeType === 'dark') setColor(darkColors);
+      else setColor(lightColors);
     }, [themeType])
     
     const data = {
@@ -44,7 +45,7 @@ export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<numbe
 
     return(
         <div>
-            <Button title="Dark" onclickMethod={() => { setColor('#FDAD00'); } } styling={""}/>
+            <Button title="Dark" onclickMethod={() => { setColor('#'); } } styling={""}/>
             <Line color="#FDAD00" data={data} options={lineChartOptions} />
         </div>
     )

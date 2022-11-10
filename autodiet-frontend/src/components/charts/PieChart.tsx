@@ -9,7 +9,6 @@ import { useTheme } from "../../context/ThemeContext";
 ChartJS.register(ArcElement, Tooltip);
 
 export const PieChart: React.FC<{nutritionData: any, labels: Array<string>, dataFields: Array<number>}> = ({nutritionData, labels, dataFields}) => {
-    console.log(nutritionData);
     const darkColors = ['#FDAD00','#E7CA56','#ffffff'];
     const lightColors = ['#00BAC7', '#0E2238', '#ffffff'];
     const [colors, setColors] = useState<Array<string>>(lightColors);
