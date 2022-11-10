@@ -1,5 +1,6 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useEffect, useState } from "react"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { DataTable } from "../../components/admin/DataTable"
 import { SideNavbar } from "../../components/admin/SideNavbar"
@@ -7,6 +8,17 @@ import { adminNavbarLinks } from "../../types/consts"
 import { FoodItemHeaders } from "../../types/types"
 
 export const AdminFoods = () => {
+
+    const [foods, setFoods] = useState([]);
+
+    function fetchFoodItems(){
+        
+    }
+
+    useEffect(() => {
+        fetchFoodItems();
+    }, [])
+
     return(
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={adminNavbarLinks}/>
