@@ -90,7 +90,7 @@ export const Home = () => {
                             }}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
-                        <Button title="Send Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
+                        <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
@@ -100,11 +100,14 @@ export const Home = () => {
                             {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                         </div>
                     </div>
-                    <div className="hidden sm:flex flex-wrap h-full grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F] overflow-y-scroll">
+                    <div className="hidden sm:flex content-start gap-4 flex-wrap h-full grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F] overflow-y-scroll">
                         <div className="hidden lg:flex h-48 w-full justify-center">
-                        <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/>
+                            {meals ? <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/> : ""}
                         </div>
-                        <div className="flex w-full flex-col h-96 bg-white drop-shadow hover:drop-shadow-xl dark:bg-admin-dark-background dark:hover:opacity-80 rounded px-2 py-2 cursor-pointer">
+                        <div className="flex dark:text-ad-golden w-full flex-col h-auto bg-white drop-shadow hover:drop-shadow-xl dark:bg-admin-dark-background dark:hover:opacity-80 rounded px-2 py-2 cursor-pointer">
+                            <div className="flex w-full">
+                                <span className="text-center text-xl w-full">Calories 2130</span>
+                            </div>
                             <div className="flex w-full">
                                 <span className="text-lg w-full">Protein:</span>
                                 <span className="text-lg">{Math.round(nutritionData.protein)}</span>
