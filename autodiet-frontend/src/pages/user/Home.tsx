@@ -55,6 +55,13 @@ export const Home = () => {
         setCurrentlyFetching(false);
     }
 
+    const sendCustomNotification = () => {
+        return(
+            <>
+            </>
+        )
+    }
+
     async function getMealPlan(){
         await fetch();
         console.log(mealSet);
@@ -91,7 +98,7 @@ export const Home = () => {
                             }}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
-                        <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
+                        <Button title="Notification" onclickMethod={() => { sendCustomNotification(); sendNotification(); } } styling={""}></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
@@ -104,6 +111,7 @@ export const Home = () => {
                     <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
                 </div>
             </div>
+            <CustomNotification></CustomNotification>
         </div>
     )
 }
