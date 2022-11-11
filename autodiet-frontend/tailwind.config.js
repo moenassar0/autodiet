@@ -19,7 +19,7 @@ module.exports = {
       colors: {
         "ad-golden": "#FDAD00",
         "ad-darkgrey": "#141414",
-        "ad-lightgrey": "#363636",
+        "ad-lightgrey": "#1F1F1F",
         "ad-hoveredblack": "#0d0d0d",
         
         "admin-main": "#0E2238",
