@@ -1,6 +1,7 @@
-import { query, collection, onSnapshot, orderBy } from "firebase/firestore"
+import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../../api/firebase"
+import { getUser } from "../../api/services/Users"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
@@ -12,19 +13,31 @@ export const Chatbox = () => {
     const [inputMessage, setInputMessage] = useState("");
 
     useEffect(() => {
-        const q = query(collection(db, 'messages'), orderBy('timestamp'));
+        const q = query(collection(db, 'messages'), orderBy('timestamps'));
         const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
             let messages: any = [];
             querySnapshot.forEach((doc: any) => {
                 messages.push({...doc.data(), id: doc.id});
             });
+            console.log(messages);
             setMessages(messages);
         })
         return () => unsubscribe()
     }, [])
 
-    const sendMessage = () => {
-        
+    const sendMessage = async () => {
+        const response = await getUser();
+        if(response?.response){
+            const userID = response.response.id;
+            const userName = response.response.username;
+            await addDoc(collection(db, 'messages'), {
+                text: inputMessage,
+                name: userName,
+                timestamps: serverTimestamp(),
+                type: "client_r",
+                userID
+            })
+        }
     }
 
     return(
@@ -42,7 +55,7 @@ export const Chatbox = () => {
                         ))}
                     </div>
                     <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
-                        <input value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.validationMessage)}} placeholder="Type a message" className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background text-gray-300"></input>
+                        <input type="text" value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.value)}} className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background text-gray-300"></input>
                         <Button title="Send" onclickMethod={sendMessage} styling={"w-1/3"}></Button>
                     </div>
                 </div>
