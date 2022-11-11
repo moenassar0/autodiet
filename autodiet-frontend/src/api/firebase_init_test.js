@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 export const firebase_init = () => {
+  //const {setCurrentTheme, themeType} = useTheme();
 // TODO: Replace the following with your app's Firebase project configuration
 // See: https://firebase.google.com/docs/web/learn-more#config-object
 const firebaseConfig = {
@@ -44,8 +45,7 @@ getToken(messaging, {vapidKey: "BM9L9BDzDJoRMVhgsK9T8Od8PTcj3CmvytApjd6pTOPBeFRy
 
 onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
-
-  // ...
+  
 });
 
 requestPermission();
