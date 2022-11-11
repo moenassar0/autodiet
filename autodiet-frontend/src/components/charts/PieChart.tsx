@@ -6,7 +6,7 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { Chart as ChartJS, Tooltip, Legend } from 'chart.js';
 import { useTheme } from "../../context/ThemeContext";
 
-ChartJS.register(ArcElement, Tooltip);
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const PieChart: React.FC<{nutritionData: any, labels: Array<string>, dataFields: Array<number>}> = ({nutritionData, labels, dataFields}) => {
     const darkColors = ['#FDAD00','#E7CA56','#ffffff'];
