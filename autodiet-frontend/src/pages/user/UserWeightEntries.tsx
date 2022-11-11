@@ -42,7 +42,7 @@ export const UserWeightEntries = () => {
 
                 </AdminTopNavbar>
                 <div className="flex flex-col min-h-[83%] h-full gap-2 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey px-4 py-4">
-                    <div className="flex flex-wrap items-start justify-start h-16 w-full rounded drop-shadow bg-white dark:bg-ad-lightgrey px-2 py-2">
+                    <div className="flex flex-wrap items-start justify-start h-16 w-full rounded drop-shadow bg-white dark:bg-admin-dark-background px-2 py-2">
                         <input className="w-1/3" type="date" onChange={(e) => {setDate(e.currentTarget.value)}}>
 
                         </input>
