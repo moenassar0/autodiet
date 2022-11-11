@@ -5,6 +5,10 @@ export const getUsers = async () => {
     return get("/users", "");
 }
 
+export const getUser = async () => {
+    return get("/me", "");
+}
+
 export const addUser = async (data:Object) => {
     return post("/users", data);
 }
