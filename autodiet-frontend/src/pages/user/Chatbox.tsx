@@ -9,6 +9,7 @@ import { userNavbarLinks } from "../../types/consts"
 export const Chatbox = () => {
 
     const [messages, setMessages] = useState([] as any);
+    const [inputMessage, setInputMessage] = useState("");
 
     useEffect(() => {
         const q = query(collection(db, 'messages'), orderBy('timestamp'));
@@ -21,6 +22,10 @@ export const Chatbox = () => {
         })
         return () => unsubscribe()
     }, [])
+
+    const sendMessage = () => {
+        
+    }
 
     return(
         <div className="flex h-screen w-full">
@@ -37,8 +42,8 @@ export const Chatbox = () => {
                         ))}
                     </div>
                     <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
-                        <input placeholder="Type a message" className="flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background text-gray-300"></input>
-                        <Button title="Send" onclickMethod={() => { } } styling={"w-1/3"}></Button>
+                        <input value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.validationMessage)}} placeholder="Type a message" className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background text-gray-300"></input>
+                        <Button title="Send" onclickMethod={sendMessage} styling={"w-1/3"}></Button>
                     </div>
                 </div>
             </div>
