@@ -55,9 +55,17 @@ Let us briefly mention the tech stack and technologies the application used:
 
 > Usng the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
 
-| Landing  | Browse Foods/Meals  |
+| Landing  | Meals Page  |
 | -----------------| -----|
 | ![Landing](https://github.com/moenassar0/autodiet/blob/main/demo/Meals_Page.png) | ![Browse Foods/Meals](https://github.com/moenassar0/autodiet/blob/main/demo/Meals_Page.png) |
+
+|  Browse Meals/Foods  |
+| ----------------------|
+| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/BrowseMeals_Page.png) |
+
+|  Showcasing dark and light modes  |
+| ----------------------|
+| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Lightmode-Darkmode.gif) |
 
 
 <br><br>
