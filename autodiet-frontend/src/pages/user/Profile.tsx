@@ -61,7 +61,7 @@ export const Profile = () => {
                 ? <div className="flex flex-col items-center justify-center h-full w-full"><img src="../logo2.png" className="h-14 w-28"></img><img src="../gh.gif" className="h-14 w-14"></img></div> 
                 : 
                 <div className="flex h-4/5 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey">
-                    <div className="flex flex-col h-4/5 w-full py-2 px-2">
+                    <div className="flex flex-col h-4/5 w-5/6 py-2 px-2">
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center  w-1/5 h-full text-white">Goal</div>
                             <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
@@ -104,8 +104,9 @@ export const Profile = () => {
                             </div>
                         </div>
                         <div className="flex w-full h-1/6">
+                            <div className="flex items-center w-1/5 h-full text-white"></div>
                             <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
-                                <button onClick={() => updateUserDetails()} className={"flex w-2/4 sm:flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded dark:bg-ad-golden bg-admin-button"}>Save Changes</button>
+                                <button onClick={() => updateUserDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded dark:bg-ad-golden bg-admin-button"}>Save Changes</button>
                             </div>
                         </div>
                     </div>
