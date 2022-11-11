@@ -70,13 +70,13 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
+* NodeJS
   ```sh
-  npm install
+  https://nodejs.org/en/download/
   ```
 * composer
   ```sh
-  composer install
+  (https://getcomposer.org/)
   ```
 
 ### Installation
@@ -92,8 +92,12 @@ _Below is an example of how you can instruct your audience on installing and set
    npm install
    ```
 3. Install composer packages
- ```sh
- composer install
- ```
-
+   ```sh
+   composer install
+   ```
+4. Create a MySQL database and connect it using your .env file in your laravel project.
+5. Run the migrations (inside your laravel project)
+   ```sh
+   php artisan migrate
+   ```
 
