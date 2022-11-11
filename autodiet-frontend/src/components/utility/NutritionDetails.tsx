@@ -13,15 +13,15 @@ export const NutritionDetails: React.FC<{meals: MealInterface, nutritionData: an
                 </div>
                 <div className="flex w-full">
                     <span className="text-lg w-full">Protein:</span>
-                    <span className="text-lg">{Math.round(nutritionData.protein)}</span>
+                    <span className="text-lg">{Math.round(nutritionData.protein) + "g"}</span>
                 </div>
                 <div className="flex w-full">
                     <span className="text-lg w-full">Fat:</span>
-                    <span className="text-lg">{Math.round(nutritionData.fats)}</span>
+                    <span className="text-lg">{Math.round(nutritionData.fats) + "g"}</span>
                 </div>
                 <div className="flex w-full">
                     <span className="text-lg w-full">Carbohydrates:</span>
-                    <span className="flex self-end">{Math.round(nutritionData.carbs)}</span>
+                    <span className="flex self-end">{Math.round(nutritionData.carbs) + "g"}</span>
                 </div>
             </div>
         </div>
