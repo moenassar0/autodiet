@@ -13,9 +13,9 @@
 
 <img src="./readme/title2.svg"/>
 
-> The Well app is a mental health and mindfulness app built on top of the science of positive psychology. The Well app is more than just another meditation or journaling app; it encourages you to enhance and reflect on your day with structured, guided activities.
+> AutoDiet is an automatic meal planner that is customized to the user's needs. The web app generates a daily plan for the user with dynamic recipes with the user's overall nutrition and health in mind. The app also always the user to log in data like his own diet/meals and weight.
 > 
-> There are 5 daily tasks that the Well app asks you to complete each day: record 3 gratitudes, write a journal entry, perform 3 acts of kindness, exercise for 20 minutes, and meditate for 15 minutes.
+> The web app prompts the user to input his physical details first, the user can then generate his own mealplans. The user can also surf all the avaiable meals and their recipes.
 
 ### User Stories
 - As a user, I want to browsse ablums, so that I can find quick links
@@ -26,8 +26,7 @@
 
 <img src="./readme/title3.svg"/>
 
-> This design was planned before on paper, then moved to Figma app for the fine details.
-Note that i didn't use any styling library or theme, all from scratch and using pure css modules
+> This design was first made on Figma as wireframes then formed into mockups. You will see the design of the website changing along the way as better color palettes and design patterns were used.
 
 | Landing  | Home/Search  |
 | -----------------| -----|
