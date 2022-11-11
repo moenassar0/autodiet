@@ -5,6 +5,9 @@ import MealCard from "../../components/user/MealCard";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import { MealInterface } from "../../types/types";
 import { EmptyState } from "../../components/utility/EmptyState";
+import { SideNavbar } from "../../components/admin/SideNavbar";
+import { userNavbarLinks } from "../../types/consts";
+import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 
 export const BrowseMeals = () => {
 
@@ -27,11 +30,13 @@ export const BrowseMeals = () => {
 
     return(
         <div className="flex h-screen w-full">
-            <UserSideNavbar />
-            <div className="flex flex-col h-full w-full">
-            <div className="topnavbar"></div>
-                <div className="flex flex-col h-4/5 w-full bg-ad-lightgrey px-4 py-4">
+            <SideNavbar navbarlinks={userNavbarLinks}/>
+            <div className="flex flex-col h-min-screen w-4/6 grow">
+                <AdminTopNavbar title="Meals" username="Test">
+                </AdminTopNavbar>
+                <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
                     <div className="px-2 flex h-10 w-full py-2">
+                        <div className="flex w-10 h-full"></div>
                         <input onChange={(e) => setSearchInput(e.target.value)} type="text" className="w-full h-full flex px-2 py-2 rounded" />
                     </div>
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
