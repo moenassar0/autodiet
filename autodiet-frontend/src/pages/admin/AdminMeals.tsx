@@ -12,12 +12,26 @@ import { AddMealPopup } from "../../components/admin/AddMealPopup"
 export const AdminMeals = () => {
 
     const [meals, setMeals] = useState([]);
-    const [addMealsPopup ,setAddMealsPopup] = useState(false);
-    
+    const [addMealsPopup, setAddMealsPopup] = useState(false);
+    const [editMealsPopup, setEditMealsPopup] = useState(false);
+    const [mealID, setMealID] = useState(0);
+
     async function fetchMeals(){
         const response = await getMeals();
         if(response?.success){ setMeals(response.response.meals);
         console.log(response)}
+    }
+
+    const editFun = (id: number) => {
+        setEditMealsPopup(true);
+        console.log(id);
+        setMealID(id);
+    }
+
+    const delFunction = (id: number) => {
+        //setEditMealsPopup(true);
+        console.log(id);
+        //setMealID(id);
     }
 
     useEffect(() => {
@@ -26,7 +40,8 @@ export const AdminMeals = () => {
 
     return(
             <div className="flex h-screen w-full">
-                <AddMealPopup trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
+                <AddMealPopup edit={false} trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
+                <AddMealPopup edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
                 <SideNavbar navbarlinks={adminNavbarLinks}/>
                 <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                     <AdminTopNavbar title="" username="Admin">
@@ -41,7 +56,7 @@ export const AdminMeals = () => {
                         </div>
                         <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                             <div className="flex flex-col w-full h-auto">
-                                {meals ? <DataTable data={meals} headers={MealHeaders}></DataTable> : ""}
+                                {meals ? <DataTable editFunction={editFun} deleteFunction={delFunction} data={meals} headers={MealHeaders}></DataTable> : ""}
                             </div>
                         </div>
                     </div>
