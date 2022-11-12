@@ -13,6 +13,10 @@ export const addUser = async (data:Object) => {
     return post("/users", data);
 }
 
+export const editUser = async (data:Object) => {
+    return put("/user", data);
+}
+
 export const getUserEntries = async () => {
     return get("/user/entries", "");
 }
