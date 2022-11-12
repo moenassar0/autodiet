@@ -36,12 +36,15 @@ export const AdminChat = () => {
     return(
         <AdminBase navbarTitle="Chat Requests" navbarProps={<></>} >
             <div className="flex w-full h-full ">
-                <div className="flex flex-wrap content-start h-full w-[300px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto">
+                <div className="flex flex-wrap drop-shadow content-start h-full w-[300px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
                     {/* Loop here */}
-                    <div className="flex w-full h-24 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
+                    <div className="flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
                         <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
                         <span className="font-medium">Username</span>
                     </div>
+                </div>
+                <div className="flex w-4/6 grow h-full rounded-md drop-shadow bg-white dark:bg-admin-dark-background">
+
                 </div>
             </div>
         </AdminBase>
