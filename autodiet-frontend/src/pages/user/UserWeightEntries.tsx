@@ -51,11 +51,13 @@ export const UserWeightEntries = () => {
                         </input>
                         <button onClick={insertEntry} className="w-1/4 dark:bg-ad-golden dark:text-black text-white bg-admin-button rounded-full">Submit</button>
                     </div>
-                    <div className="flex w-full h-18 rounded justify-center dark:bg-black dark:text-ad-golden ">
-                        Date Weight Entries
-                    </div>
-                    <div className="h-52 sm:h-72 flex w-full lg:h-96 justify-center  dark:text-ad-golden ">
-                        <LineChart labels={dates} dataFields={weights} />
+                    <div className="w-full h-full flex flex-col rounded drop-shadow bg-white dark:bg-admin-dark-background">
+                        <div className="flex w-full h-18 rounded justify-center dark:text-ad-golden ">
+                            Date Weight Entries
+                        </div>
+                        <div className="h-52 sm:h-72 flex w-full lg:h-96 justify-center  dark:text-ad-golden ">
+                            <LineChart labels={dates} dataFields={weights} />
+                        </div>
                     </div>
                 </div>
             </div>
