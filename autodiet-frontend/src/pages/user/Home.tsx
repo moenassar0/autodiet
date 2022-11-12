@@ -14,10 +14,8 @@ import { userNavbarLinks } from "../../types/consts";
 import { Button } from "../../components/utility/Button";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
-import { PieChart } from "../../components/charts/PieChart";
 import { addOrUpdateUserMeals, getUserMeals } from "../../api/services/Users";
 import { CustomNotification } from "../../components/utility/CustomNotification";
-import { drawNotification } from "../../DrawFunctions";
 import { NutritionDetails } from "../../components/utility/NutritionDetails";
 
 export const Home = () => {
@@ -29,10 +27,8 @@ export const Home = () => {
     const [bounce, setBounce] = useState(false);
 
     useEffect(() => {
-        drawNotification();
         fetch();
-        fetchUsersMeals();
-        
+        fetchUsersMeals();    
     }, [])
 
     useEffect(() => {
@@ -113,7 +109,7 @@ export const Home = () => {
                     <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
                 </div>
             </div>
-            <CustomNotification></CustomNotification>
+            
         </div>
     )
 }
