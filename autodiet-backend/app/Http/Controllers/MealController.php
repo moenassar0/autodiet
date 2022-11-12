@@ -77,6 +77,7 @@ class MealController extends Controller
             'fat' => 'required',
             'protein_percentage' => 'required',
             'picture_url' => 'required',
+            'type' => 'required',
         ]);
 
         if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
