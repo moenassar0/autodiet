@@ -6,22 +6,32 @@ import { DataTable } from "../../components/admin/DataTable"
 import { firebase_init } from "../../api/firebase_init_test";
 import axios from "axios";
 import { sendNotification } from "../../HelperFunctions";
-import { getUsers } from "../../api/services/Users";
+import { getUsers, editUser, addUser, deleteUser } from "../../api/services/Users";
 import { UserInterface, UserHeaders } from '../../types/types'
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { AddUserPopup } from "../../components/admin/AddUserPopup";
 import { adminNavbarLinks } from "../../types/consts";
+import { PopupOverlay } from "../../components/utility/PopupOverlay";
 
 export const AdminUsers = () => {
 
     const [users, setUsers] = useState([]);
     const [addUsersPopup ,setAddUsersPopup] = useState(false);
+    const [editUsersPopup ,setEditUsersPopup] = useState(false);
+    const [deleteUsersPopup ,setDeleteUsersPopup] = useState(false);
+    const [popupFunction, setPopupFunction] = useState(() => {});
     
     async function fetchUsers(){
         const response = await getUsers();
         if(response?.success){ setUsers(response.response.users);
         console.log(response)}
         else setUsers([]);
+    }
+
+    const deletefunc = async (id:number) => {
+        const response = await deleteUser(id.toString());
+        console.log(response?.response)
+        fetchUsers();
     }
 
     useEffect(() => {
@@ -44,11 +54,12 @@ export const AdminUsers = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            {users ? <DataTable data={users} headers={UserHeaders}></DataTable> : ""}
+                            {users ? <DataTable deleteFunction={deletefunc} deletePopup={deleteUsersPopup} setDeletePopup={setDeleteUsersPopup} data={users} headers={UserHeaders}></DataTable> : ""}
                         </div>
                     </div>
                 </div>
             </div>
+            {deleteUsersPopup ? <PopupOverlay></PopupOverlay> : ""}
         </div>
     )
 }
