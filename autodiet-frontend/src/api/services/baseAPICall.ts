@@ -29,7 +29,7 @@ export const put = async (url: string, data: object) => {
     }
 }
 
-export const del = async (url: string, data: object, urlParmas: string) => {
+export const del = async (url: string, urlParmas: string) => {
     try{
         const response = await axios.delete(url + urlParmas, getToken());
         if(response.data) return {success: true, response: response.data};
