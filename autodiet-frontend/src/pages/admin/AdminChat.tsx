@@ -38,13 +38,13 @@ export const AdminChat = () => {
     const fetchUsersMessages = async (id: number) => {
         const q = query(collection(db, 'messages'), where("userID", "==", id));
         const querySnapshot = await getDocs(q);
-        let messages: Array<object> = [];
+        let qMessages: Array<object> = [];
         querySnapshot.forEach((doc) => {
             // doc.data() is never undefined for query doc snapshots
-            messages.push(doc.data()?.userID);
+            qMessages.push(doc.data());
         });
-        console.log(messages);
-        setMessages(messages);
+        console.log(qMessages);
+        setMessages(qMessages);
     }
 
     return(
@@ -60,11 +60,15 @@ export const AdminChat = () => {
                         )) : "asd"
                     }
                 </div>
-                <div className="flex w-4/6 grow h-full rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
-                    <div className="flex w-full h-16 items-center">
-                        <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
-                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl">Message testing testing, text lopsmon teruansdkjj asd gg</span>
-                    </div>
+                <div className="flex flex-wrap content-start overflow-auto w-4/6 grow h-full rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
+                    {
+                        messages ? messages.map((message: any, i: number) => (
+                            <div key={i} className="flex w-full h-16 items-center">
+                                <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
+                                <span className="flex bg-[#EDEEF0] p-3 rounded-xl">{message.text}</span>
+                            </div>
+                        )) : ""
+                    }
                 </div>
             </div>
         </AdminBase>
