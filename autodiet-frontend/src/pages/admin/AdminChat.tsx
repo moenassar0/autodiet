@@ -1,4 +1,4 @@
-import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, getDocs } from "firebase/firestore"
+import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, getDocs, where } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../../api/firebase"
 import { getUser } from "../../api/services/Users"
@@ -34,13 +34,26 @@ export const AdminChat = () => {
         setUsers(uniqueChars);
         console.log(uniqueChars);
     }
+
+    const fetchUsersMessages = async (id: number) => {
+        const q = query(collection(db, 'messages'), where("userID", "==", id));
+        const querySnapshot = await getDocs(q);
+        let messages: Array<object> = [];
+        querySnapshot.forEach((doc) => {
+            // doc.data() is never undefined for query doc snapshots
+            messages.push(doc.data()?.userID);
+        });
+        console.log(messages);
+        setMessages(messages);
+    }
+
     return(
         <AdminBase navbarTitle="Chat Requests" navbarProps={<></>} >
             <div className="flex w-full h-full ">
                 <div className="flex flex-wrap drop-shadow content-start h-full w-[300px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
                     {
                         users ? users.map((user: any) => (
-                            <div key={user} className="flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
+                            <div onClick={() => {fetchUsersMessages(user)}} key={user} className="flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
                                 <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
                                 <span className="font-medium">UserID: {user}</span>
                             </div>
