@@ -3,7 +3,7 @@ import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { UserInterface, UserHeaders } from '../../types/types'
 import { Key } from 'react';
 
-export const DataTable: React.FC<{data:Array<Object>, headers:Array<string>}> = ({data, headers}) => {
+export const DataTable: React.FC<{deleteFunction?:any, deletePopup?:any, setDeletePopup?:any, data:Array<Object>, headers:Array<string>}> = ({data, headers, setDeletePopup, deletePopup, deleteFunction}) => {
     //Scalable data table for CRUD operations.
     //Headers are keys in the data object
     //Headers will be mapped as table headers and then the data array will be mapped using the headers
@@ -35,7 +35,7 @@ export const DataTable: React.FC<{data:Array<Object>, headers:Array<string>}> = 
                                         Edit
                                         <FontAwesomeIcon className="self-center ml-2" icon={faEdit}/>
                                     </button>
-                                    <button className='flex w-28 justify-center h-2/3 text-white bg-admin-button hover:bg-admin-hoveredbutton dark:text-black dark:bg-ad-golden rounded-full px-1 py-1 font-medium'>
+                                    <button onClick={() => {deleteFunction(data.id)}}className='flex w-28 justify-center h-2/3 text-white bg-admin-button hover:bg-admin-hoveredbutton dark:text-black dark:bg-ad-golden rounded-full px-1 py-1 font-medium'>
                                         Delete
                                         <FontAwesomeIcon className="text-black self-center ml-2" icon={faTrash}/>
                                     </button>
