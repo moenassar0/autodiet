@@ -7,6 +7,7 @@ import { LineChart } from "../../components/charts/LineChart";
 import { useEffect, useState } from "react";
 import { addOrUpdateWeightEntries, getUserEntries } from "../../api/services/Users";
 import { Button } from "../../components/utility/Button";
+import { CustomNotification } from "../../components/utility/CustomNotification";
 
 export const UserWeightEntries = () => {
 
@@ -14,6 +15,7 @@ export const UserWeightEntries = () => {
     const [date, setDate] = useState('');
     const [weight, setWeight] = useState(0);
     const [weights, setWeights] = useState([]);
+    const [hideNotification, setHideNotification] = useState(true);
 
     useEffect(() => {
         fetchEntries()
@@ -31,6 +33,8 @@ export const UserWeightEntries = () => {
         const response = await addOrUpdateWeightEntries({date, weight});
         console.log(date, "date", "weight", weight);
         console.log(response);
+        setHideNotification(false);
+        fetchEntries();
     }
 
 
@@ -62,6 +66,7 @@ export const UserWeightEntries = () => {
                     </div>
                 </div>
             </div>
+            {<CustomNotification body="Weight entry added!" turnOff={hideNotification} setTurnOff={setHideNotification} /> }
         </div>
     )
 }
