@@ -1,4 +1,5 @@
 import axios from "./api/axios";
+import { MealInterface, NutritionObjectInterface } from "./types/types";
 
 //Declare helper function's variables
 const EMAIL_REGEX = /.+@.+\..+/;
@@ -81,4 +82,14 @@ export const sendNotification = async () => {
     
     //}, 5000);
     
+}
+
+export const getNutritionFromMeals = (meals: Array<MealInterface>) => {
+  let nutrition: NutritionObjectInterface = {protein:0, fats: 0, carbs: 0}
+  meals.forEach(meal => {
+    nutrition.protein += meal.protein;
+    nutrition.fats += meal.fat;
+    nutrition.carbs += meal.carbohydrate;
+  });
+  return nutrition;
 }
