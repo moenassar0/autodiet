@@ -18,9 +18,9 @@ export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<numbe
     }, [themeType])
     
     const data = {
-        labels: [23, 35, 21, 45, 50, 90],
+        labels: labels,
         datasets: [{
-          label: 'My First Dataset',
+          label: 'Dataset',
           data: dataFields,
           borderColor: color,
           tension: 0.1
