@@ -3,7 +3,7 @@ import { addUser } from "../../api/services/Users"
 import { useEffect, useState } from "react"
 import { InputFieldInterface } from "../../types/types"
 import { Popup } from "../utility/Popup"
-import { addMeal } from "../../api/services/Meals"
+import { addMeal, editMeal } from "../../api/services/Meals"
 
 export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: any, trigger: boolean}> = ({edit, mealID, setTrigger, trigger}) => {
 
@@ -33,9 +33,19 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
     ];
 
     const handleSubmit = async () => {
-        const response = await addMeal({title, calories, type:"Snack", protein, carbohydrate, fat, protein_percentage: proteinPercentage, picture_url:"asd"});
-        if(!response?.success) setMessage("Server Error");
-        else setMessage("User added!");
+        if(!edit){
+            const response = await addMeal({title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage, picture_url:"asd"});
+            if(!response?.success) setMessage("Server Error");
+            else setMessage("Meal added!");
+        }else if(edit){
+            const meal = {id: mealID,title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage, picture_url:"asd"};
+            const response = await editMeal(meal);
+            console.log(meal);
+            console.log(((response?.response)))
+            if(!response?.success) setMessage("Server Error");
+            else setMessage("Meal edited!");
+        }
+
     }
 
     return(
