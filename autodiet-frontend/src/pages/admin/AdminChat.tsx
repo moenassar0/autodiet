@@ -43,8 +43,11 @@ export const AdminChat = () => {
                         <span className="font-medium">Username</span>
                     </div>
                 </div>
-                <div className="flex w-4/6 grow h-full rounded-md drop-shadow bg-white dark:bg-admin-dark-background">
-
+                <div className="flex w-4/6 grow h-full rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
+                    <div className="flex w-full h-16 items-center">
+                        <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
+                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl">Message testing testing, text lopsmon teruansdkjj asd gg</span>
+                    </div>
                 </div>
             </div>
         </AdminBase>
