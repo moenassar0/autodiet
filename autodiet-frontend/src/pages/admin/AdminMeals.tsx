@@ -23,9 +23,10 @@ export const AdminMeals = () => {
     }
 
     const editFun = (id: number) => {
+        setMealID(id);
         setEditMealsPopup(true);
         console.log(id);
-        setMealID(id);
+        
     }
 
     const delFunction = (id: number) => {
@@ -41,7 +42,7 @@ export const AdminMeals = () => {
     return(
             <div className="flex h-screen w-full">
                 <AddMealPopup edit={false} trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
-                <AddMealPopup edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
+                <AddMealPopup mealID={mealID} edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
                 <SideNavbar navbarlinks={adminNavbarLinks}/>
                 <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                     <AdminTopNavbar title="" username="Admin">
