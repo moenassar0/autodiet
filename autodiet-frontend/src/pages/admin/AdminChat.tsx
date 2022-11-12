@@ -1,4 +1,4 @@
-import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, getDocs, where } from "firebase/firestore"
+import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, getDocs, where, doc } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { db } from "../../api/firebase"
 import { getUser } from "../../api/services/Users"
@@ -15,11 +15,26 @@ export const AdminChat = () => {
     const [currentUserID, setCurrentUserID] = useState(-1);
     const [users, setUsers] = useState([] as any);
 
+
     useEffect(() => {
         fetchMessages();
-    }, [])
+        const q = query(collection(db, 'messages'), where("userID", "==", currentUserID), orderBy("timestamps"));
+        const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
+            let messages: any = [];
+            querySnapshot.forEach((doc: any) => {
+                messages.push({...doc.data(), id: doc.id});
+            });
+            console.log(messages);
+            setMessages(messages);
+        })
+        return () => unsubscribe()
+        /*const unsub = onSnapshot(doc(db, "messages", "text"), (doc) => {
+            console.log("Current data: ", doc.data());
+        });*/
+    }, [currentUserID])
 
     const fetchMessages = async () => {
+        
         const q = query(collection(db, 'messages'), orderBy('timestamps'));
         const querySnapshot = await getDocs(q);
         let messages: Array<object> = [];
@@ -36,7 +51,8 @@ export const AdminChat = () => {
     }
 
     const fetchUsersMessages = async (id: number) => {
-        const q = query(collection(db, 'messages'), where("userID", "==", id));
+        setCurrentUserID(id);
+        const q = query(collection(db, 'messages'), where("userID", "==", id), orderBy("timestamps"));
         const querySnapshot = await getDocs(q);
         let qMessages: Array<object> = [];
         querySnapshot.forEach((doc) => {
@@ -45,6 +61,17 @@ export const AdminChat = () => {
         });
         console.log(qMessages);
         setMessages(qMessages);
+        /*
+        const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
+            let messages: any = [];
+            querySnapshot.forEach((doc: any) => {
+                messages.push({...doc.data(), id: doc.id});
+            });
+            console.log(messages);
+            setMessages(messages);
+        })
+        return () => unsubscribe()
+        */
     }
 
     return(
@@ -53,7 +80,7 @@ export const AdminChat = () => {
                 <div className="flex flex-wrap drop-shadow content-start h-full w-[300px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
                     {
                         users ? users.map((user: any) => (
-                            <div onClick={() => {fetchUsersMessages(user)}} key={user} className="flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
+                            <div onClick={() => {setCurrentUserID(user)}} key={user} className="flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
                                 <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
                                 <span className="font-medium">UserID: {user}</span>
                             </div>
@@ -65,7 +92,11 @@ export const AdminChat = () => {
                         messages ? messages.map((message: any, i: number) => (
                             <div key={i} className="flex w-full h-16 items-center">
                                 <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
-                                <span className="flex bg-[#EDEEF0] p-3 rounded-xl">{message.text}</span>
+                                <div className="flex flex-col">
+                                    {/*<span className="text-slate-300 text-sm">{new Date(message.timestamps.seconds * 1000).toLocaleDateString("en-US")}</span>*/}
+                                    <span className="text-slate-300 text-sm">{message.timestamps.toDate().toISOString()}</span>
+                                    <span className="flex bg-[#EDEEF0] p-3 rounded-xl">{message.text}</span>
+                                </div>
                             </div>
                         )) : ""
                     }
