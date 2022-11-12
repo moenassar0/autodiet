@@ -14,12 +14,12 @@ import { adminNavbarLinks } from "../../types/consts";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
 
 export const AdminUsers = () => {
-
     const [users, setUsers] = useState([]);
     const [addUsersPopup ,setAddUsersPopup] = useState(false);
     const [editUsersPopup ,setEditUsersPopup] = useState(false);
     const [deleteUsersPopup ,setDeleteUsersPopup] = useState(false);
     const [popupFunction, setPopupFunction] = useState(() => {});
+    const [userID, setUserID] = useState(0);
     
     async function fetchUsers(){
         const response = await getUsers();
@@ -34,13 +34,19 @@ export const AdminUsers = () => {
         fetchUsers();
     }
 
+    const editfunc = async (id: number) => {
+        setEditUsersPopup(true);
+        setUserID(id);
+    }
+
     useEffect(() => {
         fetchUsers();
     }, [])
 
     return(
         <div className="flex h-screen w-full">
-            <AddUserPopup trigger={addUsersPopup} setTrigger={setAddUsersPopup}/>
+            <AddUserPopup edit={false} trigger={addUsersPopup} setTrigger={setAddUsersPopup}/>
+            <AddUserPopup userID={userID} edit={true} trigger={editUsersPopup} setTrigger={setEditUsersPopup}/>
             <SideNavbar navbarlinks={adminNavbarLinks}/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                 <AdminTopNavbar title="" username="Admin"> 
@@ -54,7 +60,7 @@ export const AdminUsers = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            {users ? <DataTable deleteFunction={deletefunc} deletePopup={deleteUsersPopup} setDeletePopup={setDeleteUsersPopup} data={users} headers={UserHeaders}></DataTable> : ""}
+                            {users ? <DataTable editFunction={editfunc} deleteFunction={deletefunc} deletePopup={deleteUsersPopup} setDeletePopup={setDeleteUsersPopup} data={users} headers={UserHeaders}></DataTable> : ""}
                         </div>
                     </div>
                 </div>
