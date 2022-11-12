@@ -40,7 +40,9 @@ export const AddMealPopup: React.FC<{setTrigger: any, trigger: boolean}> = ({set
            {trigger ? 
             (   <>
                 <PopupOverlay></PopupOverlay>
-                <Popup title="Add Meal" message={message} inputs={inputs} submitMethod={handleSubmit} />
+                <Popup title="Add Meal" message={message} inputs={inputs} submitMethod={handleSubmit}>
+                    
+                </Popup>
                 </>
             ) : ("") } 
         </section>
