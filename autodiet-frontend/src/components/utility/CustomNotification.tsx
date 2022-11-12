@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const CustomNotification = () => {
-    const [turnOff, setTurnOff] = useState(false);
+export const CustomNotification: React.FC<{turnOff: boolean, setTurnOff: any, body: string}> = ({turnOff, setTurnOff, body}) => {
 
     function closeNotification(delay:number){
         setInterval(() => {setTurnOff(true)}, delay);
@@ -17,7 +16,7 @@ export const CustomNotification = () => {
                 <span className="text-lg text-white dark:text-ad-golden font-medium">AutoDiet</span>
             </div>
             <div className="flex h-3/4 w-full text-white dark:text-ad-golden px-2 py-1">
-                <span>Please go to your profile to save your details!</span>
+                <span>{body}</span>
             </div>
         </div>
     )
