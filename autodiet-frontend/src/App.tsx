@@ -16,6 +16,7 @@ import { useTheme } from './context/ThemeContext'
 import { useNotification } from './context/NotificationContext';
 import { AdminFoods } from './pages/admin/AdminFoods';
 import { Chatbox } from './pages/user/Chatbox';
+import { AdminChat } from './pages/admin/AdminChat';
 
 //export const UserContext = React.createContext(user);
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/admin/users" element={<AdminUsers/>}></Route>
           <Route path="/admin/meals" element={<AdminMeals />}></Route>
           <Route path="/admin/foods" element={<AdminFoods />}></Route>
+          <Route path="/admin/chat" element={<AdminChat />}></Route>
         </Route>
 
       </Routes>
