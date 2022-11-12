@@ -1,8 +1,10 @@
 import { PopupOverlay } from "../utility/PopupOverlay"
 import { addUser } from "../../api/services/Users"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { InputFieldInterface } from "../../types/types"
 import { Popup } from "../utility/Popup"
+import { faClose } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export const AddUserPopup: React.FC<{setTrigger: any, trigger: boolean}> = ({setTrigger, trigger}) => {
 
@@ -10,6 +12,8 @@ export const AddUserPopup: React.FC<{setTrigger: any, trigger: boolean}> = ({set
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+
+  
 
     const inputs: Array<InputFieldInterface> = [
         {
@@ -34,7 +38,10 @@ export const AddUserPopup: React.FC<{setTrigger: any, trigger: boolean}> = ({set
            {trigger ? 
             (   <>
                 <PopupOverlay></PopupOverlay>
-                <Popup title="Add User" message={message} inputs={inputs} submitMethod={handleSubmit}/>
+                
+                <Popup title="Add User" message={message} inputs={inputs} submitMethod={handleSubmit}>
+                <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
+                </Popup>
                 </>
             ) : ("") } 
         </section>
