@@ -4,7 +4,7 @@ import Meal from "../../components/user/Meal";
 import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar";
-import { getToken, sendNotification } from "../../HelperFunctions";
+import { getNutritionFromMeals, getToken, sendNotification } from "../../HelperFunctions";
 import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
@@ -41,8 +41,10 @@ export const Home = () => {
 
     const fetchUsersMeals = async () => {
         const response = await getUserMeals({date: date.toISOString().slice(0, 10)});
-        console.log(response?.response?.user_meals);
-        setMeals(response?.response?.user_meals);
+        if(response?.response){
+            setMeals(response?.response?.user_meals);
+            setNutritionData(getNutritionFromMeals(response?.response.user_meals));
+        }
     }
 
     const fetch = async () => {
