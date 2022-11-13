@@ -84,22 +84,28 @@ export const AdminChat = () => {
                                 <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
                                 <span className="font-medium">UserID: {user}</span>
                             </div>
-                        )) : "asd"
-                    }
-                </div>
-                <div className="flex flex-wrap content-start overflow-auto w-4/6 grow h-full rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
-                    {
-                        messages ? messages.map((message: any, i: number) => (
-                            <div key={i} className="flex w-full h-16 items-center">
-                                <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
-                                <div className="flex flex-col">
-                                    {/*<span className="text-slate-300 text-sm">{new Date(message.timestamps.seconds * 1000).toLocaleDateString("en-US")}</span>*/}
-                                    <span className="text-slate-300 text-sm">{message.timestamps.toDate().toISOString()}</span>
-                                    <span className="flex bg-[#EDEEF0] p-3 rounded-xl">{message.text}</span>
-                                </div>
-                            </div>
                         )) : ""
                     }
+                </div>
+                <div className="flex w-4/6 flex-row grow h-full">
+                    <div className="flex flex-wrap w-full h-5/6 gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
+                        {
+                            messages ? messages.map((message: any, i: number) => (
+                                <div key={i} className="flex w-5/6 h-16 items-center">
+                                    <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
+                                    <div className="flex flex-col">
+                                        {/*<span className="text-slate-300 text-sm">{new Date(message.timestamps.seconds * 1000).toLocaleDateString("en-US")}</span>*/}
+                                        <span className="text-slate-300 text-sm">{message.timestamps.toDate().toISOString()}</span>
+                                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl">{message.text}</span>
+                                    </div>
+                                </div>
+                                
+                            )) : ""
+                        }
+                    </div>
+                    <div className="flex w-full grow h-1/6">
+                    
+                    </div>
                 </div>
             </div>
         </AdminBase>
