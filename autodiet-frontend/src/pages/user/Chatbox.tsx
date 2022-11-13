@@ -65,7 +65,7 @@ export const Chatbox = () => {
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
                     <div className="flex flex-col gap-2 h-full w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1 overflow-auto">
                     {messages?.map((message: any, i: number) => (
-                            <div key={i} className="flex items-centerw-full h-16">
+                            <div key={i} className={(message.type == "admin_r" ? "justify-end" : "") + " flex items-center w-full h-16"}>
                                 <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">{message.text}</span>
                             </div>
                         ))}
