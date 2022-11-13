@@ -56,6 +56,22 @@ export interface NutritionObjectInterface{
     fats: number
 }
 
+export interface Recipe{
+    "id": number,
+    "title": string,
+    "serving_size": number,
+    "calories": number,
+    "protein": number,
+    "carbohydrate": number,
+    "fat": number,
+    "picture_url": string,
+    "pivot": {
+        "meal_id": number,
+        "recipe_item_id": number,
+        "multiplier": string
+    }
+}
+
 //Headers to be used in tables
 export const UserHeaders:Array<string> = ['id', 'username', 'email'];
 export const MealHeaders:Array<string> = ['id', 'title', 'calories', 'protein_percentage'];
