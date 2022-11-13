@@ -54,10 +54,23 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                         </span>
                     </div>
                         {recipe.map((recipe:Recipe) => (
-                        <div className="flex mt-2 bg-black rounded px-2 py-2 text-ad-golden" key={recipe.id}>
+                        /*<div className="flex mt-2 bg-black rounded px-2 py-2 text-ad-golden" key={recipe.id}>
                             <img className="w-6 f-6 rounded-full mr-2" src="../oat.png"></img>
-                            {recipe.title + "   " + Math.round(recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)) + "g"}</div>
-                        
+                            {recipe.title + "   " + Math.round(recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)) + "g"}
+                        </div>*/
+                        <div className="flex w-full h-full">
+                            <div className="h-16 flex items-center w-3/5 hover:drop-shadow-xl cursor-pointer px-2">
+                                <img className="w-12 h-12 rounded-full mr-2" src="../oat.png"></img>
+                                <span className="">{recipe.title}</span>
+                            </div>
+                            <div className="h-16 flex items-center w-2/5 hover:drop-shadow-xl cursor-pointer px-2">
+                                {recipe.serving_type == "grams" 
+                                ? <span className="">{(parseFloat(recipe.pivot.multiplier) * recipe.serving_size) + " " + recipe.serving_type}</span> 
+                                : <span className="">{recipe.pivot.multiplier + " " + recipe.serving_type}</span>
+                                }
+                                
+                            </div>
+                        </div>
                         ))}
                     <div className="flex w-full h-full justify-end items-center py-2 px-2">
                         {/*<button onClick={submitMethod} className="flex w-24 h-8 items-center justify-center px-2 py-2 bg-admin-button text-white dark:text-black dark:bg-ad-golden rounded-2xl ml-0">Add</button>*/}
