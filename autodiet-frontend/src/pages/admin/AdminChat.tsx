@@ -87,8 +87,8 @@ export const AdminChat = () => {
                         )) : ""
                     }
                 </div>
-                <div className="flex w-4/6 flex-row grow h-full">
-                    <div className="flex flex-wrap w-full h-5/6 gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
+                <div className="flex w-4/6 flex-col grow h-full">
+                    <div className="flex flex-wrap w-full h-full gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
                         {
                             messages ? messages.map((message: any, i: number) => (
                                 <div key={i} className="flex w-5/6 h-16 items-center">
@@ -103,8 +103,9 @@ export const AdminChat = () => {
                             )) : ""
                         }
                     </div>
-                    <div className="flex w-full grow h-1/6">
-                    
+                    <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
+                        <input type="text" placeholder="Type a message" value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.value)}} className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background dark:text-ad-golden text-black"></input>
+                        <Button title="Send" onclickMethod={()=>{}} styling={"w-1/3"}></Button>
                     </div>
                 </div>
             </div>
