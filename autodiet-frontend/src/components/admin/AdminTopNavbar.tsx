@@ -30,7 +30,7 @@ export const AdminTopNavbar:React.FC<{title: string, username: string, children:
     }, [themeType])
 
     return(
-        <div className="flex gap-4 h-1/6 overflow-x-scroll max-h-16 w-full bg-white drop-shadow justify-start dark:bg-admin-dark-topnav">
+        <div className="flex gap-4 h-1/6 overflow-auto max-h-16 w-full bg-white drop-shadow justify-start dark:bg-admin-dark-topnav">
             <div className="h-full w-min-10 flex items-center pl-6 font-medium text-2xl dark:text-ad-golden text-admin-main">{title}</div>
             {children}
             <div className="flex h-full w-2/6 items-center ml-auto mr-2 gap-2">
