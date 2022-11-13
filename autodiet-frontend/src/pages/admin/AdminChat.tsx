@@ -14,7 +14,7 @@ export const AdminChat = () => {
     const [inputMessage, setInputMessage] = useState("");
     const [currentUserID, setCurrentUserID] = useState(-1);
     const [users, setUsers] = useState([] as any);
-
+    const [active, setActive] = useState("");
 
     useEffect(() => {
         fetchMessages();
@@ -96,7 +96,7 @@ export const AdminChat = () => {
                 <div className="flex flex-wrap drop-shadow content-start h-full w-[300px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
                     {
                         users ? users.map((user: any) => (
-                            <div onClick={() => {setCurrentUserID(user)}} key={user} className="flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start">
+                            <div onClick={() => {setCurrentUserID(user)}} key={user} className={(currentUserID == user ? "bg-[#E5F8F9]" : "") + " flex w-full h-16 hover:bg-[#E5F8F9] cursor-pointer p-1 items-center justify-start"}>
                                 <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
                                 <span className="font-medium">UserID: {user}</span>
                             </div>
@@ -112,7 +112,9 @@ export const AdminChat = () => {
                                     <div className="flex flex-col">
                                         {/*<span className="text-slate-300 text-sm">{new Date(message.timestamps.seconds * 1000).toLocaleDateString("en-US")}</span>*/}
                                         <span className="text-slate-300 text-sm">{message.timestamps ? message.timestamps.toDate().toISOString() : ""}</span>
-                                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] dark:text-ad-golden">{message.text}</span>
+                                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] dark:text-ad-golden">
+                                            {message.text}
+                                        </span>
                                     </div>
                                 </div>
                                 
