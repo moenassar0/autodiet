@@ -1,22 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { getToken } from "../../HelperFunctions";
-
-interface Recipe{
-    "id": number,
-    "title": string,
-    "serving_size": number,
-    "calories": number,
-    "protein": number,
-    "carbohydrate": number,
-    "fat": number,
-    "picture_url": string,
-    "pivot": {
-        "meal_id": number,
-        "recipe_item_id": number,
-        "multiplier": string
-    }
-}
+import { Recipe } from "../../types/types"
 
 type Props = {
     setTrigger:any,
