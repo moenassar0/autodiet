@@ -74,6 +74,22 @@ export const AdminChat = () => {
         */
     }
 
+    const sendMessage = async () => {
+        const response = await getUser();
+        console.log(response);
+        if(response?.response){
+            const userID = response.response.id;
+            const userName = response.response.username;
+            await addDoc(collection(db, 'messages'), {
+                text: inputMessage,
+                name: userName,
+                timestamps: serverTimestamp(),
+                type: "admin_r",
+                userID: currentUserID
+            })
+        }
+    }
+
     return(
         <AdminBase navbarTitle="Chat Requests" navbarProps={<></>} >
             <div className="flex w-full h-full ">
@@ -91,12 +107,12 @@ export const AdminChat = () => {
                     <div className="flex flex-wrap w-full h-full gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
                         {
                             messages ? messages.map((message: any, i: number) => (
-                                <div key={i} className="flex w-5/6 h-16 items-center">
+                                <div key={i} className={(message.type == "admin_r" ? "justify-end" : "") + " flex w-full h-16 items-center"}>
                                     <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
                                     <div className="flex flex-col">
                                         {/*<span className="text-slate-300 text-sm">{new Date(message.timestamps.seconds * 1000).toLocaleDateString("en-US")}</span>*/}
-                                        <span className="text-slate-300 text-sm">{message.timestamps.toDate().toISOString()}</span>
-                                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl">{message.text}</span>
+                                        <span className="text-slate-300 text-sm">{message.timestamps ? message.timestamps.toDate().toISOString() : ""}</span>
+                                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] dark:text-ad-golden">{message.text}</span>
                                     </div>
                                 </div>
                                 
@@ -105,7 +121,7 @@ export const AdminChat = () => {
                     </div>
                     <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
                         <input type="text" placeholder="Type a message" value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.value)}} className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background dark:text-ad-golden text-black"></input>
-                        <Button title="Send" onclickMethod={()=>{}} styling={"w-1/3"}></Button>
+                        <Button title="Send" onclickMethod={async () => {await sendMessage()}} styling={"w-1/3"}></Button>
                     </div>
                 </div>
             </div>
