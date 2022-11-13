@@ -50,7 +50,7 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                     <div className="flex w-full h-16 text-xl font-medium items-center px-2 rounded-t-lg border-b border-black">
                         <span>{meal_title}</span>
                         <span className="ml-auto">
-                            <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
+                            <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800 dark:hover:text-ad-golden"icon={faClose}></FontAwesomeIcon>
                         </span>
                     </div>
                         {recipe.map((recipe:Recipe) => (
@@ -58,17 +58,16 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                             <img className="w-6 f-6 rounded-full mr-2" src="../oat.png"></img>
                             {recipe.title + "   " + Math.round(recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)) + "g"}
                         </div>*/
-                        <div className="flex w-full h-full">
-                            <div className="h-16 flex items-center w-3/5 hover:drop-shadow-xl cursor-pointer px-2">
-                                <img className="w-12 h-12 rounded-full mr-2" src="../oat.png"></img>
+                        <div className="flex w-full h-full hover:bg-slate-100 dark:hover:bg-admin-dark-sidenav">
+                            <div className="h-16 flex items-center w-3/5 cursor-pointer px-2">
+                                <img className="w-12 h-12 rounded-full mr-2" src={recipe.picture_url}></img>
                                 <span className="">{recipe.title}</span>
                             </div>
-                            <div className="h-16 flex items-center w-2/5 hover:drop-shadow-xl cursor-pointer px-2">
+                            <div className="h-16 flex items-center w-2/5 cursor-pointer px-2">
                                 {recipe.serving_type == "grams" 
                                 ? <span className="">{(parseFloat(recipe.pivot.multiplier) * recipe.serving_size) + " " + recipe.serving_type}</span> 
                                 : <span className="">{recipe.pivot.multiplier + " " + recipe.serving_type}</span>
                                 }
-                                
                             </div>
                         </div>
                         ))}
