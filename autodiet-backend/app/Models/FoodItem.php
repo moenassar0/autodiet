@@ -15,6 +15,7 @@ class FoodItem extends Model
         'carbohydrate',
         'fat',
         'picture_url',
+        'serving_type',
     ];
 
     public function recipe()
