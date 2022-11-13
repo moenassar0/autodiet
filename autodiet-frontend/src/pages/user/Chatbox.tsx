@@ -62,11 +62,11 @@ export const Chatbox = () => {
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <AdminTopNavbar title="Meals" username="Test">
                 </AdminTopNavbar>
-                <div className="flex flex-col h-9/12 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
-                    <div className="flex flex-col h-5/6 w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1">
+                <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
+                    <div className="flex flex-col h-full w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1 overflow-auto">
                     {messages?.map((message: any, i: number) => (
                             <div key={i} className="flex w-full h-10">
-                                <span className="rounded dark:bg-[#1E1E1E] bg-admin-grey-background p-1">{message.text}</span>
+                                <span className="rounded dark:bg-[#1E1E1E] bg-admin-grey-background p-2 hover:drop-shadow">{message.text}</span>
                             </div>
                         ))}
                     </div>
