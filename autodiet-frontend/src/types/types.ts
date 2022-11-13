@@ -65,6 +65,7 @@ export interface Recipe{
     "carbohydrate": number,
     "fat": number,
     "picture_url": string,
+    "serving_type": string,
     "pivot": {
         "meal_id": number,
         "recipe_item_id": number,
