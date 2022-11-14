@@ -27,7 +27,6 @@ export const Home = () => {
     const [bounce, setBounce] = useState(false);
 
     useEffect(() => {
-        fetch();
         fetchUsersMeals();
         fetchUserDetails();   
     }, [])
@@ -85,7 +84,7 @@ export const Home = () => {
                             setDate(nextDay);
                             //setDate(tomorrow)
                             }}>{"<"}</button>
-                        <input value={date.toISOString().slice(0, 10)} className="w-2/4 h-1/2 rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
+                        <input onChange={(e) => {setDate(new Date(e.target.value))}} value={date.toISOString().slice(0, 10)} className="w-2/4 h-1/2 rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
                         <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" onClick={() => {
                             let tomorrow = (date.getDate());
                             console.log(tomorrow);
