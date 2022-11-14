@@ -105,3 +105,19 @@ export const calculateCalories = (userDetails: UserDetails) => {
   const mult = activityLevelMultiplier(userDetails.activity_level);
   return calories * mult;
 }
+
+export const activityLevelMultiplier = (activity: string) => {
+  switch(activity){
+    case("Sedentary"):
+    return 1.2;
+    case("Lightly Active"):
+    return 1.375;
+    case("Moderately Active"):
+    return 1.55;
+    case("Very Active"):
+    return 1.725;
+    case("Extremely Active"):
+    return 1.9;
+  }
+  return 1;
+}
