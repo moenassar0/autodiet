@@ -313,3 +313,61 @@ canvas{
   font-size: small;
 }
 
+
+
+/* */
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 600px;
+  height: 370px; 
+  border: 1px solid black;
+}
+
+.slide {
+
+  -webkit-animation: slide 0.5s forwards;
+  -webkit-animation-delay: 0s;
+  animation: slide 0.5s forwards;
+  animation-delay: 0s;
+}
+
+@-webkit-keyframes slide {
+  0% {display: none;}
+  100% { left: 0;
+  display: block; }
+}
+
+@keyframes slide {
+  0% {display: none;}
+  100% { left: 0;
+  display: block; }
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(200%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/* ...and then apply it: */
+.slideleft {
+  animation: slide-left 700ms;
+}
+.slideright{
+  animation: slide-right 700ms;
+}
+/* */
+
