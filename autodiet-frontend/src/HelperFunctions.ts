@@ -85,11 +85,12 @@ export const sendNotification = async () => {
 }
 
 export const getNutritionFromMeals = (meals: Array<MealInterface>) => {
-  let nutrition: NutritionObjectInterface = {protein:0, fats: 0, carbs: 0}
+  let nutrition: NutritionObjectInterface = {protein:0, fats: 0, carbs: 0, calories: 0}
   meals.forEach(meal => {
     nutrition.protein += meal.protein;
     nutrition.fats += meal.fat;
     nutrition.carbs += meal.carbohydrate;
+    nutrition.calories += meal.calories;
   });
   return nutrition;
 }
