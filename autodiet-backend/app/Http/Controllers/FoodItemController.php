@@ -61,4 +61,9 @@ class FoodItemController extends Controller
         $foods = FoodItem::all();
         return response()->json(['foods' => $foods], 200);
     }
+
+    public function getFoodsByTitle($search_string){
+        $foods = FoodItem::where('title', 'like', '%' . $search_string . '%')->get();
+        return response()->json(["foods" => $foods]);
+    }
 }
