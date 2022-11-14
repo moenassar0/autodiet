@@ -14,7 +14,7 @@ import { userNavbarLinks } from "../../types/consts";
 import { Button } from "../../components/utility/Button";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
-import { addOrUpdateUserMeals, getUserMeals } from "../../api/services/Users";
+import { addOrUpdateUserMeals, getUser, getUserDetails, getUserMeals } from "../../api/services/Users";
 import { CustomNotification } from "../../components/utility/CustomNotification";
 import { NutritionDetails } from "../../components/utility/NutritionDetails";
 
@@ -28,7 +28,8 @@ export const Home = () => {
 
     useEffect(() => {
         fetch();
-        fetchUsersMeals();    
+        fetchUsersMeals();
+        fetchUserDetails();   
     }, [])
 
     useEffect(() => {
@@ -43,6 +44,11 @@ export const Home = () => {
         }
     }
 
+    const fetchUserDetails = async () => {
+        const response = await getUserDetails();
+        console.log(response?.response);
+    }
+
     const fetch = async () => {
         setCurrentlyFetching(true);
         console.time('Execution Time 2');
@@ -51,13 +57,6 @@ export const Home = () => {
         console.log(response?.response);
         console.timeEnd('Execution Time 2');
         setCurrentlyFetching(false);
-    }
-
-    const sendCustomNotification = () => {
-        return(
-            <>
-            </>
-        )
     }
 
     async function getMealPlan(){
@@ -96,7 +95,7 @@ export const Home = () => {
                             }}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
-                        <Button title="Notification" onclickMethod={() => { sendCustomNotification(); sendNotification(); } } styling={""}></Button>
+                        <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
