@@ -50,6 +50,12 @@ export const getToken = () => {
     return {headers:{'Authorization' : "Bearer " + token}};
 }
 
+export const tomorrowFromDay = (date: Date) => {
+    let nextDay = new Date(date);
+    nextDay.setDate(date.getDate() + 1);
+    return (nextDay);
+}
+
 export const sendNotification = async () => {
     const myVar = setTimeout(async () => {
         console.log("test");    
