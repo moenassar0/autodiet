@@ -2,7 +2,10 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react";
 import { getFoodsByTitle } from "../../api/services/Foods";
+import MealCard from "../../components/user/MealCard";
+import { EmptyState } from "../../components/utility/EmptyState";
 import { UserBase } from "../../layouts/UserBase"
+import { MealInterface } from "../../types/types";
 
 export const BrowseFoods = () => {
     
@@ -15,9 +18,7 @@ export const BrowseFoods = () => {
 
     const searchQuery = async () => {
         const response = await getFoodsByTitle(searchInput);
-
-            console.log(response)
-
+        setFetchedFoods(response?.response.foods)
     }
 
     return(
@@ -31,7 +32,11 @@ export const BrowseFoods = () => {
             </div>
         }>
             <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
-                asasd
+                <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
+                    {!(fetchedFoods.length > 0) 
+                        ? <EmptyState/>
+                        : fetchedFoods.map((meal: MealInterface) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
+                </div>
             </div>
         </UserBase>
     )

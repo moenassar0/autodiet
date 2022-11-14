@@ -41,7 +41,7 @@ export const BrowseMeals = () => {
                         </div>
                         <input onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="Search.."
                         className="w-full h-full flex px-2 py-2 outline-0 dark:bg-[#1F1F1F] dark:text-ad-golden" />
-                    </div>
+                </div>
                 </AdminTopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
