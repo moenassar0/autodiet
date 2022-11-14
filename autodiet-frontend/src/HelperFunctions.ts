@@ -56,6 +56,12 @@ export const tomorrowFromDay = (date: Date) => {
     return (nextDay);
 }
 
+export const yesterdayFromDay = (date: Date) => {
+    let yesterday = new Date(date);
+    yesterday.setDate(date.getDate() - 1);
+    return (yesterday);
+}
+
 export const sendNotification = async () => {
     const myVar = setTimeout(async () => {
         console.log("test");    
