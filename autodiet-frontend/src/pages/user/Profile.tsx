@@ -47,6 +47,7 @@ export const Profile = () => {
             setHeight(user_detail.height);
             setSex(user_detail.sex);
             setBodyFatPercentage(user_detail.bodyfat_percentage);
+            setActivity(user_detail.activity_level);
             setCurrentlyFetching(false);
         }catch{
             setCurrentlyFetching(false);
@@ -56,7 +57,7 @@ export const Profile = () => {
     async function updateUserDetails(){
         try{
             setCurrentlyFetching(true);
-            const response = await axios.post('/user', {goal: activeGoal, sex, weight, height, age, bodyfat_percentage: bodyFatPercentage, activity_level: "Medium"}, getToken());
+            const response = await axios.post('/user', {goal: activeGoal, sex, weight, height, age, bodyfat_percentage: bodyFatPercentage, activity_level: activity}, getToken());
             console.log(response);
             setCurrentlyFetching(false);
         }catch{
@@ -72,6 +73,8 @@ export const Profile = () => {
                 </AdminTopNavbar>
                 <div className="flex h-4/5 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey">
                     <div className="w-full flex flex-col h-4/5 sm:w-5/6 py-2 px-2">
+                        {currentlyFetching ? <img className="flex w-10 h-10 items-center justify-center" src="../logo512.png"></img> :
+                        <>
                         <ProfileField title="Goal" buttonValues={goalButtonValues} hook={activeGoal} setHook={setActiveGoal}>
                         </ProfileField>
                         <ProfileField title="Sex" buttonValues={sexButtonValues} setHook={setSex} hook={sex}>
@@ -84,7 +87,7 @@ export const Profile = () => {
                         <div className="flex items-center w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full font-medium dark:text-ad-golden text-black">Activity</div>
                             <div className="flex w-4/5 sm:flex w-3/5 h-full items-center">
-                                <Select name="activity" setHook={setActivity} options={activityOptions} />
+                                <Select hook={activity} name="activity" setHook={setActivity} options={activityOptions} />
                             </div>                            
                         </div>
                         <div className="flex w-full h-1/6">
@@ -93,7 +96,9 @@ export const Profile = () => {
                                 <button onClick={() => updateUserDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded dark:bg-ad-golden bg-admin-button"}>Save Changes</button>
                             </div>
                         </div>
+                        </>}
                     </div>
+                    
                 </div>
             </div>
         </div>
