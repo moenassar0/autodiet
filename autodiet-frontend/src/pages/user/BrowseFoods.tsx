@@ -1,12 +1,24 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getFoodsByTitle } from "../../api/services/Foods";
 import { UserBase } from "../../layouts/UserBase"
 
 export const BrowseFoods = () => {
     
     const [searchInput, setSearchInput] = useState('');
     const [fetchedFoods, setFetchedFoods] = useState<any[]>([])
+
+    useEffect(() => {
+        searchQuery();
+    }, [searchInput])
+
+    const searchQuery = async () => {
+        const response = await getFoodsByTitle(searchInput);
+
+            console.log(response)
+
+    }
 
     return(
         <UserBase pageTitle="Foods" topNavbarChildren={
