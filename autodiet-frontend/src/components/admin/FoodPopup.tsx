@@ -1,6 +1,7 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
+import { addFood } from "../../api/services/Foods";
 import { InputFieldInterface } from "../../types/types";
 import { Popup } from "../utility/Popup";
 import { PopupOverlay } from "../utility/PopupOverlay";
@@ -23,6 +24,24 @@ export const FoodPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any
         else setValidType(false)
     }, [servingType])
 
+    const handleSubmit = async () => {
+        if(!edit){
+            const data = {
+                "serving_size": servingSize,
+                "title": title,
+                "calories": calories,
+                "protein": protein,
+                "carbohydrate": carbohydrate,
+                "fat": fat,
+                "picture_url": "t",
+                "serving_type": servingType
+            }
+            const response = await addFood(data);
+            if(!response?.success) setMessage("Server Error");
+            else setMessage("Food added!");
+        }
+    }
+
     const inputs: Array<InputFieldInterface> = [
         { title:"Title", error:"asd", setHook:setTitle, state:title, valid:true },
         { title:"Calories", error:"asd", setHook:setCalories, state:calories.toString(), valid:true },
@@ -38,7 +57,7 @@ export const FoodPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any
            {trigger ? 
             (   <>
                     <PopupOverlay></PopupOverlay>
-                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={()=>{}}>
+                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
                         <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
                     </Popup>
                 </>
