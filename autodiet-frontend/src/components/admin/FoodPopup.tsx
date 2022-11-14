@@ -1,5 +1,9 @@
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { InputFieldInterface } from "../../types/types";
+import { Popup } from "../utility/Popup";
+import { PopupOverlay } from "../utility/PopupOverlay";
 
 export const FoodPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any, trigger: boolean}> = ({userID, edit, setTrigger, trigger}) => {
     
@@ -30,8 +34,15 @@ export const FoodPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any
     ];
     
     return(
-        <>
-
-        </>
+        <section>
+           {trigger ? 
+            (   <>
+                    <PopupOverlay></PopupOverlay>
+                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={()=>{}}>
+                        <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
+                    </Popup>
+                </>
+            ) : ("") } 
+        </section>
     )
 }
