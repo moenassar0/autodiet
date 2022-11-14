@@ -24,7 +24,7 @@ export const Home = () => {
     const [mealSet, setMealSet] = useState([]);
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [nutritionData, setNutritionData] = useState([] as any);
-    const [bounce, setBounce] = useState(false);
+    const [hideNotification, setHideNotification] = useState(true);
 
     useEffect(() => {
         fetchUsersMeals();
@@ -45,6 +45,10 @@ export const Home = () => {
 
     const fetchUserDetails = async () => {
         const response = await getUserDetails();
+        if(response?.response?.user_detail == null){
+            console.log(response?.response?.user_detail);
+            setHideNotification(false);
+        }
         console.log(response?.response);
         return (calculateCalories(response?.response.user_detail));
     }
@@ -72,6 +76,7 @@ export const Home = () => {
 
     return(
         <div className="flex h-screen w-full">
+            
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <AdminTopNavbar title="Meals" username="Test">
@@ -108,7 +113,7 @@ export const Home = () => {
                     <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
                 </div>
             </div>
-            
+            <CustomNotification body="Go to your profile and save your details" turnOff={hideNotification} setTurnOff={setHideNotification}></CustomNotification>
         </div>
     )
 }
