@@ -53,7 +53,8 @@ export interface SideNavBarLinkInterface{
 export interface NutritionObjectInterface{
     protein: number,
     carbs: number,
-    fats: number
+    fats: number,
+    calories: number
 }
 
 export interface Recipe{
