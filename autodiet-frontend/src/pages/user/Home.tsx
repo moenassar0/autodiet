@@ -4,7 +4,7 @@ import Meal from "../../components/user/Meal";
 import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar";
-import { calculateCalories, getNutritionFromMeals, getToken, sendNotification } from "../../HelperFunctions";
+import { calculateCalories, getNutritionFromMeals, getToken, sendNotification, tomorrowFromDay, yesterdayFromDay } from "../../HelperFunctions";
 import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
@@ -81,23 +81,11 @@ export const Home = () => {
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <AdminTopNavbar title="Meals" username="Test">
                     <div className="flex w-1/2 h-full items-center gap-3">
-                    <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" onClick={() => {
-                            let tomorrow = (date.getDate());
-                            console.log(tomorrow);
-                            var nextDay = new Date(date);
-                            nextDay.setDate(date.getDate() - 1);
-                            setDate(nextDay);
-                            //setDate(tomorrow)
-                            }}>{"<"}</button>
+                    <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" 
+                    onClick={() => {setDate(yesterdayFromDay(date))}}>{"<"}</button>
                         <input onChange={(e) => {setDate(new Date(e.target.value))}} value={date.toISOString().slice(0, 10)} className="w-2/4 h-1/2 rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
-                        <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" onClick={() => {
-                            let tomorrow = (date.getDate());
-                            console.log(tomorrow);
-                            var nextDay = new Date(date);
-                            nextDay.setDate(date.getDate() + 1);
-                            setDate(nextDay);
-                            //setDate(tomorrow)
-                            }}>{">"}</button>
+                        <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">"
+                        onClick={() => {setDate(tomorrowFromDay(date))}}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
                         <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
