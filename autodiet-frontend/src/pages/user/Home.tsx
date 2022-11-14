@@ -25,6 +25,7 @@ export const Home = () => {
     const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [nutritionData, setNutritionData] = useState([] as any);
     const [hideNotification, setHideNotification] = useState(true);
+    const [slide, setSlide] = useState(false);
 
     useEffect(() => {
         fetchUsersMeals();
@@ -82,23 +83,25 @@ export const Home = () => {
                 <AdminTopNavbar title="Meals" username="Test">
                     <div className="flex w-1/2 h-full items-center gap-3">
                     <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" 
-                    onClick={() => {setDate(yesterdayFromDay(date))}}>{"<"}</button>
+                    onClick={() => {setSlide(false); setDate(yesterdayFromDay(date))}}>{"<"}</button>
                         <input onChange={(e) => {setDate(new Date(e.target.value))}} value={date.toISOString().slice(0, 10)} className="w-2/4 h-1/2 rounded flex items-center bg-admin-grey-background dark:bg-[#1F1F1F] dark:text-ad-golden" type="date"></input>
                         <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">"
-                        onClick={() => {setDate(tomorrowFromDay(date))}}>{">"}</button>
+                        onClick={() => {setSlide(true); setDate(tomorrowFromDay(date))}}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
                         <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
-                <div className="flex h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
-                    <div className="w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]">
+                <div className="flex h-5/6 grow w-full">
+                <div className="overflow-hidden relative flex h-full w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
+                    <div key={Math.random()} className={(slide ? "slideleft" : "slideright") + " w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
                         <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
                             {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                         </div>
                     </div>
-                    <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
+                </div>
+                <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
                 </div>
             </div>
             <CustomNotification body="Go to your profile and save your details" turnOff={hideNotification} setTurnOff={setHideNotification}></CustomNotification>
