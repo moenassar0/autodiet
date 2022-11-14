@@ -25,10 +25,15 @@ export const Profile = () => {
     const goalButtonValues = ["Lose Weight", "Maintain", "Gain Muscle"];
     const bfButtonValues = ["Lean", "Medium", "High"];
     const sexButtonValues = ["Male", "Female"];
+    const activityOptions = ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"]
 
     useEffect(() => {
         fetchUserData();
     }, [])
+
+    useEffect(() => {
+        console.log(activity);
+    }, [activity])
 
     async function fetchUserData(){
         try{
@@ -75,6 +80,13 @@ export const Profile = () => {
                         <ProfileInput title="Weight" setHook={setWeight} hook={weight} />
                         <ProfileField title="Bodyfat Percentage" hook={bodyFatPercentage} setHook={setBodyFatPercentage} buttonValues={bfButtonValues}>
                         </ProfileField>
+                        <div className="flex w-full h-1/6">
+                        <select name="activity" onChange={(e) => {setActivity(e.target.value)}}>
+                            {activityOptions.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))}
+                        </select>
+                        </div>
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white"></div>
                             <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
