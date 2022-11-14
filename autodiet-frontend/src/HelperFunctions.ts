@@ -1,5 +1,5 @@
 import axios from "./api/axios";
-import { MealInterface, NutritionObjectInterface } from "./types/types";
+import { MealInterface, NutritionObjectInterface, UserDetails } from "./types/types";
 
 //Declare helper function's variables
 const EMAIL_REGEX = /.+@.+\..+/;
@@ -92,4 +92,16 @@ export const getNutritionFromMeals = (meals: Array<MealInterface>) => {
     nutrition.carbs += meal.carbohydrate;
   });
   return nutrition;
+}
+
+export const calculateCalories = (userDetails: UserDetails) => {
+  let calories = 0;
+  if(userDetails.sex === "Male"){
+    calories = (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) + 5
+  }else{
+    calories = 
+    (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) - 161
+  }
+  const mult = activityLevelMultiplier(userDetails.activity_level);
+  return calories * mult;
 }
