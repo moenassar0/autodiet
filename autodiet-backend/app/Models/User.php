@@ -35,7 +35,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function weightEntries()
     {
-        return $this->hasMany(WeightEntry::class);
+        return $this->hasMany(WeightEntry::class)->orderBy('date', 'asc');
     }
 
     public function meals()
