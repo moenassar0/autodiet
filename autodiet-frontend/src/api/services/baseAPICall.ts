@@ -4,7 +4,7 @@ import axios from "../axios";
 
 export const get = async (url: string, parameter: string) => {
     try{
-        const response = await axios.get(url, getToken());
+        const response = await axios.get(url + parameter, getToken());
         if(response.data) return {success: true, response: response.data};
     }catch(err){
         return {success: false, response: err};
