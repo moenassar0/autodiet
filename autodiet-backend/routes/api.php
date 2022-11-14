@@ -14,19 +14,19 @@ Route::post("/users", [UserController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 Route::get("/me", [AuthController::class, "me"]);
 
-
 Route::middleware([IsUser::class])->group(function () {
-    Route::get("/meals", [MealController::class, "getMeals"]);
     Route::get("/foods", [FoodItemController::class, "getFoodItems"]);
+    Route::get("/foods/{search_string}", [FoodItemController::class, "getFoodsByTitle"]);
+
+    Route::get("/meals", [MealController::class, "getMeals"]);
     Route::get("/user/meals", [MealController::class, "getCustomizedMeals"]);
     Route::get("/meal/{id}", [MealController::class, "getMealRecipe"]);
     Route::get("/meals/{search_string}", [MealController::class, "getMealsByTitle"]);
+
     Route::get("/user", [UserController::class, "getUserDetail"]);
     Route::get("/users", [UserController::class, "getUsers"]);
-    
     Route::get("/user/entries", [UserController::class, "getUserWeightEntries"]);
     Route::post("/user/mealplan", [UserController::class, "getUserMeals"]);
-
     Route::post("/user", [UserController::class, "updateUserDetail"]);
     Route::put("/weightentries", [WeightEntryController::class, "addOrUpdateWeightEntry"]);
     Route::put("/user/mealplan", [UserController::class, "addOrUpdateUserMeals"]);
