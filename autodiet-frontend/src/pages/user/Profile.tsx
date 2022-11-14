@@ -8,6 +8,7 @@ import { userNavbarLinks } from "../../types/consts";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { ProfileField } from "../../components/utility/ProfileField";
 import { ProfileInput } from "../../components/utility/ProfileInput";
+import { Select } from "../../components/utility/Select";
 
 export const Profile = () => {
 
@@ -80,12 +81,11 @@ export const Profile = () => {
                         <ProfileInput title="Weight" setHook={setWeight} hook={weight} />
                         <ProfileField title="Bodyfat Percentage" hook={bodyFatPercentage} setHook={setBodyFatPercentage} buttonValues={bfButtonValues}>
                         </ProfileField>
-                        <div className="flex w-full h-1/6">
-                        <select name="activity" onChange={(e) => {setActivity(e.target.value)}}>
-                            {activityOptions.map((option) => (
-                                <option value={option}>{option}</option>
-                            ))}
-                        </select>
+                        <div className="flex items-center w-full h-1/6">
+                            <div className="flex items-center w-1/5 h-full font-medium dark:text-ad-golden text-black">Activity</div>
+                            <div className="flex w-4/5 sm:flex w-3/5 h-full items-center">
+                                <Select name="activity" setHook={setActivity} options={activityOptions} />
+                            </div>                            
                         </div>
                         <div className="flex w-full h-1/6">
                             <div className="flex items-center w-1/5 h-full text-white"></div>
