@@ -45,7 +45,7 @@ export const AddUserPopup: React.FC<{edit:boolean, userID?: number, setTrigger: 
             (   <>
                 <PopupOverlay></PopupOverlay>
                 
-                <Popup title={edit ? "Edit User" : "Add User"} message={message} inputs={inputs} submitMethod={handleSubmit}>
+                <Popup title={edit ? "Edit User" : "Add User"} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
                     <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
                 </Popup>
                 </>
