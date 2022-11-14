@@ -65,7 +65,7 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                             </div>
                             <div className="h-16 flex items-center w-2/5 cursor-pointer px-2">
                                 {recipe.serving_type == "grams" 
-                                ? <span className="">{(parseFloat(recipe.pivot.multiplier) * recipe.serving_size) + " " + recipe.serving_type}</span> 
+                                ? <span className="">{Math.round((parseFloat(recipe.pivot.multiplier) * meal_multiplier * recipe.serving_size)) + " " + recipe.serving_type}</span> 
                                 : <span className="">{recipe.pivot.multiplier + " " + recipe.serving_type}</span>
                                 }
                             </div>
