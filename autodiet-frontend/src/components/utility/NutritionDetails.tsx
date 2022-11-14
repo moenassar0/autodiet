@@ -9,7 +9,7 @@ export const NutritionDetails: React.FC<{meals: MealInterface, nutritionData: an
             </div>
             <div className="flex dark:text-ad-golden w-full flex-col h-auto bg-white drop-shadow hover:drop-shadow-xl dark:bg-admin-dark-background dark:hover:opacity-80 rounded px-2 py-2 cursor-pointer">
                 <div className="flex w-full">
-                    <span className="text-center text-xl w-full">Calories 2130</span>
+                    <span className="text-center text-xl w-full">Calories {Math.round(nutritionData.calories)}</span>
                 </div>
                 <div className="flex w-full">
                     <span className="text-lg w-full">Protein:</span>
