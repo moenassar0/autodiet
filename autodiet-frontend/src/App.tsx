@@ -17,6 +17,8 @@ import { useNotification } from './context/NotificationContext';
 import { AdminFoods } from './pages/admin/AdminFoods';
 import { Chatbox } from './pages/user/Chatbox';
 import { AdminChat } from './pages/admin/AdminChat';
+import { SlideTest } from './pages/user/SlideTest';
+import { BrowseFoods } from './pages/user/BrowseFoods';
 
 //export const UserContext = React.createContext(user);
 
@@ -39,7 +41,7 @@ function App() {
           <Route path="/user/home" element={<Home />}></Route>
           <Route path="/user/profile" element={<Profile />}></Route>
           <Route path="/user/meals" element={<BrowseMeals />}></Route>
-          <Route path="/user/foods" element={<BrowseMeals />}></Route>
+          <Route path="/user/foods" element={<BrowseFoods />}></Route>
           <Route path="/user/weight" element={<UserWeightEntries />}></Route>
           <Route path="/user/chat" element={<Chatbox />}></Route>
         </Route>
