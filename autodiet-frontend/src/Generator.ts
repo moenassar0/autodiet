@@ -1,7 +1,8 @@
 import { getRandomInt, multiplier } from "./HelperFunctions";
 import { MealInterface, MealSetInterface, NutritionObjectInterface, UserMealData } from "./types/types";
 
-export const Generator = async (meal_set:any) => {
+export const Generator = async (meal_set:any, calories: number) => {
+    console.log(meal_set);
     //Copy meal_set array without having the same pointers to memory
     const instance_set: MealSetInterface = JSON.parse(JSON.stringify(meal_set));
 
@@ -9,7 +10,8 @@ export const Generator = async (meal_set:any) => {
     let nutrition: NutritionObjectInterface = {
         protein: 0,
         carbs: 0,
-        fats: 0
+        fats: 0,
+        calories: 0
     }
 
     instance_set.snack.multiplier = 1;
@@ -17,7 +19,7 @@ export const Generator = async (meal_set:any) => {
     meal_plan.push(instance_set.snack);
     meal_plan.push(instance_set.static_meal);
 
-    let totalcalories = 3000;
+    let totalcalories = calories;
     let mealsAmount = getRandomInt(3,6);
     let proteinPercentage = 20;
     let acceptableError = 50;
@@ -41,6 +43,7 @@ export const Generator = async (meal_set:any) => {
     nutrition.protein = response.protein;
     nutrition.carbs = response.carbs;
     nutrition.fats = response.fats;
+    nutrition.calories = calories;
 
     gen_meal_plan = gen_meal_plan.concat(meal_plan);
     return {gen_meal_plan, nutrition};
