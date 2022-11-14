@@ -4,7 +4,7 @@ import Meal from "../../components/user/Meal";
 import PlanGenerator from "../../PlanGenerator";
 import { Link, Outlet } from "react-router-dom";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar";
-import { getNutritionFromMeals, getToken, sendNotification } from "../../HelperFunctions";
+import { calculateCalories, getNutritionFromMeals, getToken, sendNotification } from "../../HelperFunctions";
 import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
@@ -47,6 +47,7 @@ export const Home = () => {
     const fetchUserDetails = async () => {
         const response = await getUserDetails();
         console.log(response?.response);
+        return (calculateCalories(response?.response.user_detail));
     }
 
     const fetch = async () => {
@@ -61,13 +62,13 @@ export const Home = () => {
 
     async function getMealPlan(){
         await fetch();
-        console.log(mealSet);
-        const mealPlanResponse = (await Generator(mealSet))
+        const caloriesToEat = await fetchUserDetails();
+        const mealPlanResponse = (await Generator(mealSet, caloriesToEat))
         setMeals(mealPlanResponse.gen_meal_plan);
-        console.log(mealPlanResponse.gen_meal_plan);
+        //Set nutrition for piechart
         setNutritionData(mealPlanResponse.nutrition);
-        const response2 = await addOrUpdateUserMeals({meals: mealPlanResponse.gen_meal_plan, date: date.toISOString().slice(0, 10)});
-        console.log(response2);
+        //Update user's meals in db
+        await addOrUpdateUserMeals({meals: mealPlanResponse.gen_meal_plan, date: date.toISOString().slice(0, 10)});
     }
 
     return(
