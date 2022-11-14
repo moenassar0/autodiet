@@ -21,7 +21,7 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
 
     useEffect(() => {
         if(calories && protein) {
-            setProteinPercentage((Math.round((((protein * 4) / calories)) * 100))/100)}
+            setProteinPercentage((Math.round((((protein * 4) / calories)) * 100)))}
     }, [proteinPercentage, protein, calories])
 
     const inputs: Array<InputFieldInterface> = [
@@ -54,7 +54,7 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
            {trigger ? 
             (   <>
                     <PopupOverlay></PopupOverlay>
-                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} message={message} inputs={inputs} submitMethod={handleSubmit}>
+                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
                         <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
                     </Popup>
                 </>
