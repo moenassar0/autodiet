@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { InputFieldInterface } from "../../types/types"
 import { Popup } from "../utility/Popup"
 import { addMeal, editMeal } from "../../api/services/Meals"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faClose } from "@fortawesome/free-solid-svg-icons"
 
 export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: any, trigger: boolean}> = ({edit, mealID, setTrigger, trigger}) => {
 
@@ -45,17 +47,16 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
             if(!response?.success) setMessage("Server Error");
             else setMessage("Meal edited!");
         }
-
     }
 
     return(
         <section>
            {trigger ? 
             (   <>
-                <PopupOverlay></PopupOverlay>
-                <Popup title="Add Meal" message={message} inputs={inputs} submitMethod={handleSubmit}>
-
-                </Popup>
+                    <PopupOverlay></PopupOverlay>
+                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} message={message} inputs={inputs} submitMethod={handleSubmit}>
+                        <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
+                    </Popup>
                 </>
             ) : ("") } 
         </section>
