@@ -19,6 +19,7 @@ class FoodItemController extends Controller
             'carbohydrate' => 'required',
             'fat' => 'required',
             'picture_url' => 'required',
+            'serving_type' => 'required',
         ]);
 
         if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
@@ -26,7 +27,7 @@ class FoodItemController extends Controller
         $food_item->fill($validator->validated());
         $food_item->save();
 
-        return response()->json(["result" => "ok", 'food_item added:' => $food_item], 201);
+        return response()->json(['food_item added:' => $food_item], 201);
     }
 
     public function updateFoodItem(Request $request){
