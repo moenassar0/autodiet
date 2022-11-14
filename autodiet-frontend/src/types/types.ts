@@ -73,6 +73,17 @@ export interface Recipe{
     }
 }
 
+export interface UserDetails{
+    activity_level: string
+    age: number
+    bodyfat_percentage: string
+    goal: string
+    height: number
+    sex: string
+    user_id: number
+    weight: number
+}
+
 //Headers to be used in tables
 export const UserHeaders:Array<string> = ['id', 'username', 'email'];
 export const MealHeaders:Array<string> = ['id', 'title', 'calories', 'protein_percentage'];
