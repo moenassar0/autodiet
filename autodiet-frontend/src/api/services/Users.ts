@@ -17,6 +17,10 @@ export const editUser = async (data:Object) => {
     return put("/user", data);
 }
 
+export const getUserDetails = async () => {
+    return get("/user", "");
+}
+
 export const deleteUser = async (urlParams: string) => {
     return del("/user/", urlParams);
 }
