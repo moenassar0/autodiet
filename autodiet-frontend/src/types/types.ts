@@ -27,7 +27,8 @@ export interface InputFieldInterface{
     error:string,
     state:string,
     setHook:any,
-    valid:boolean
+    valid:boolean,
+    type?: string,
 }
 
 export interface UserInterface{
