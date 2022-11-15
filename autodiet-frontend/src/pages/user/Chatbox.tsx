@@ -60,13 +60,17 @@ export const Chatbox = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Meals" username="Test">
+                <AdminTopNavbar title="Chat history" username="Test">
                 </AdminTopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
                     <div className="flex flex-col gap-2 h-full w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1 overflow-auto">
                     {messages?.map((message: any, i: number) => (
-                            <div key={i} className={(message.type == "client_r" ? "justify-end" : "") + " flex items-center w-full h-16"}>
+                            <div key={i} className={(message.type == "client_r" ? "justify-end" : "") + " flex items-start w-full h-20"}>
+                                <img className="w-10 h-10" src="../user.png"></img>
+                                <div className="flex flex-col h-full">
+                                <span className="text-slate-500 text-sm p-1">{message.name}</span>
                                 <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">{message.text}</span>
+                                </div>
                             </div>
                         ))}
                     </div>
