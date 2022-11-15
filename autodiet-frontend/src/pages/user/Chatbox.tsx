@@ -43,7 +43,7 @@ export const Chatbox = () => {
 
     const sendMessage = async () => {
         const response = await getUser();
-        if(response?.response){
+        if(response?.response && inputMessage.length != 0){
             const userID = response.response.id;
             const userName = response.response.username;
             await addDoc(collection(db, 'messages'), {
@@ -53,6 +53,7 @@ export const Chatbox = () => {
                 type: "client_r",
                 userID
             })
+            setInputMessage("");
         }
     }
 
@@ -65,11 +66,11 @@ export const Chatbox = () => {
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
                     <div className="flex flex-col gap-2 h-full w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1 overflow-auto">
                     {messages?.map((message: any, i: number) => (
-                            <div key={i} className={(message.type == "client_r" ? "justify-end" : "") + " flex items-start w-full h-20"}>
-                                <img className="w-10 h-10" src="../user.png"></img>
-                                <div className="flex flex-col h-full">
-                                <span className="text-slate-500 text-sm p-1">{message.name}</span>
-                                <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">{message.text}</span>
+                            <div key={i} className={(message.type == "client_r" ? "justify-end" : "") + " flex items-start w-full h-24"}>
+                                <div className="flex flex-col flex-wrap bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">
+                                <span className="dark:text-ad-golden text-admin-button font-medium">{message.name}</span>
+                                <span className="text-slate-700 dark:text-slate-200">{message.text}</span>
+                                <span className="flex text-xs self-end opacity-60">{ message.timestamps ? message.timestamps.toDate().toISOString() : ""}</span>
                                 </div>
                             </div>
                         ))}
