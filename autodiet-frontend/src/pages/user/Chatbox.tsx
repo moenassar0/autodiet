@@ -1,10 +1,11 @@
 import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, where } from "firebase/firestore"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { db } from "../../api/firebase"
 import { getUser } from "../../api/services/Users"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
+import { getChatDate } from "../../HelperFunctions"
 import { userNavbarLinks } from "../../types/consts"
 import { UserInterface } from "../../types/types"
 
@@ -12,6 +13,16 @@ export const Chatbox = () => {
 
     const [messages, setMessages] = useState([] as any);
     const [inputMessage, setInputMessage] = useState("");
+    const messagesEndRef = useRef<null | HTMLDivElement>(null)
+
+    const scrollToBottom = () => {
+        if(messagesEndRef.current){
+            messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
+        }
+      
+    }
+  
+    useEffect(scrollToBottom, [messages]);
 
     useEffect(() => {
         let userID: any = -1;
@@ -66,14 +77,15 @@ export const Chatbox = () => {
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
                     <div className="flex flex-col gap-2 h-full w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1 overflow-auto">
                     {messages?.map((message: any, i: number) => (
-                            <div key={i} className={(message.type == "client_r" ? "justify-end" : "") + " flex items-start w-full h-24"}>
-                                <div className="flex flex-col flex-wrap bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">
+                            <div key={i} className={(message.type == "client_r" ? "justify-end" : "") + " flex items-start w-full h-auto"}>
+                                <div className="flex flex-col flex-wrap w-1/2 bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">
                                 <span className="dark:text-ad-golden text-admin-button font-medium">{message.name}</span>
                                 <span className="text-slate-700 dark:text-slate-200">{message.text}</span>
-                                <span className="flex text-xs self-end opacity-60">{ message.timestamps ? message.timestamps.toDate().toISOString() : ""}</span>
+                                <span className="flex text-xs self-end opacity-60">{ message.timestamps ? getChatDate(message.timestamps) : ""}</span>
                                 </div>
                             </div>
                         ))}
+                        <div ref={messagesEndRef} />
                     </div>
                     <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
                         <input type="text" placeholder="Type a message" value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.value)}} className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background dark:text-ad-golden text-black"></input>
