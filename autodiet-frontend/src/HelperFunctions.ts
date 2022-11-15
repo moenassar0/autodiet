@@ -62,6 +62,22 @@ export const yesterdayFromDay = (date: Date) => {
     return (yesterday);
 }
 
+export const getChatDate = (timestamps: any) => {
+	let date = timestamps.toDate();
+	let mm = date.getMonth();
+	let dd = date.getDate();
+	let yyyy = date.getFullYear();
+
+  let hour = timestamps.toDate().getHours();
+  let minutes = timestamps.toDate().getMinutes();
+	date = dd + '/' + mm + '/' + yyyy;
+
+  
+
+  const dateTime = date + ", " + hour + ":" + minutes;
+  return dateTime;
+}
+
 export const sendNotification = async () => {
     const myVar = setTimeout(async () => {
         console.log("test");    
