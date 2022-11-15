@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react";
 import { getFoodsByTitle } from "../../api/services/Foods";
 import MealCard from "../../components/user/MealCard";
+import { Button } from "../../components/utility/Button";
 import { EmptyState } from "../../components/utility/EmptyState";
 import { UserBase } from "../../layouts/UserBase"
 import { MealInterface } from "../../types/types";
@@ -11,6 +12,13 @@ export const BrowseFoods = () => {
     
     const [searchInput, setSearchInput] = useState('');
     const [fetchedFoods, setFetchedFoods] = useState<any[]>([])
+    const [currentRecordLoads, setCurrentRecordLoads] = useState(10);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerLoad] = useState(10);
+
+    const indexOfLastRecord = currentPage * recordsPerLoad;
+    const currentRecords = fetchedFoods.slice(0, indexOfLastRecord);
 
     useEffect(() => {
         searchQuery();
@@ -18,7 +26,11 @@ export const BrowseFoods = () => {
 
     const searchQuery = async () => {
         const response = await getFoodsByTitle(searchInput);
-        setFetchedFoods(response?.response.foods)
+        setFetchedFoods(response?.response.foods);
+    }
+
+    const loadMoreRecords = () => {
+        setCurrentPage(currentPage + 1);
     }
 
     return(
@@ -33,10 +45,11 @@ export const BrowseFoods = () => {
         }>
             <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
                 <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
-                    {!(fetchedFoods.length > 0) 
+                    {!(true) 
                         ? <EmptyState/>
-                        : fetchedFoods.map((meal: MealInterface) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
+                        : currentRecords.map((meal: MealInterface) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
                 </div>
+                <Button title="Load more" styling="" onclickMethod={loadMoreRecords} />
             </div>
         </UserBase>
     )
