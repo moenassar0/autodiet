@@ -3,11 +3,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import userEvent from "@testing-library/user-event";
 import React, { useEffect, useState } from "react"
 import { useTheme } from "../../context/ThemeContext";
+import { useUser } from "../../context/UserContext";
 
 export const AdminTopNavbar:React.FC<{title: string, username: string, children: any}> = ({title, username, children}) => {
 
     //const [theme, setTheme] = useState("light");
     const {setCurrentTheme, themeType} = useTheme();
+    const {setUser, user} = useUser();
 
     /*useEffect(() => {
         if(window.matchMedia('(prefers-color-scheme: dark)').matches){
@@ -40,7 +42,7 @@ export const AdminTopNavbar:React.FC<{title: string, username: string, children:
                 
                 <div className="flex items-center self-center w-40 h-10 rounded">
                     <img className="w-6 h-6 rounded-full" src="../logo512.png"></img>
-                    <span className="w-1/3 text-md dark:text-slate-200">{username}</span>
+                    <span className="w-1/3 text-md dark:text-slate-200">{user.username}</span>
                 </div>
             </div>
         </div>
