@@ -1,11 +1,13 @@
 import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
-import { getFoods } from "../../api/services/Foods"
+import { deleteFood, getFoods } from "../../api/services/Foods"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { DataTable } from "../../components/admin/DataTable"
 import { FoodPopup } from "../../components/admin/FoodPopup"
 import { SideNavbar } from "../../components/admin/SideNavbar"
+import { DeletePopup } from "../../components/utility/DeletePopup"
+import { PopupOverlay } from "../../components/utility/PopupOverlay"
 import { adminNavbarLinks } from "../../types/consts"
 import { FoodItemHeaders } from "../../types/types"
 
@@ -15,6 +17,7 @@ export const AdminFoods = () => {
     const [currFoodID, setCurrFoodID] = useState(-1);
     const [addPopup, setAddPopup] = useState(false);
     const [editPopup, setEditPopup] = useState(false);
+    const [deletePopup, setDeletePopup] = useState(false);
 
     async function fetchFoodItems(){
         const response = await getFoods();
@@ -24,6 +27,12 @@ export const AdminFoods = () => {
     const editFood = (id: number) => {
         setCurrFoodID(id);
         setEditPopup(true);
+    }
+
+    const deleteFuntion = () => {
+        deleteFood(currFoodID.toString());
+        setDeletePopup(false);
+        fetchFoodItems();
     }
 
     useEffect(() => {
@@ -47,11 +56,17 @@ export const AdminFoods = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            {foods ? <DataTable editFunction={editFood} data={foods} headers={FoodItemHeaders}></DataTable> : ""}
+                            {foods ? <DataTable deleteFunction={(id: number) => {setCurrFoodID(id); setDeletePopup(true);}} editFunction={editFood} data={foods} headers={FoodItemHeaders}></DataTable> : ""}
                         </div>
                     </div>
                 </div>
             </div>
+            {deletePopup ? 
+                <>
+                    <PopupOverlay></PopupOverlay>
+                    <DeletePopup trigger={deletePopup} setTrigger={setDeletePopup} submitMethod={deleteFuntion}>
+                    </DeletePopup>
+                </> : ""}
         </div>
     )
 }
