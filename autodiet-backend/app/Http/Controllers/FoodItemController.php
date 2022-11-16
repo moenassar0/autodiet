@@ -42,6 +42,7 @@ class FoodItemController extends Controller
             'fat' => 'required',
             'serving_size' => 'required',
             'picture_url' => 'required',
+            'serving_type' => 'required',
         ]);
 
         if($validator->fails()) return response()->json($validator->errors()->toJson(), 400);
