@@ -41,18 +41,9 @@ export const AdminFoods = () => {
         <section>
             <FoodPopup edit={false} trigger={addPopup} setTrigger={setAddPopup} ></FoodPopup>
             <FoodPopup userID={currFoodID} edit={true} trigger={editPopup} setTrigger={setEditPopup} ></FoodPopup>
-            <AdminBase navbarTitle="Foods" navbarProps={<></>}>
-                <div className="flex items-center justify-start h-12 w-full rounded-t bg-white dark:bg-admin-dark-background dark:text-ad-golden px-3 pl-8">
-                    <span className="text-lg font-semibold dark:text-ad-golden">Food Items</span>
-                    <div className="flex w-28 justify-center ml-auto h-2/3 bg-admin-button text-white hover:bg-admin-hoveredbutton dark:bg-ad-golden dark:text-black rounded-full px-1 py-1">
-                        <button onClick={()=>{setAddPopup(true)}}>Add Food Item<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>
-                    </div>
-                </div>
-                <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
-                    <div className="flex flex-col w-full h-auto">
-                        {foods ? <DataTable deleteFunction={(id: number) => {setCurrFoodID(id); setDeletePopup(true);}} editFunction={editFood} data={foods} headers={FoodItemHeaders}></DataTable> : ""}
-                    </div>
-                </div>
+            <AdminBase navbarTitle="Foods" navbarProps={<></>}
+                    addButton={<button onClick={()=>{setAddPopup(true)}}>Add Food Item<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>}
+                    dataTable={foods ? <DataTable deleteFunction={(id: number) => {setCurrFoodID(id); setDeletePopup(true);}} editFunction={editFood} data={foods} headers={FoodItemHeaders}></DataTable> : ""}>
             </AdminBase>
             {deletePopup ? 
                 <>
