@@ -1,7 +1,7 @@
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
-import { addFood } from "../../api/services/Foods";
+import { addFood, editFood } from "../../api/services/Foods";
 import { InputFieldInterface } from "../../types/types";
 import { Popup } from "../utility/Popup";
 import { PopupOverlay } from "../utility/PopupOverlay";
@@ -25,20 +25,26 @@ export const FoodPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any
     }, [servingType])
 
     const handleSubmit = async () => {
+        const data = {
+            "id": userID,
+            "serving_size": servingSize,
+            "title": title,
+            "calories": calories,
+            "protein": protein,
+            "carbohydrate": carbohydrate,
+            "fat": fat,
+            "picture_url": "t",
+            "serving_type": servingType
+        }
         if(!edit){
-            const data = {
-                "serving_size": servingSize,
-                "title": title,
-                "calories": calories,
-                "protein": protein,
-                "carbohydrate": carbohydrate,
-                "fat": fat,
-                "picture_url": "t",
-                "serving_type": servingType
-            }
             const response = await addFood(data);
             if(!response?.success) setMessage("Server Error");
             else setMessage("Food added!");
+        }
+        else{
+            const response = await editFood(data);
+            if(!response?.success) setMessage("Server Error");
+            else setMessage("Food edited!"); 
         }
     }
 
