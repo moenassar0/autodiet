@@ -7,7 +7,7 @@ import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
 import { getChatDate } from "../../HelperFunctions"
 import { AdminBase } from "../../layouts/AdminBase"
-import { userNavbarLinks } from "../../types/consts"
+import { adminNavbarLinks, userNavbarLinks } from "../../types/consts"
 
 export const AdminChat = () => {
 
@@ -96,7 +96,12 @@ export const AdminChat = () => {
     }
 
     return(
-        <AdminBase navbarTitle="Chat Requests" navbarProps={<></>} >
+<div className="flex h-screen w-full">
+        <SideNavbar navbarlinks={adminNavbarLinks}/>
+        <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
+            <AdminTopNavbar title="Chat" username="Admin">
+            </AdminTopNavbar>
+            <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
             <div className="flex w-full h-full ">
                 <div className="flex flex-wrap drop-shadow content-start h-full w-[175px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
                     {
@@ -129,7 +134,9 @@ export const AdminChat = () => {
                     </div>
                 </div>
             </div>
-        </AdminBase>
+        </div>
+       </div>
+       </div> 
     )
 }
 
