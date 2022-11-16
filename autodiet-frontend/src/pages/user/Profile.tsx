@@ -72,7 +72,7 @@ export const Profile = () => {
                 <AdminTopNavbar title="Profile" username="Test">
                 </AdminTopNavbar>
                 <div className="flex h-4/5 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey">
-                    <div className="w-full flex flex-col h-4/5 sm:w-5/6 py-2 px-2">
+                    <div className="w-full flex flex-wrap content-start h-4/5 sm:w-5/6 py-2 px-2 overflow-auto">
                         {currentlyFetching ? <img className="flex w-10 h-10 items-center justify-center" src="../logo512.png"></img> :
                         <>
                         <ProfileField title="Goal" buttonValues={goalButtonValues} hook={activeGoal} setHook={setActiveGoal}>
@@ -84,15 +84,15 @@ export const Profile = () => {
                         <ProfileInput title="Weight" setHook={setWeight} hook={weight} />
                         <ProfileField title="Bodyfat Percentage" hook={bodyFatPercentage} setHook={setBodyFatPercentage} buttonValues={bfButtonValues}>
                         </ProfileField>
-                        <div className="flex items-center w-full h-1/6">
+                        <div className="flex items-center w-full h-24">
                             <div className="flex items-center w-1/5 h-full font-medium dark:text-ad-golden text-black">Activity</div>
-                            <div className="flex w-4/5 sm:flex w-3/5 h-full items-center">
+                            <div className="w-4/5 sm:w-3/5 flex h-full items-center">
                                 <Select hook={activity} name="activity" setHook={setActivity} options={activityOptions} />
                             </div>                            
                         </div>
-                        <div className="flex w-full h-1/6">
+                        <div className="flex w-full h-24">
                             <div className="flex items-center w-1/5 h-full text-white"></div>
-                            <div className="flex w-4/5 sm:flex w-3/5 h-full items-center justify-end">
+                            <div className="w-4/5 sm:w-3/5 flex h-full items-center justify-end">
                                 <button onClick={() => updateUserDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded dark:bg-ad-golden bg-admin-button"}>Save Changes</button>
                             </div>
                         </div>
