@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from './context/ThemeContext';
 import { NotificationProvider } from './context/NotificationContext';
+import { UserProvider } from './context/UserContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -15,11 +16,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ThemeProvider>
-      <NotificationProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </NotificationProvider>
+      <UserProvider>
+        <NotificationProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </NotificationProvider>
+      </UserProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
