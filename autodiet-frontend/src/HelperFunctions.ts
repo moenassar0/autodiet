@@ -123,6 +123,15 @@ export const getNutritionFromMeals = (meals: Array<MealInterface>) => {
   return nutrition;
 }
 
+export const getNutritionFromMeal = (meal: MealInterface) => {
+  let nutrition: NutritionObjectInterface = {protein:0, fats: 0, carbs: 0, calories: 0}
+  nutrition.protein += meal.protein;
+  nutrition.fats += meal.fat;
+  nutrition.carbs += meal.carbohydrate;
+  nutrition.calories += meal.calories;
+  return nutrition;
+}
+
 export const calculateCalories = (userDetails: UserDetails) => {
   let calories = 0;
   if(userDetails.sex === "Male"){
