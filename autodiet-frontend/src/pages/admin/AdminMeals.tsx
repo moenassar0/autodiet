@@ -10,6 +10,7 @@ import { adminNavbarLinks } from "../../types/consts"
 import { AddMealPopup } from "../../components/admin/AddMealPopup"
 import { PopupOverlay } from "../../components/utility/PopupOverlay"
 import { DeletePopup } from "../../components/utility/DeletePopup"
+import { AdminBase } from "../../layouts/AdminBase"
 
 export const AdminMeals = () => {
 
@@ -29,7 +30,7 @@ export const AdminMeals = () => {
         setEditMealsPopup(true);
     }
 
-    const delFunction = (id: number) => {
+    const delFunction = () => {
         deleteMeal(mealID.toString());
         setDeleteMealsPopup(false);
         fetchMeals();
@@ -40,26 +41,19 @@ export const AdminMeals = () => {
     }, [])
 
     return(
-            <div className="flex h-screen w-full">
-                <AddMealPopup edit={false} trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
-                <AddMealPopup mealID={mealID} edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
-                <SideNavbar navbarlinks={adminNavbarLinks}/>
-                <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
-                    <AdminTopNavbar title="" username="Admin">
-
-                    </AdminTopNavbar>
-                    <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
-                        <div className="flex items-center justify-start h-12 w-full rounded-t bg-white dark:bg-admin-dark-background dark:text-ad-golden px-3 pl-8">
-                            <span className="text-lg font-semibold dark:text-ad-golden">Meals</span>
-                            <div className="flex w-28 justify-center ml-auto h-2/3 bg-admin-button text-white hover:bg-admin-hoveredbutton dark:bg-ad-golden dark:text-black rounded-full px-1 py-1">
-                                <button onClick={() => {setAddMealsPopup(true)}}>Add Meal<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>
-                            </div>
-                        </div>
-                        <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
-                            <div className="flex flex-col w-full h-auto">
-                                {meals ? <DataTable editFunction={editFun} deleteFunction={(id: number) => {setMealID(id); setDeleteMealsPopup(true)}} data={meals} headers={MealHeaders}></DataTable> : ""}
-                            </div>
-                        </div>
+        <section>
+            <AddMealPopup edit={false} trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
+            <AddMealPopup mealID={mealID} edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
+            <AdminBase navbarProps={<></>} navbarTitle="Meals">
+                <div className="flex items-center justify-start h-12 w-full rounded-t bg-white dark:bg-admin-dark-background dark:text-ad-golden px-3 pl-8">
+                    <span className="text-lg font-semibold dark:text-ad-golden">Meals</span>
+                    <div className="flex w-28 justify-center ml-auto h-2/3 bg-admin-button text-white hover:bg-admin-hoveredbutton dark:bg-ad-golden dark:text-black rounded-full px-1 py-1">
+                        <button onClick={() => {setAddMealsPopup(true)}}>Add Meal<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>
+                    </div>
+                </div>
+                <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
+                    <div className="flex flex-col w-full h-auto">
+                        {meals ? <DataTable editFunction={editFun} deleteFunction={(id: number) => {setMealID(id); setDeleteMealsPopup(true)}} data={meals} headers={MealHeaders}></DataTable> : ""}
                     </div>
                 </div>
                 {deleteMealsPopup ? 
@@ -68,6 +62,7 @@ export const AdminMeals = () => {
                     <DeletePopup trigger={deleteMealsPopup} setTrigger={setDeleteMealsPopup} submitMethod={delFunction}>
                     </DeletePopup>
                 </> : ""}
-            </div>
+            </AdminBase>
+        </section>
     )
 }
