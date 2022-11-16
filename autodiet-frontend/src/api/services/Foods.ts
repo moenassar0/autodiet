@@ -1,4 +1,4 @@
-import { get, post, put } from "./baseAPICall";
+import { del, get, post, put } from "./baseAPICall";
 
 export const getFoods = async () => {
     return get("/foods", "");
@@ -14,4 +14,8 @@ export const addFood = async (data: object) => {
 
 export const editFood = async (data: object) => {
     return put("/food_item", data);
+}
+
+export const deleteFood = async (params: string) => {
+    return del("/food_item/", params);
 }
