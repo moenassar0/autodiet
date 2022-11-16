@@ -12,6 +12,7 @@ import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { AddUserPopup } from "../../components/admin/AddUserPopup";
 import { adminNavbarLinks } from "../../types/consts";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
+import { Popup } from "../../components/utility/Popup";
 
 export const AdminUsers = () => {
     const [users, setUsers] = useState([]);
@@ -29,7 +30,7 @@ export const AdminUsers = () => {
     }
 
     const deletefunc = async (id:number) => {
-        const response = await deleteUser(id.toString());
+        const response = await deleteUser(userID.toString());
         console.log(response?.response)
         fetchUsers();
     }
@@ -60,12 +61,14 @@ export const AdminUsers = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            {users ? <DataTable editFunction={editfunc} deleteFunction={deletefunc} deletePopup={deleteUsersPopup} setDeletePopup={setDeleteUsersPopup} data={users} headers={UserHeaders}></DataTable> : ""}
+                            {users ? <DataTable editFunction={editfunc} deleteFunction={(id:number)=>{setUserID(id); setDeleteUsersPopup(true)}} deletePopup={deleteUsersPopup} setDeletePopup={setDeleteUsersPopup} data={users} headers={UserHeaders}></DataTable> : ""}
                         </div>
                     </div>
                 </div>
             </div>
-            {deleteUsersPopup ? <PopupOverlay></PopupOverlay> : ""}
+            {deleteUsersPopup ? <><PopupOverlay></PopupOverlay><Popup title="Are you sure you want to delete this user?" inputs={[]} edit={false} submitMethod={deletefunc} message={""}>
+                
+            </Popup></> : ""}
         </div>
     )
 }
