@@ -132,6 +132,11 @@ export const getNutritionFromMeal = (meal: MealInterface) => {
   return nutrition;
 }
 
+export const macrosFromNutrition = (nutrtion: NutritionObjectInterface) => {
+  const macros = "P" + nutrtion.protein + " C" + nutrtion.carbs + " F" + nutrtion.fats;
+  return macros;
+}
+
 export const calculateCalories = (userDetails: UserDetails) => {
   let calories = 0;
   if(userDetails.sex === "Male"){
