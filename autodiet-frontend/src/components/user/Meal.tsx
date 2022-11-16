@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MealRecipePopup } from "./MealRecipePopup";
 import { MealInterface, NutritionObjectInterface } from "../../types/types"
-import { getNutritionFromMeal } from "../../HelperFunctions";
+import { getNutritionFromMeal, macrosFromNutrition } from "../../HelperFunctions";
 type Props = {
     meal: MealInterface
 };
@@ -9,10 +9,11 @@ type Props = {
 const Meal: React.FC<Props> = ({meal}) => {
 
     const [popup, setPopup] = useState(false);
+    const [mealNutrition, setMealNutrition] = useState({} as NutritionObjectInterface);
 
     useEffect(() => {
         const mealNutrition: NutritionObjectInterface = getNutritionFromMeal(meal);
-        console.log(mealNutrition);
+        setMealNutrition(mealNutrition);
     }, [])
 
     return(
@@ -23,7 +24,7 @@ const Meal: React.FC<Props> = ({meal}) => {
                 <div className="flex flex-col justify-start dark:text-ad-golden w-full h-2/5 gap-1">
                     <span className="w-full h-1/3 font-medium ">{meal.title}</span>
                     <span className="w-full h-1/3 text-small dark:text-admin-grey-background text-slate-500">{Math.round(meal.calories)} Calories</span>
-                    <span className="w-full h-1/3 text-xs dark:text-admin-grey-background text-slate-500"></span>
+                    <span className="w-full h-1/3 text-xs dark:text-admin-grey-background text-slate-500">{macrosFromNutrition(mealNutrition)}</span>
                 </div>
                 <div className="flex w-full justify-start items-center h-3/5 dark:text-white">
                     <img className="w-full h-full rounded" src={meal.picture_url}></img>
