@@ -13,6 +13,7 @@ import { AddUserPopup } from "../../components/admin/AddUserPopup";
 import { adminNavbarLinks } from "../../types/consts";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
 import { Popup } from "../../components/utility/Popup";
+import { DeletePopup } from "../../components/utility/DeletePopup";
 
 export const AdminUsers = () => {
     const [users, setUsers] = useState([]);
@@ -66,9 +67,12 @@ export const AdminUsers = () => {
                     </div>
                 </div>
             </div>
-            {deleteUsersPopup ? <><PopupOverlay></PopupOverlay><Popup title="Are you sure you want to delete this user?" inputs={[]} edit={false} submitMethod={deletefunc} message={""}>
-                
-            </Popup></> : ""}
+            {deleteUsersPopup ? 
+            <>
+                <PopupOverlay></PopupOverlay>
+                <DeletePopup trigger={deleteUsersPopup} setTrigger={setDeleteUsersPopup} submitMethod={deletefunc}>
+                </DeletePopup>
+            </> : ""}
         </div>
     )
 }
