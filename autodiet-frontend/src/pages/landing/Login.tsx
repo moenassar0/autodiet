@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "../../api/axios";
 import { Navbar } from "../../components/landing/Navbar"
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useRoutes } from 'react-router-dom';
+import { useUser } from "../../context/UserContext";
 
 export const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const {setUser, user} = useUser();
 
     const [waitingForResponse, setWaitingForResponse] = useState(false);
     
@@ -16,9 +18,12 @@ export const Login = () => {
         try{
             setWaitingForResponse(true);
             const response = await axios.post('/login', {email, password});
-            console.log(response);
-            localStorage.setItem("token", response.data.access_token)
-            navigate("/user/profile");
+            console.log(response.data);
+            const user2 = {email: response.data.user.email, username: response.data.user.username}
+            setUser(user2);
+            console.log("user", user);
+            localStorage.setItem("token", response.data.token.original.access_token)
+            navigate("/user/home");
         }catch(err){
             console.log("Error from http request: ", err);
         }
