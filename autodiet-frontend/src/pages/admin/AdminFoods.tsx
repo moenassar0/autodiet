@@ -12,11 +12,18 @@ import { FoodItemHeaders } from "../../types/types"
 export const AdminFoods = () => {
 
     const [foods, setFoods] = useState([]);
+    const [currFoodID, setCurrFoodID] = useState(-1);
     const [addPopup, setAddPopup] = useState(false);
+    const [editPopup, setEditPopup] = useState(false);
 
     async function fetchFoodItems(){
         const response = await getFoods();
         if(response?.success) setFoods(response.response.foods)
+    }
+
+    const editFood = (id: number) => {
+        setCurrFoodID(id);
+        setEditPopup(true);
     }
 
     useEffect(() => {
@@ -26,6 +33,7 @@ export const AdminFoods = () => {
     return(
         <div className="flex h-screen w-full">
             <FoodPopup edit={false} trigger={addPopup} setTrigger={setAddPopup} ></FoodPopup>
+            <FoodPopup userID={currFoodID} edit={true} trigger={editPopup} setTrigger={setEditPopup} ></FoodPopup>
             <SideNavbar navbarlinks={adminNavbarLinks}/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                 <AdminTopNavbar title="" username="Admin">
@@ -39,7 +47,7 @@ export const AdminFoods = () => {
                     </div>
                     <div className="flex h-5/6 grow w-full overflow-y-scroll rounded drop-shadow">
                         <div className="flex flex-col w-full h-auto">
-                            {foods ? <DataTable data={foods} headers={FoodItemHeaders}></DataTable> : ""}
+                            {foods ? <DataTable editFunction={editFood} data={foods} headers={FoodItemHeaders}></DataTable> : ""}
                         </div>
                     </div>
                 </div>
