@@ -125,10 +125,10 @@ export const getNutritionFromMeals = (meals: Array<MealInterface>) => {
 
 export const getNutritionFromMeal = (meal: MealInterface) => {
   let nutrition: NutritionObjectInterface = {protein:0, fats: 0, carbs: 0, calories: 0}
-  nutrition.protein += meal.protein;
-  nutrition.fats += meal.fat;
-  nutrition.carbs += meal.carbohydrate;
-  nutrition.calories += meal.calories;
+  nutrition.protein += Math.round(meal.protein);
+  nutrition.fats += Math.round(meal.fat);
+  nutrition.carbs += Math.round(meal.carbohydrate);
+  nutrition.calories += Math.round(meal.calories);
   return nutrition;
 }
 
