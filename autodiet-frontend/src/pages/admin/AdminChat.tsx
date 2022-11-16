@@ -5,6 +5,7 @@ import { getUser } from "../../api/services/Users"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
+import { getChatDate } from "../../HelperFunctions"
 import { AdminBase } from "../../layouts/AdminBase"
 import { userNavbarLinks } from "../../types/consts"
 
@@ -97,7 +98,7 @@ export const AdminChat = () => {
     return(
         <AdminBase navbarTitle="Chat Requests" navbarProps={<></>} >
             <div className="flex w-full h-full ">
-                <div className="flex flex-wrap drop-shadow content-start h-full w-[300px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
+                <div className="flex flex-wrap drop-shadow content-start h-full w-[175px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
                     {
                         users ? users.map((user: any) => (
                             <div onClick={() => {setCurrentUserID(user)}} key={user} className={(currentUserID == user ? "bg-[#E5F8F9] dark:bg-admin-dark-sidenav " : "") + styles.usersDiv}>
@@ -111,14 +112,11 @@ export const AdminChat = () => {
                     <div className="flex flex-wrap w-full h-full gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
                         {
                             messages ? messages.map((message: any, i: number) => (
-                                <div key={i} className={(message.type == "admin_r" ? "justify-end" : "") + " flex w-full h-16 items-center"}>
-                                    <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
-                                    <div className="flex flex-col">
-                                        {/*<span className="text-slate-300 text-sm">{new Date(message.timestamps.seconds * 1000).toLocaleDateString("en-US")}</span>*/}
-                                        <span className="text-slate-300 text-sm">{message.timestamps ? message.timestamps.toDate().toISOString() : ""}</span>
-                                        <span className="flex bg-[#EDEEF0] p-3 rounded-xl dark:bg-admin-dark-sidenav dark:text-ad-golden">
-                                            {message.text}
-                                        </span>
+                                <div key={i} className={(message.type == "client_r" ? "" : "justify-end") + " flex items-start w-full h-auto"}>
+                                    <div className="flex flex-col flex-wrap w-1/2 bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">
+                                        <span className="dark:text-ad-golden text-admin-button font-medium">{message.name}</span>
+                                        <span className="text-slate-700 dark:text-slate-200">{message.text}</span>
+                                        <span className="flex text-xs self-end opacity-60 dark:text-ad-golden">{ message.timestamps ? getChatDate(message.timestamps) : ""}</span>
                                     </div>
                                 </div>
                                 
