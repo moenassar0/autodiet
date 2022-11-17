@@ -1,15 +1,18 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { stat } from "fs"
 import { useEffect, useState } from "react"
 import { getMealRecipe, getMeals } from "../../api/services/Meals"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
+import { Popup } from "../../components/utility/Popup"
+import { PopupOverlay } from "../../components/utility/PopupOverlay"
 import { SearchBar } from "../../components/utility/SearchBar"
 import { Steps } from "../../components/utility/Steps"
 import { AdminBase } from "../../layouts/AdminBase"
 import { adminNavbarLinks } from "../../types/consts"
-import { MealInterface, Recipe } from "../../types/types"
+import { InputFieldInterface, MealInterface, Recipe } from "../../types/types"
 
 export const AdminRecipes = () => {
 
@@ -25,6 +28,10 @@ export const AdminRecipes = () => {
     const [addToRecipe, setAddToRecipe] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const [stepCount, setStepCount] = useState(0);
+    const [linkPopup, setLinkPopup] = useState(false);
+    const [multiplier, setMultiplier] = useState(0);
+    
+    const popupInput: Array<InputFieldInterface> = [{title:"", error:"", state:multiplier.toString(), setHook:setMultiplier, valid:true }]
 
     useEffect(() => {
         fetchMeals();
@@ -40,7 +47,7 @@ export const AdminRecipes = () => {
 
     const getRecipe = async () => {
         if(currentMeal){
-            const response = await getMealRecipe(currentMeal.id.toString());
+            const response = await getMealRecipe(currentMeal.id?.toString());
             console.log(response);
             setMealRecipe(response?.response.recipe);
         }
@@ -66,7 +73,7 @@ export const AdminRecipes = () => {
                         </div>
                         <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
                             <SearchBar setSearchInput={setSearchInput}></SearchBar>
-                            {mealRecipe.length > 0 
+                            {mealRecipe?.length > 0 
                                 ? mealRecipe.map((recipe: Recipe) => (
                                     <div key={recipe.id} className={styles.meal + (recipe.id == currentFoodItem?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentFoodItem(recipe)}}>
                                         {recipe.title + " " + (recipe.serving_size * parseFloat(recipe.pivot.multiplier)) + recipe.serving_type}
@@ -76,10 +83,21 @@ export const AdminRecipes = () => {
                         </div>
                     </div>
                     <div className="flex h-10 w-full p-2">
-                        <Button title="Link items" onclickMethod={()=>{}} styling="flex ml-auto"></Button>
+                        <Button title="Link items" onclickMethod={()=>{setLinkPopup(true)}} styling="flex ml-auto"></Button>
                     </div>
                 </div>
             </div>
+            {
+                linkPopup ?
+                <>
+                <PopupOverlay></PopupOverlay>
+                <Popup message="" submitMethod={() => {}} edit={false} title="Link meal" inputs={popupInput} >
+                    
+                </Popup> 
+                </> 
+
+                : ""
+            }
         </div>
     )
 }
