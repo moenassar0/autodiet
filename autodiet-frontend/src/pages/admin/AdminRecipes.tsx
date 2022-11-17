@@ -52,26 +52,31 @@ export const AdminRecipes = () => {
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
                 <AdminTopNavbar title={"Recipes"} username="Admin">
                 </AdminTopNavbar>
-                <div className="flex h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
-                    <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
-                        <SearchBar setSearchInput={setSearchInput}></SearchBar>
-                        <div className="flex flex-wrap overflow-auto content-start h-full w-full rounded bg-white drop-shadow">
-                            {meals?.map((meal: any) => (
-                                <div key={meal.id} className={styles.meal + (meal.id == currentMeal?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentMeal(meal)}}>
-                                    {meal.title}
-                                </div>))
-                            }
+                <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
+                    <div className="flex h-full w-full">
+                        <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
+                            <SearchBar setSearchInput={setSearchInput}></SearchBar>
+                            <div className="flex flex-wrap overflow-auto content-start h-full w-full rounded bg-white drop-shadow">
+                                {meals?.map((meal: any) => (
+                                    <div key={meal.id} className={styles.meal + (meal.id == currentMeal?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentMeal(meal)}}>
+                                        {meal.title}
+                                    </div>))
+                                }
+                            </div>
+                        </div>
+                        <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
+                            <SearchBar setSearchInput={setSearchInput}></SearchBar>
+                            {mealRecipe.length > 0 
+                                ? mealRecipe.map((recipe: Recipe) => (
+                                    <div key={recipe.id} className={styles.meal + (recipe.id == currentFoodItem?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentFoodItem(recipe)}}>
+                                        {recipe.title + " " + (recipe.serving_size * parseFloat(recipe.pivot.multiplier)) + recipe.serving_type}
+                                    </div>
+                                ))
+                                : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
                         </div>
                     </div>
-                    <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
-                        <SearchBar setSearchInput={setSearchInput}></SearchBar>
-                        {mealRecipe.length > 0 
-                            ? mealRecipe.map((recipe: Recipe) => (
-                                <div key={recipe.id} className={styles.meal + (recipe.id == currentFoodItem?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentFoodItem(recipe)}}>
-                                    {recipe.title + " " + (recipe.serving_size * parseFloat(recipe.pivot.multiplier)) + recipe.serving_type}
-                                </div>
-                            ))
-                            : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
+                    <div className="flex h-10 w-full p-2">
+                        <Button title="Link items" onclickMethod={()=>{}} styling="flex ml-auto"></Button>
                     </div>
                 </div>
             </div>
