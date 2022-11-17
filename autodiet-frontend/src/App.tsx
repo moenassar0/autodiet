@@ -19,16 +19,13 @@ import { Chatbox } from './pages/user/Chatbox';
 import { AdminChat } from './pages/admin/AdminChat';
 import { SlideTest } from './pages/user/SlideTest';
 import { BrowseFoods } from './pages/user/BrowseFoods';
+import { useUser } from './context/UserContext';
+import { Landing } from './pages/landing/Landing';
+import { AdminRecipes } from './pages/admin/AdminRecipes';
 
 //export const UserContext = React.createContext(user);
 
 function App() {
-  //const [theme, setTheme] = useState("light")
-  //const value = { theme, setTheme }
-  const {themeType} = useTheme();
-  console.log(themeType);
-  const {body, on} = useNotification();
-  console.log("Notification log from app", body, on);
   return (
     <>
       <Routes>
@@ -36,6 +33,7 @@ function App() {
         <Route path="/" element={<LandingPage />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/landing" element={<Landing />}></Route>
 
         <Route path="/user" element={ <AuthenticateUser /> }>
           <Route path="/user/home" element={<Home />}></Route>
@@ -50,6 +48,7 @@ function App() {
           <Route path="/admin/users" element={<AdminUsers/>}></Route>
           <Route path="/admin/meals" element={<AdminMeals />}></Route>
           <Route path="/admin/foods" element={<AdminFoods />}></Route>
+          <Route path="/admin/recipes" element={<AdminRecipes />}></Route>
           <Route path="/admin/chat" element={<AdminChat />}></Route>
         </Route>
 
