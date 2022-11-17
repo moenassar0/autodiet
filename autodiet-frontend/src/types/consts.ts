@@ -1,4 +1,4 @@
-import { faCalendarDays, faMessage, faRightFromBracket, faChartLine, faDrumstickBite, faPlateWheat, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faBookOpen, faCalendarDays, faMessage, faRightFromBracket, faChartLine, faDrumstickBite, faPlateWheat, faUser } from '@fortawesome/free-solid-svg-icons'
 
 export const userNavbarLinks = [
     { path: "/user/home", icon: faCalendarDays, title: "Mealplan" },
@@ -15,7 +15,7 @@ export const adminNavbarLinks = [
     { path: "/admin/users", icon: faUser, title: "Users" },
     { path: "/admin/meals", icon: faPlateWheat, title: "Meals" },
     { path: "/admin/foods", icon: faDrumstickBite, title: "Foods" },
-    { path: "/admin/users", icon: faChartLine, title: "Graphs" },
+    { path: "/admin/recipes", icon: faBookOpen, title: "Recipes" },
     { path: "/admin/chat", icon: faMessage, title: "Chat Requests" },
     { path: "/admin/users", icon: faRightFromBracket, title: "Logout" },
 ];
