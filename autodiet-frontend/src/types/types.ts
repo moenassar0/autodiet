@@ -75,6 +75,17 @@ export interface Recipe{
     }
 }
 
+export interface FoodItem{
+    'id': number, 
+    'title': string,
+    "calories": number,
+    "protein": number,
+    "carbohydrate": number,
+    "fat": number,
+    'serving_size': number,
+    'serving_type': string
+}
+
 export interface UserDetails{
     activity_level: string
     age: number
