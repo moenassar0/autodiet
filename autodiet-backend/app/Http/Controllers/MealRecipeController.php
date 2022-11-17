@@ -15,7 +15,8 @@ class MealRecipeController extends Controller
         if(!$meal) return response()->json(['message' => 'not found'], 400);
 
         $validator = Validator::make($request->all(),[
-            'food_item_id' => 'required',
+            'meal_id' => 'required',
+            'recipe_item_id' => 'required',
             'multiplier' => 'required',
         ]);
 
