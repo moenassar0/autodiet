@@ -2,11 +2,13 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { stat } from "fs"
 import { useEffect, useState } from "react"
+import { getFoods } from "../../api/services/Foods"
 import { getMealRecipe, getMeals } from "../../api/services/Meals"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { BasePopup } from "../../components/utility/BasePopup"
 import { Button } from "../../components/utility/Button"
+import InputField from "../../components/utility/InputField"
 import { Popup } from "../../components/utility/Popup"
 import { PopupOverlay } from "../../components/utility/PopupOverlay"
 import { SearchBar } from "../../components/utility/SearchBar"
@@ -23,6 +25,7 @@ export const AdminRecipes = () => {
     }
     
     const [meals, setMeals] = useState([]);
+    const [recipes, setRecipes] = useState([]);
     const [mealRecipe, setMealRecipe] = useState([]);
     const [currentMeal, setCurrentMeal] = useState({} as MealInterface);
     const [currentFoodItem, setCurrentFoodItem] = useState({} as any);
@@ -36,6 +39,7 @@ export const AdminRecipes = () => {
 
     useEffect(() => {
         fetchMeals();
+        fetchRecipes();
     }, [])
 
     useEffect(() => {
@@ -44,6 +48,10 @@ export const AdminRecipes = () => {
 
     const fetchMeals = async () => {
         setMeals((await getMeals())?.response.meals);
+    }
+
+    const fetchRecipes = async () => {
+        setRecipes((await getFoods())?.response.foods);
     }
 
     const getRecipe = async () => {
@@ -61,7 +69,7 @@ export const AdminRecipes = () => {
                 <AdminTopNavbar title={"Recipes"} username="Admin">
                 </AdminTopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
-                    <div className="flex h-full w-full">
+                    <div className="flex h-5/6 grow w-full">
                         <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
                             <SearchBar setSearchInput={setSearchInput}></SearchBar>
                             <div className="flex flex-wrap overflow-auto content-start h-full w-full rounded bg-white drop-shadow">
@@ -74,14 +82,15 @@ export const AdminRecipes = () => {
                         </div>
                         <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
                             <SearchBar setSearchInput={setSearchInput}></SearchBar>
-                            {mealRecipe?.length > 0 
-                                ? mealRecipe.map((recipe: Recipe) => (
+                            <div className="flex flex-wrap overflow-auto content-start h-full w-full rounded bg-white drop-shadow">
+                            {recipes?.length > 0 
+                                ? recipes.map((recipe: Recipe) => (
                                     <div key={recipe.id} className={styles.meal + (recipe.id == currentFoodItem?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentFoodItem(recipe)}}>
-                                        {recipe.title + " " + (recipe.serving_size * parseFloat(recipe.pivot.multiplier)) + recipe.serving_type}
+                                        {recipe.title}
                                     </div>
                                 ))
                                 : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
-                        </div>
+                        </div></div>
                     </div>
                     <div className="flex h-10 w-full p-2">
                         <Button title="Link items" onclickMethod={()=>{setLinkPopup(true)}} styling="flex ml-auto"></Button>
@@ -92,9 +101,10 @@ export const AdminRecipes = () => {
                 linkPopup ?
                 <>
                 <PopupOverlay></PopupOverlay>
-                <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message="" submitMethod={fetchMeals} title="Link meal" submitButtonTitle="Link">
-
-                </BasePopup> 
+                    <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message="" submitMethod={fetchMeals} title="Link meal" submitButtonTitle="Link">
+                        <div className="flex w-full h-10 rounded bg-white drop-shadow">Linking <span className="font-medium underline">{currentMeal.title}</span> with <span className="font-medium underline">{"  " + currentFoodItem.title}</span></div>
+                        <InputField error="" title="Multipler" setHook={setMultiplier} state={multiplier.toString()} valid={true}></InputField>
+                    </BasePopup> 
                 </> 
 
                 : ""
