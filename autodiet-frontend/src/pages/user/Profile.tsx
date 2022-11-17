@@ -79,9 +79,9 @@ export const Profile = () => {
                         </ProfileField>
                         <ProfileField title="Sex" buttonValues={sexButtonValues} setHook={setSex} hook={sex}>
                         </ProfileField>
-                        <ProfileInput title="Height" setHook={setHeight} hook={height} />
-                        <ProfileInput title="Age" setHook={setAge} hook={age} />
-                        <ProfileInput title="Weight" setHook={setWeight} hook={weight} />
+                        <ProfileInput placeholder="(cm)" title="Height" setHook={setHeight} hook={height} />
+                        <ProfileInput placeholder="" title="Age" setHook={setAge} hook={age} />
+                        <ProfileInput placeholder="(kg)" title="Weight" setHook={setWeight} hook={weight} />
                         <ProfileField title="Bodyfat Percentage" hook={bodyFatPercentage} setHook={setBodyFatPercentage} buttonValues={bfButtonValues}>
                         </ProfileField>
                         <div className="flex items-center w-full h-24">
