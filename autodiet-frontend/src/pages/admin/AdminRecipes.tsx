@@ -9,6 +9,7 @@ import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { BasePopup } from "../../components/utility/BasePopup"
 import { Button } from "../../components/utility/Button"
+import { CustomNotification } from "../../components/utility/CustomNotification"
 import InputField from "../../components/utility/InputField"
 import { Popup } from "../../components/utility/Popup"
 import { PopupOverlay } from "../../components/utility/PopupOverlay"
@@ -31,12 +32,11 @@ export const AdminRecipes = () => {
     const [mealRecipe, setMealRecipe] = useState([]);
     const [currentMeal, setCurrentMeal] = useState({} as MealInterface);
     const [currentFoodItem, setCurrentFoodItem] = useState({} as any);
-    const [addToRecipe, setAddToRecipe] = useState(false);
     const [searchInput, setSearchInput] = useState("");
-    const [stepCount, setStepCount] = useState(0);
     const [linkPopup, setLinkPopup] = useState(false);
     const [multiplier, setMultiplier] = useState(0);
-    
+    const [responseMessage, setResponseMessage] = useState("");
+
     const popupInput: Array<InputFieldInterface> = [{title:"", error:"", state:multiplier.toString(), setHook:setMultiplier, valid:true }]
 
     useEffect(() => {
@@ -68,7 +68,9 @@ export const AdminRecipes = () => {
         const rMultiplier = getMultiplierFromFood(multiplier, currentFoodItem);
         const data = {meal_id: currentMeal.id, recipe_item_id: currentFoodItem.id, multiplier:rMultiplier}
         const response = await addLink(data);
-        console.log(response?.response);
+        if(response){
+            setResponseMessage((response.success) ? "Success" : "Server Error");
+        }
     }
 
     return(
@@ -110,7 +112,7 @@ export const AdminRecipes = () => {
                 linkPopup ?
                 <>
                 <PopupOverlay></PopupOverlay>
-                    <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message="" submitMethod={addRecipeLink} title="Link meal" submitButtonTitle="Link">
+                    <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message={responseMessage} submitMethod={addRecipeLink} title="Link meal" submitButtonTitle="Link">
                         <div className="flex w-full h-10 rounded bg-white drop-shadow">Linking <span className="font-medium underline">{currentMeal.title}</span> with <span className="font-medium underline">{"  " + currentFoodItem.title}</span></div>
                         <InputField placeholder={currentFoodItem.serving_type} error="" title="Multipler" setHook={setMultiplier} state={multiplier.toString()} valid={true}></InputField>
                     </BasePopup> 
