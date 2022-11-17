@@ -21,7 +21,7 @@ export const AdminRecipes = () => {
     const [meals, setMeals] = useState([]);
     const [mealRecipe, setMealRecipe] = useState([]);
     const [currentMeal, setCurrentMeal] = useState({} as MealInterface);
-    const [currentFoodItem, setCurrentFoodItem] = useState({});
+    const [currentFoodItem, setCurrentFoodItem] = useState({} as any);
     const [addToRecipe, setAddToRecipe] = useState(false);
     const [searchInput, setSearchInput] = useState("");
     const [stepCount, setStepCount] = useState(0);
@@ -65,6 +65,13 @@ export const AdminRecipes = () => {
                     </div>
                     <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">
                         <SearchBar setSearchInput={setSearchInput}></SearchBar>
+                        {mealRecipe.length > 0 
+                            ? mealRecipe.map((recipe: Recipe) => (
+                                <div key={recipe.id} className={styles.meal + (recipe.id == currentFoodItem?.id?.toString() ? (styles.active) : "")} onClick={() => {setCurrentFoodItem(recipe)}}>
+                                    {recipe.title + " " + (recipe.serving_size * parseFloat(recipe.pivot.multiplier)) + recipe.serving_type}
+                                </div>
+                            ))
+                            : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
                     </div>
                 </div>
             </div>
