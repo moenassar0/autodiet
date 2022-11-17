@@ -44,7 +44,9 @@ export const AdminRecipes = () => {
                         {meals?.map((meal: any) => (<div key={meal.id} className="cursor-pointer hover:underline" onClick={() => {setCurrentMeal(meal.id)}}>{meal.title}</div>))}
                     </div>
                     <div className="flex flex-col h-full w-1/2 bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
-
+                        {mealRecipe.length > 0 ? mealRecipe.map((recipe: Recipe) => (
+                            <div className="bg-white text-black w-full h-10">{recipe.title}</div>
+                        )) : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
                     </div>
                 </div>
             </div>
