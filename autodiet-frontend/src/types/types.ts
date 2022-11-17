@@ -29,6 +29,7 @@ export interface InputFieldInterface{
     setHook:any,
     valid:boolean,
     type?: string,
+    placeholder?: string,
 }
 
 export interface UserInterface{
