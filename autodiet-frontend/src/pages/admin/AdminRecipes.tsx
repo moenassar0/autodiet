@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { stat } from "fs"
 import { useEffect, useState } from "react"
 import { getFoods } from "../../api/services/Foods"
+import { addLink } from "../../api/services/MealRecipe"
 import { getMealRecipe, getMeals } from "../../api/services/Meals"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
@@ -13,6 +14,7 @@ import { Popup } from "../../components/utility/Popup"
 import { PopupOverlay } from "../../components/utility/PopupOverlay"
 import { SearchBar } from "../../components/utility/SearchBar"
 import { Steps } from "../../components/utility/Steps"
+import { getMultiplierFromFood } from "../../HelperFunctions"
 import { AdminBase } from "../../layouts/AdminBase"
 import { adminNavbarLinks } from "../../types/consts"
 import { InputFieldInterface, MealInterface, Recipe } from "../../types/types"
@@ -62,6 +64,13 @@ export const AdminRecipes = () => {
         }
     }
 
+    const addRecipeLink = async () => {
+        const rMultiplier = getMultiplierFromFood(multiplier, currentFoodItem);
+        const data = {meal_id: currentMeal.id, recipe_item_id: currentFoodItem.id, multiplier:rMultiplier}
+        const response = await addLink(data);
+        console.log(response?.response);
+    }
+
     return(
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={adminNavbarLinks}/>
@@ -101,12 +110,11 @@ export const AdminRecipes = () => {
                 linkPopup ?
                 <>
                 <PopupOverlay></PopupOverlay>
-                    <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message="" submitMethod={fetchMeals} title="Link meal" submitButtonTitle="Link">
+                    <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message="" submitMethod={addRecipeLink} title="Link meal" submitButtonTitle="Link">
                         <div className="flex w-full h-10 rounded bg-white drop-shadow">Linking <span className="font-medium underline">{currentMeal.title}</span> with <span className="font-medium underline">{"  " + currentFoodItem.title}</span></div>
-                        <InputField error="" title="Multipler" setHook={setMultiplier} state={multiplier.toString()} valid={true}></InputField>
+                        <InputField placeholder={currentFoodItem.serving_type} error="" title="Multipler" setHook={setMultiplier} state={multiplier.toString()} valid={true}></InputField>
                     </BasePopup> 
                 </> 
-
                 : ""
             }
         </div>
