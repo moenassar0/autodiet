@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\WeightEntryController;
+use App\Http\Controllers\MealRecipeController;
 use App\Http\Middleware\IsUser;
 use App\Http\Middleware\IsAdmin;
 
@@ -35,6 +36,8 @@ Route::middleware([IsUser::class])->group(function () {
 Route::middleware([IsAdmin::class])->group(function () {
     Route::post("/meal", [MealController::class, "addMeal"]);
     Route::post("/food_item", [FoodItemController::class, "addFoodItem"]);
+    Route::post("/meal_recipe", [MealRecipeController::class, "addLink"]);
+    
 
     Route::put("/meal", [MealController::class, "updateMeal"]);
     Route::put("/food_item", [FoodItemController::class, "updateFoodItem"]);
