@@ -1,5 +1,5 @@
 import axios from "./api/axios";
-import { MealInterface, NutritionObjectInterface, UserDetails } from "./types/types";
+import { FoodItem, MealInterface, NutritionObjectInterface, UserDetails } from "./types/types";
 
 //Declare helper function's variables
 const EMAIL_REGEX = /.+@.+\..+/;
@@ -67,15 +67,19 @@ export const getChatDate = (timestamps: any) => {
 	let mm = date.getMonth();
 	let dd = date.getDate();
 	let yyyy = date.getFullYear();
-
   let hour = timestamps.toDate().getHours();
   let minutes = timestamps.toDate().getMinutes();
-	date = dd + '/' + mm + '/' + yyyy;
 
-  
+	date = dd + '/' + mm + '/' + yyyy;
 
   const dateTime = date + ", " + hour + ":" + minutes;
   return dateTime;
+}
+
+export const getMultiplierFromFood = (number: number, foodItem: FoodItem) => {
+  const serving_size = foodItem.serving_size;
+  const ratio = (number / serving_size);
+  return ratio;
 }
 
 export const sendNotification = async () => {
