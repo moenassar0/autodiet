@@ -2,7 +2,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { stat } from "fs"
 import { useEffect, useState } from "react"
-import { getFoods } from "../../api/services/Foods"
+import { getFoods, getFoodsByTitle } from "../../api/services/Foods"
 import { addLink } from "../../api/services/MealRecipe"
 import { getMealRecipe, getMeals } from "../../api/services/Meals"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
@@ -62,6 +62,15 @@ export const AdminRecipes = () => {
             console.log(response);
             setMealRecipe(response?.response.recipe);
         }
+    }
+
+    useEffect(() => {
+        searchQuery();
+    }, [searchInput])
+
+    const searchQuery = async () => {
+        const response = await getFoodsByTitle(searchInput);
+        setRecipes(response?.response.foods);
     }
 
     const addRecipeLink = async () => {
