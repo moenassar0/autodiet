@@ -19,3 +19,7 @@ export const editMeal = async (data:Object) => {
 export const deleteMeal = async (params: string) => {
     return del("/meal/", params);
 }
+
+export const getMealRecipe = async (params: string) => {
+    return get("/meal/", params);
+}
