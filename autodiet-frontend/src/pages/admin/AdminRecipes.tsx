@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { getMealRecipe, getMeals } from "../../api/services/Meals"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
+import { BasePopup } from "../../components/utility/BasePopup"
 import { Button } from "../../components/utility/Button"
 import { Popup } from "../../components/utility/Popup"
 import { PopupOverlay } from "../../components/utility/PopupOverlay"
@@ -91,9 +92,9 @@ export const AdminRecipes = () => {
                 linkPopup ?
                 <>
                 <PopupOverlay></PopupOverlay>
-                <Popup message="" submitMethod={() => {}} edit={false} title="Link meal" inputs={popupInput} >
-                    
-                </Popup> 
+                <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message="" submitMethod={fetchMeals} title="Link meal" submitButtonTitle="Link">
+
+                </BasePopup> 
                 </> 
 
                 : ""
