@@ -113,20 +113,20 @@ body{
 }
 
 .hero-title{
-  font-size: 64px;
-  padding: 15px;
+  font-size: 56px;
+  padding: 12px;
   color: #FDAD00;
 }
 
 .hero-subtitle{
-  font-size: 36px;
-  padding: 15px;
+  font-size: 32px;
+  padding: 12px;
   color: white;
 }
 
 .hero-description{
-  font-size: 24px;
-  padding: 15px;
+  font-size: 22px;
+  padding: 12px;
   color: white;
 }
 
@@ -285,9 +285,15 @@ canvas{
   .navbar ul{
     display: none;
   }
+  .hero-title{
+    font-size: 40px;
+    padding: 10px;
+    text-align: center;
+  }
   .hero-subtitle{
-    font-size: 36px;
-    padding: 15px;
+    font-size: 32px;
+    text-align: center;
+    padding: 10px;
     color: white;
   }
   .hero-description{
@@ -345,29 +351,69 @@ canvas{
 }
 
 @keyframes slide-left {
-  from {
+  0% {
     transform: translateX(200%);
   }
-  to {
+  25% {
+    transform: translateX(-150%);
+  }
+  100% {
     transform: translateX(0%);
   }
 }
 
 @keyframes slide-right {
-  from {
+  0% {
     transform: translateX(-100%);
   }
-  to {
+  25% {
+    transform: translateX(-75%);
+  }
+  100% {
     transform: translateX(0%);
   }
 }
 
 /* ...and then apply it: */
 .slideleft {
-  animation: slide-left 700ms;
+  animation: slide-left 300ms;
 }
 .slideright{
-  animation: slide-right 700ms;
+  animation: slide-right 300ms;
+}
+/* */
+.animated{
+  transform: translateX(-200px);
+  animation: 1.2s fadeInLeft both;
+  animation-delay: 500ms;
+}
+
+
+.fadeInLeft{
+  -webkit-animation: 1.2s both;
+  -moz-animation: 1.2s both;
+  -o-animation: 1.2s both;
+}
+
+@keyframes fadeInLeft{
+  0%{
+    opacity: 0;
+    -webkit-transform: translateX(-200px);
+  }
+  100%{
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
+}
+@keyframes fadeInRight{
+  0%{
+    opacity: 0;
+    
+  }
+  100%{
+    opacity: 1;
+    -webkit-transform: translateX(0);
+  }
 }
 /* */
 
