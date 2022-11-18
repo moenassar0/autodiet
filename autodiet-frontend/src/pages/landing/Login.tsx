@@ -32,11 +32,16 @@ export const Login = () => {
 
     return(
         <>
-            <div className='translucent-overlay'></div>
-            <Navbar />
-            <div className='navbar-line'><hr></hr></div>
-            <div className='hero-content flex items-center px-6'>
-                <div className="flex flex-col w-full max-w-lg h-96 items-center bg-ad-lightgrey rounded-t">
+        <div className="flex flex-col w-full h-screen">
+            <div className="flex items-center bg-black h-14 w-full p-2 z-20">
+                <div className="w-26 h-12"><img className="w-full h-full" src="../AutoDiet-1.png"></img></div>
+                <div className="flex h-full w-1/2 grow justify-end">
+                    <button className="w-24 h-full bg-ad-golden font-medium text-black rounded-full hover:opacity-80">LOGIN</button>
+                </div>
+            </div>
+            <div className="flex items-center justify-center w-full h-5/6 grow relative">
+                <div className="grad"></div>
+                <div className="z-10 flex flex-col w-full max-w-lg h-96 items-center bg-ad-lightgrey rounded-t">
                     <div className="flex items-center justify-center w-full h-12 bg-black mb-8 rounded-t text-ad-golden font-bold text-lg">
                         LOGIN
                     </div>
@@ -49,12 +54,20 @@ export const Login = () => {
                             <img className="bg-ad-golden w-10 h-10 py-1" src="../password.svg"></img>
                             <input type="password" onChange={(e) => setPassword(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
                         </div>
+                        <div className="flex w-full justify-center">
                         <button onClick={login} className="flex justify-center w-4/5 py-2 px-4 bg-ad-golden text-black rounded">{waitingForResponse ? <img className="h-6 w-6" src="../loading1.gif"></img> : "Login"}</button>
+                        </div>
+                        
                         <p className="w-4/5 text-ad-golden">Create a new account?</p>
                     </div>
                 </div>
-                <img className='hero-image' src="../../hero.png"></img>
             </div>
+        </div>
         </>
     )
 }
+
+/*
+
+
+*/
