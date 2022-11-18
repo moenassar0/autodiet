@@ -119,12 +119,11 @@ class UserController extends Controller
     }
 
     public function getUserMealsPDF(Request $request){
-        $user = User::find($request->id);
+        $user = auth()->user();
         if(!$user) return response()->json(['message' => 'user not found'], 400);
         $meals = UserMeal::where('user_id', $user->id)
         ->join('meals', 'meals.id', '=', 'user_meals.meal_id')
-        //->join('meal_recipes', 'meal_recipes.meal_id', '=', 'user_meals.meal_id')
-        ->where('date', '=', '2022-11-18')
+        ->where('date', '=', $request->date)
         ->get();
 
         foreach($meals as $meal){
@@ -132,14 +131,6 @@ class UserController extends Controller
             ->join("food_items", "food_items.id", '=', 'recipe_item_id')
             ->get();
             $meal->recipe = $meal_recipe;
-            /*$food_item = FoodItem::find($meal['recipe_item_id']);
-            echo $food_item;
-            $meal->serving_size = $meal['multiplier'] * $food_item['serving_size'];
-            $meal['calories'] *= $meal['multiplier'];
-            $meal['protein'] *= $meal['multiplier'];
-            $meal['carbohydrate'] *= $meal['multiplier'];
-            $meal['fat'] *= $meal['multiplier'];
-            $meal['serving_type'] = $food_item['serving_type'];*/
         }
 
         return $meals;
