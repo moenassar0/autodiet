@@ -41,3 +41,7 @@ export const addOrUpdateWeightEntries = async (data:Object) => {
     return put("weightentries", data)
 }
 
+export const sendEmail = async (data:object) => {
+    return post("/send-email", data);
+}
+
