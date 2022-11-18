@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Mail\SendMealPlan;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,9 +26,15 @@ Route::get('/email', function () {
 });
 
 Route::get('send-email', function(){
-    $mailData = ['name' => 'testasd'];
+    $user = User::find(5);
+    //$meals = MealRecipe::where('user_id' , '=', $user->id)
+    //->join('food_items', 'recipe_item_id', '=', 'food_items.id')->get();
 
-    Mail::to("mnassar57@gmail.com")->send(new SendMealPlan($mailData));
+    $userR = new Request();
+    $userR->id = $user->id;
+    $meals = app('App\Http\Controllers\UserController')->getUserMealsPDF($userR);
+
+    Mail::to("mnassar57@gmail.com")->send(new SendMealPlan($meals));
 
     dd("success");
 });
