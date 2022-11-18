@@ -8,19 +8,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 
 class SendMealPlan extends Mailable
 {
     use Queueable, SerializesModels;
-    public $mailData;
+
+    protected $meal;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($mailData)
+    public function __construct($meals)
     {
-        $this->mailData = $mailData;
+        $this->meals = $meals;
+        //$this->users = User::all();
     }
 
     /**
@@ -44,6 +47,9 @@ class SendMealPlan extends Mailable
     {
         return new Content(
             view: 'email.mealplan-email',
+            with: [
+                'meals' => $this->meals,
+            ],
         );
     }
 
