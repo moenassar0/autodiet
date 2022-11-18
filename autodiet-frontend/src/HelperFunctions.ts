@@ -82,6 +82,21 @@ export const getMultiplierFromFood = (number: number, foodItem: FoodItem) => {
   return ratio;
 }
 
+export const convertBase64 = (file: any) => {
+  return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+      resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+      reject(error);
+      };
+  });
+  };
+
 export const sendNotification = async () => {
     const myVar = setTimeout(async () => {
         console.log("test");    
