@@ -8,14 +8,19 @@ use App\Http\Controllers\MealController;
 use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\WeightEntryController;
 use App\Http\Controllers\MealRecipeController;
+use App\Http\Controllers\MailController;
 use App\Http\Middleware\IsUser;
 use App\Http\Middleware\IsAdmin;
+use App\Mail\SendMealPlan;
+use App\Models\User;
 
 Route::post("/users", [UserController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 Route::get("/me", [AuthController::class, "me"]);
 
+Route::post('/send-email', [MailController::class, "sendUserMealPlan"]);
 Route::post("/pdf", [UserController::class, "getUserMealsPDF"]);
+
 Route::middleware([IsUser::class])->group(function () {
     Route::get("/foods", [FoodItemController::class, "getFoodItems"]);
     Route::get("/foods/{search_string}", [FoodItemController::class, "getFoodsByTitle"]);
