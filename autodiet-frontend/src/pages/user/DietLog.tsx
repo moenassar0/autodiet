@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
-import { getFoods } from "../../api/services/Foods";
+import { getFoods, getFoodsByTitle } from "../../api/services/Foods";
 import { BasePopup } from "../../components/utility/BasePopup";
 import { Button } from "../../components/utility/Button";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
+import { SearchBar } from "../../components/utility/SearchBar";
 import { UserBase } from "../../layouts/UserBase"
 import { Recipe } from "../../types/types";
 
@@ -14,22 +15,40 @@ export const DietLog = () => {
     const [addedFoods, setAddedFoods] = useState([]);
     const [currentFoodItem, setCurrentFoodItem] = useState({} as any);
 
+    const [searchInput, setSearchInput] = useState('');
+    const [currentRecordLoads, setCurrentRecordLoads] = useState(10);
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const [recordsPerLoad] = useState(10);
+
+    const indexOfLastRecord = currentPage * recordsPerLoad;
+    const currentRecords = foods.slice(0, indexOfLastRecord);
+
+    useEffect(() => {
+        searchQuery();
+    }, [searchInput])
+
+    const searchQuery = async () => {
+        const response = await getFoodsByTitle(searchInput);
+        setFoods(response?.response.foods);
+    }
+
+    const loadMoreRecords = () => {
+        setCurrentPage(currentPage + 1);
+    }
+
     const styles = {
         active: " bg-slate-400",
         meal: "flex w-full h-10 border-b border-slate-100 dark:border-slate-700 text-slate-700 py-2 pl-8 dark:text-slate-200 text-sm hover:bg-slate-400 cursor-pointer "
     }
 
     useEffect(() => {
-        fetchRecipes();
-    }, [])
+        searchQuery();
+        console.log(currentFoodItem);
+    }, [currentFoodItem])
 
     const addFoodItem = () => {
 
-    }
-
-
-    const fetchRecipes = async () => {
-        setFoods((await getFoods())?.response.foods);
     }
 
     return(
@@ -59,13 +78,17 @@ export const DietLog = () => {
         <>
             <PopupOverlay></PopupOverlay>
             <BasePopup trigger={addPopup} setTrigger={setAddPopup} message="" title="Choose an item to add" submitButtonTitle="" submitMethod={() => {addFoodItem()}}>
-            {foods?.length > 0 
-                ? foods.map((recipe: Recipe) => (
+                <SearchBar setSearchInput={setSearchInput}></SearchBar>
+            {currentRecords?.length > 0 
+                ? currentRecords.map((recipe: Recipe) => (
                     <div key={recipe.id} className={styles.meal} onClick={() => {setCurrentFoodItem(recipe)}}>
                         {recipe.title}
                     </div>
                 ))
                 : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
+                <div className="flex grow w-full grow h-10">
+                    <input type="text" placeholder="gg" />
+                </div>
             </BasePopup>
         </>
         : ""}
