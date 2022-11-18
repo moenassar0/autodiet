@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getFoods, getFoodsByTitle } from "../../api/services/Foods";
 import { BasePopup } from "../../components/utility/BasePopup";
 import { Button } from "../../components/utility/Button";
+import InputField from "../../components/utility/InputField";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
 import { SearchBar } from "../../components/utility/SearchBar";
 import { UserBase } from "../../layouts/UserBase"
@@ -14,6 +15,7 @@ export const DietLog = () => {
     const [addPopup, setAddPopup] = useState(false);
     const [addedFoods, setAddedFoods] = useState([]);
     const [currentFoodItem, setCurrentFoodItem] = useState({} as any);
+    const [foodServing, setFoodServing] = useState("");
 
     const [searchInput, setSearchInput] = useState('');
     const [currentRecordLoads, setCurrentRecordLoads] = useState(10);
@@ -48,7 +50,7 @@ export const DietLog = () => {
     }, [currentFoodItem])
 
     const addFoodItem = () => {
-
+        console.log()
     }
 
     return(
@@ -77,7 +79,7 @@ export const DietLog = () => {
         {addPopup ?
         <>
             <PopupOverlay></PopupOverlay>
-            <BasePopup trigger={addPopup} setTrigger={setAddPopup} message="" title="Choose an item to add" submitButtonTitle="" submitMethod={() => {addFoodItem()}}>
+            <BasePopup trigger={addPopup} setTrigger={setAddPopup} message="" title="Choose an item to add" submitButtonTitle="Add" submitMethod={() => {addFoodItem()}}>
                 <SearchBar setSearchInput={setSearchInput}></SearchBar>
             {currentRecords?.length > 0 
                 ? currentRecords.map((recipe: Recipe) => (
@@ -87,7 +89,7 @@ export const DietLog = () => {
                 ))
                 : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
                 <div className="flex grow w-full grow h-10">
-                    <input type="text" placeholder="gg" />
+                    <InputField placeholder={currentFoodItem?.serving_type} title="" error="" valid={true} state={foodServing} setHook={setFoodServing}></InputField>
                 </div>
             </BasePopup>
         </>
