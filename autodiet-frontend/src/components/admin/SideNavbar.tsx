@@ -23,7 +23,7 @@ export const SideNavbar: React.FC<{navbarlinks:Array<SideNavBarLinkInterface>}> 
                 </div>
             </div>
             <div className={(openNavbar ? "" : "hidden") + " flex items-center justify-center w-5/6 h-20 pl-3"}>
-            <img src="../logo2.png" className="h-11 w-22"></img>
+            <img src="../AutoDiet-1.png" className="h-11 w-22"></img>
             </div>
             {
                 navbarlinks.map((link, i) => (
