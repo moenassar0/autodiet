@@ -58,7 +58,7 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                             <img className="w-6 f-6 rounded-full mr-2" src="../oat.png"></img>
                             {recipe.title + "   " + Math.round(recipe.serving_size * meal_multiplier * parseFloat(recipe.pivot.multiplier)) + "g"}
                         </div>*/
-                        <div className="flex w-full h-full hover:bg-slate-100 dark:hover:bg-admin-dark-sidenav">
+                        <div key={recipe.id} className="flex w-full h-full hover:bg-slate-100 dark:hover:bg-admin-dark-sidenav">
                             <div className="h-16 flex items-center w-3/5 cursor-pointer px-2">
                                 <img className="w-12 h-12 rounded-full mr-2" src={recipe.picture_url}></img>
                                 <span className="">{recipe.title}</span>

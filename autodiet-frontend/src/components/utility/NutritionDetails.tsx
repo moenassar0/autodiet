@@ -3,7 +3,7 @@ import { PieChart } from "../charts/PieChart"
 
 export const NutritionDetails: React.FC<{meals: MealInterface, nutritionData: any}> = ({meals, nutritionData}) => {
     return(
-        <div className="hidden sm:flex content-start gap-4 flex-wrap h-full grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F] overflow-y-scroll">
+        <div className="hidden sm:flex content-start gap-4 flex-wrap h-full grow w-3/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F] overflow-auto">
             <div className="hidden lg:flex h-54 w-full justify-center">
                 {meals ? <PieChart nutritionData={nutritionData} labels={[]} dataFields={[]}/> : ""}
             </div>
