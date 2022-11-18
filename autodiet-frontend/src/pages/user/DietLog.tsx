@@ -5,6 +5,7 @@ import { Button } from "../../components/utility/Button";
 import InputField from "../../components/utility/InputField";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
 import { SearchBar } from "../../components/utility/SearchBar";
+import { getMultiplierFromFood } from "../../HelperFunctions";
 import { UserBase } from "../../layouts/UserBase"
 import { Recipe } from "../../types/types";
 
@@ -13,7 +14,7 @@ export const DietLog = () => {
     const [foods, setFoods] = useState([]);
     const [currFoodID, setCurrFoodID] = useState(-1);
     const [addPopup, setAddPopup] = useState(false);
-    const [addedFoods, setAddedFoods] = useState([]);
+    const [addedFoods, setAddedFoods] = useState([] as any);
     const [currentFoodItem, setCurrentFoodItem] = useState({} as any);
     const [foodServing, setFoodServing] = useState("");
 
@@ -50,28 +51,36 @@ export const DietLog = () => {
     }, [currentFoodItem])
 
     const addFoodItem = () => {
-        console.log()
+        const mult = (getMultiplierFromFood(parseFloat(foodServing), currentFoodItem))
+        currentFoodItem['calories'] *= mult;
+        currentFoodItem['protein'] *= mult;
+        currentFoodItem['carbohydrate'] *= mult;
+        currentFoodItem['fat'] *= mult;
+        addedFoods.push(currentFoodItem)
+        console.log(currentFoodItem, foodServing);
     }
 
     return(
         <div className="flex h-screen w-full">
         <UserBase topNavbarChildren={<></>} pageTitle="Diet Log">
             <div className="flex flex-col h-full w-full p-2 gap-2">
-            <div className="flex bg-white h-12 items-center w-full rounded px-2">
-                <Button onclickMethod={() => {setAddPopup(true)}} styling="" title="Add Food"></Button>
+            <div className="flex bg-white h-12 items-center w-full rounded drop-shadow bg-white dark:bg-admin-dark-background p-2 items-center">
+                <Button onclickMethod={() => {setAddPopup(true)}} styling="ml-auto" title="Add Food"></Button>
             </div>
-            <div className="flex bg-white h-5/6 grow w-full rounded drop-shadow">
-                <div className="flex w-full h-12">
+            <div className="flex h-5/6 grow w-full rounded drop-shadow bg-white dark:bg-admin-dark-background p-2">
+                {addedFoods.length>0 ? addedFoods.map((food: any) => (
+                <div className="flex w-full h-12 dark:text-ad-golden dark:bg-ad-lightgrey">
                     <div className="flex w-1/3 h-full">
-
+                        {food.title}
                     </div>
                     <div className="flex w-1/3 h-full">
-                        
+                    {food.serving_size + " " + food.serving_type}
                     </div>
                     <div className="flex w-1/3 h-full">
-                        
+                    {food.calories + " Calories"}
                     </div>
                 </div>
+                )) : ""}
             </div>
             </div>
 
