@@ -16,8 +16,13 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
     const [fat, setFat] = useState(0);
     const [type, setType] = useState("");
     const [proteinPercentage, setProteinPercentage] = useState(0);
+    const [pictureBase64, setPictureBase64] = useState("");
 
     const [message, setMessage] = useState("");
+
+    useEffect(() => {
+        console.log(pictureBase64);
+    }, [pictureBase64])
 
     useEffect(() => {
         if(calories && protein) {
@@ -32,15 +37,18 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
         { title:"Type", error:"asd", setHook: setType, state:type, valid:true },
         { title:"Fat", error:"asd", setHook: setFat, state:fat.toString(), valid:true },
         { title:"Protein Percentage", error:"asd", setHook: setProteinPercentage, state:proteinPercentage.toString(), valid:true },
+    
     ];
 
     const handleSubmit = async () => {
         if(!edit){
-            const response = await addMeal({title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage, picture_url:"asd"});
+            const data = {title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage.toString(), picture_url: pictureBase64}
+            console.log("data sent:", data);
+            const response = await addMeal(data);
             if(!response?.success) setMessage("Server Error");
             else setMessage("Meal added!");
         }else if(edit){
-            const meal = {id: mealID,title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage, picture_url:"asd"};
+            const meal = {id: mealID,title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage.toString(), picture_url:"asd"};
             const response = await editMeal(meal);
             console.log(meal);
             console.log(((response?.response)))
@@ -54,7 +62,7 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
            {trigger ? 
             (   <>
                     <PopupOverlay></PopupOverlay>
-                    <Popup title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
+                    <Popup setPictureBase64={setPictureBase64} title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
                         <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
                     </Popup>
                 </>
