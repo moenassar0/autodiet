@@ -14,7 +14,7 @@ import { userNavbarLinks } from "../../types/consts";
 import { Button } from "../../components/utility/Button";
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
-import { addOrUpdateUserMeals, getUser, getUserDetails, getUserMeals } from "../../api/services/Users";
+import { addOrUpdateUserMeals, getUser, getUserDetails, getUserMeals, sendEmail } from "../../api/services/Users";
 import { CustomNotification } from "../../components/utility/CustomNotification";
 import { NutritionDetails } from "../../components/utility/NutritionDetails";
 
@@ -75,6 +75,12 @@ export const Home = () => {
         await addOrUpdateUserMeals({meals: mealPlanResponse.gen_meal_plan, date: date.toISOString().slice(0, 10)});
     }
 
+    const sendUserEmail = async () => {
+        const data = {date: date.toISOString().slice(0, 10)};
+        const response = await sendEmail(data);
+        console.log(response);
+    }
+
     return(
         <div className="flex h-screen w-full">
             
@@ -90,13 +96,14 @@ export const Home = () => {
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
                         <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
+                        <Button title="Email" onclickMethod={() => {sendUserEmail()}} styling=""></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
                 <div className="flex h-5/6 grow w-full">
-                <div className="overflow-hidden relative flex h-full w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
-                    <div key={Math.random()} className={(slide ? "slideleft" : "slideright") + " w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
-                        <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
+                <div className="overflow-hidden flex h-full w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
+                    <div className={(slide ? "slideleft" : "slideright") + " w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
+                        <div key={Math.random()} className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
                             {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                         </div>
                     </div>
@@ -105,6 +112,8 @@ export const Home = () => {
                 </div>
             </div>
             <CustomNotification body="Go to your profile and save your details" turnOff={hideNotification} setTurnOff={setHideNotification}></CustomNotification>
+            <div className="absolute bg-black right-5 bottom-5 w-10 h-10 rounded-full">
+            </div>
         </div>
     )
 }
