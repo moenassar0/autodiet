@@ -56,6 +56,7 @@ export const DietLog = () => {
         currentFoodItem['protein'] *= mult;
         currentFoodItem['carbohydrate'] *= mult;
         currentFoodItem['fat'] *= mult;
+        currentFoodItem['mult'] = mult;
         addedFoods.push(currentFoodItem)
         console.log(currentFoodItem, foodServing);
     }
@@ -67,14 +68,14 @@ export const DietLog = () => {
             <div className="flex bg-white h-12 items-center w-full rounded drop-shadow bg-white dark:bg-admin-dark-background p-2 items-center">
                 <Button onclickMethod={() => {setAddPopup(true)}} styling="ml-auto" title="Add Food"></Button>
             </div>
-            <div className="flex h-5/6 grow w-full rounded drop-shadow bg-white dark:bg-admin-dark-background p-2">
+            <div className="flex flex-col h-5/6 grow w-full rounded drop-shadow bg-white dark:bg-admin-dark-background p-2">
                 {addedFoods.length>0 ? addedFoods.map((food: any) => (
                 <div className="flex w-full h-12 dark:text-ad-golden dark:bg-ad-lightgrey">
                     <div className="flex w-1/3 h-full">
                         {food.title}
                     </div>
                     <div className="flex w-1/3 h-full">
-                    {food.serving_size + " " + food.serving_type}
+                    {(food.serving_size * parseFloat(food.mult)) + " " + food.serving_type}
                     </div>
                     <div className="flex w-1/3 h-full">
                     {food.calories + " Calories"}
@@ -88,18 +89,20 @@ export const DietLog = () => {
         {addPopup ?
         <>
             <PopupOverlay></PopupOverlay>
-            <BasePopup trigger={addPopup} setTrigger={setAddPopup} message="" title="Choose an item to add" submitButtonTitle="Add" submitMethod={() => {addFoodItem()}}>
+            <BasePopup trigger={addPopup} setTrigger={setAddPopup} message="" title="Choose an item to add" submitButtonTitle="Add" 
+            submitMethod={() => {addFoodItem()}} 
+            buttonChildren={<div className="flex grow w-full grow h-10">
+                                <InputField placeholder={currentFoodItem?.serving_type} title="Serving amount" error="" valid={true} state={foodServing} setHook={setFoodServing}></InputField>
+                            </div>}>
                 <SearchBar setSearchInput={setSearchInput}></SearchBar>
             {currentRecords?.length > 0 
                 ? currentRecords.map((recipe: Recipe) => (
                     <div key={recipe.id} className={styles.meal} onClick={() => {setCurrentFoodItem(recipe)}}>
-                        {recipe.title}
+                        {recipe.title + " " + recipe.calories + " calories for " + recipe.serving_size + " " + recipe.serving_type + " serving"}
                     </div>
                 ))
-                : <div className="bg-white text-black w-full h-10">"No recipe found. Pick a meal."</div>}
-                <div className="flex grow w-full grow h-10">
-                    <InputField placeholder={currentFoodItem?.serving_type} title="" error="" valid={true} state={foodServing} setHook={setFoodServing}></InputField>
-                </div>
+                : <div className="p-2 text-black w-full h-10">"No recipe found. Pick a meal."</div>}
+
             </BasePopup>
         </>
         : ""}
