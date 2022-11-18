@@ -42,7 +42,7 @@ export const DietLog = () => {
 
     const styles = {
         active: " bg-slate-400",
-        meal: "flex w-full h-10 border-b border-slate-100 dark:border-slate-700 text-slate-700 py-2 pl-8 dark:text-slate-200 text-sm hover:bg-slate-400 cursor-pointer "
+        meal: "flex w-full h-10 border-b border-slate-100 dark:border-slate-700 text-slate-700 py-2 pl-8 dark:text-slate-200 text-sm hover:bg-slate-600 cursor-pointer "
     }
 
     useEffect(() => {
@@ -59,6 +59,7 @@ export const DietLog = () => {
         currentFoodItem['mult'] = mult;
         addedFoods.push(currentFoodItem)
         console.log(currentFoodItem, foodServing);
+        setFoodServing("");
     }
 
     return(
@@ -70,7 +71,7 @@ export const DietLog = () => {
             </div>
             <div className="flex flex-col h-5/6 grow w-full rounded drop-shadow bg-white dark:bg-admin-dark-background p-2">
                 {addedFoods.length>0 ? addedFoods.map((food: any) => (
-                <div className="flex w-full h-12 dark:text-ad-golden dark:bg-ad-lightgrey">
+                <div className="flex w-full h-10 border-b border-slate-100 dark:border-slate-700 text-slate-700 py-2 pl-8 dark:text-slate-200 text-sm hover:bg-slate-400 cursor-pointer">
                     <div className="flex w-1/3 h-full">
                         {food.title}
                     </div>
