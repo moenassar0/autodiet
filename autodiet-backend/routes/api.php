@@ -15,6 +15,7 @@ Route::post("/users", [UserController::class, "register"]);
 Route::post("/login", [AuthController::class, "login"]);
 Route::get("/me", [AuthController::class, "me"]);
 
+Route::post("/pdf", [UserController::class, "getUserMealsPDF"]);
 Route::middleware([IsUser::class])->group(function () {
     Route::get("/foods", [FoodItemController::class, "getFoodItems"]);
     Route::get("/foods/{search_string}", [FoodItemController::class, "getFoodsByTitle"]);
