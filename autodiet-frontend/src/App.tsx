@@ -22,6 +22,7 @@ import { BrowseFoods } from './pages/user/BrowseFoods';
 import { useUser } from './context/UserContext';
 import { Landing } from './pages/landing/Landing';
 import { AdminRecipes } from './pages/admin/AdminRecipes';
+import { DietLog } from './pages/user/DietLog';
 
 //export const UserContext = React.createContext(user);
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/user/meals" element={<BrowseMeals />}></Route>
           <Route path="/user/foods" element={<BrowseFoods />}></Route>
           <Route path="/user/weight" element={<UserWeightEntries />}></Route>
+          <Route path="/user/dietlog" element={<DietLog />}></Route>
           <Route path="/user/chat" element={<Chatbox />}></Route>
         </Route>
 
