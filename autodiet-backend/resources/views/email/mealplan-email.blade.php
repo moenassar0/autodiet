@@ -66,22 +66,57 @@
             height: 16.666667%; 
             border-bottom-right-radius: 0.25rem;
             border-bottom-left-radius: 0.25rem; 
-
             }
+
+        .main-table{
+            border-collapse: collapse;
+            margin: 0 0 25px 0;
+            font-size: 1em;
+            min-width: 400px;
+            width: 100%;
+            max-height: 400px;
+            border-radius: 10px;
+        }
+
+        .main-table th{
+            background-color: #FF5B8D;
+            text-align: left;
+            font-weight: bold;
+            position: sticky;
+            top:0;
+            left:0;
+        }
+
+        .main-table th,
+        .main-table td {
+            padding: 12px 15px;
+        }
+            
         </style>
     </head>
     <body>
-        <div class="mealcard-container">
-            <table>
-                <tr><td>            <div class="mealcard-pic">
-                <img src="http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQB1CaDUrJR3_r7VuJUJlz14b_eUB2NVApNtmEALhJyU5sdnh6QHDUn1OO6Tnb7-ioF3zL5SE-Qai851bo" class="img-size"></img>
-            </div></td></tr>
-                <tr><td><div class="mealcard-title">Overnight oatz</div></td></tr>
-                <tr><td><div class="mealcard-calories">8978 Calorie</div></td></tr>
-            </table>
 
+    @foreach ($meals as $meal)
+        <table class="main-table">
+            <tr>
+                <th>Meal Name: {{ $meal->title }}</th>
+                <th>Calories</th>
+                <th>Protein</th>
+                <th>Carbohydrate</th>
+                <th>Serving</th>
+            </tr>
             
+            @foreach ($meal->recipe as $recipe)
+            <tr>
+                <td><div class="mealcard-title">{{ $recipe->title }}</div></td>
+                <td><div class="mealcard-title">{{ $recipe->calories * $meal->multiplier * $recipe->multiplier }}</div></td>
+                <td><div class="mealcard-title">{{ $recipe->protein * $meal->multiplier * $recipe->multiplier  }}</div></td>
+                <td><div class="mealcard-title">{{ $recipe->carbohydrate * $meal->multiplier * $recipe->multiplier  }}</div></td>
+                <td><div class="mealcard-title">{{ $recipe->serving_size * $meal->multiplier * $recipe->multiplier . " " . $recipe->serving_type}}</div></td>
+            </tr>
+            @endforeach
             
-        </div>
+        </table>
+        @endforeach
     </body>
 </html>
