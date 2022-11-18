@@ -2,7 +2,7 @@ import { InputFieldInterface } from "../../types/types"
 
 
 //change to interface
-const InputField: React.FC<InputFieldInterface> = ({title, error, state, setHook, valid, placeholder}) => {
+const InputField: React.FC<InputFieldInterface> = ({type, title, error, state, setHook, valid, placeholder}) => {
     const styles = {
         container: "flex items-center place-content-between w-full h-10 px-2 py-1",
         title: "w-2/5 text-admin-main dark:text-ad-golden text-lg",
@@ -18,7 +18,7 @@ const InputField: React.FC<InputFieldInterface> = ({title, error, state, setHook
                     value={state} 
                     onChange={(e) => setHook(e.target.value)} 
                     className={styles.inputFieldNormal +
-                    (!valid && state ? styles.inputFieldInvalid : "")} type="text">
+                    (!valid && state ? styles.inputFieldInvalid : "")} type={type ? type : "text"}>
                 </input>
             </div>
             {!valid && state ? <p className="w-3/5 flex self-end text-red-600">{error}</p> : ""}
