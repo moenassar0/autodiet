@@ -6,7 +6,7 @@ import type { ChartData, ChartOptions } from 'chart.js';
 import { useTheme } from "../../context/ThemeContext";
 Chart.register(ArcElement, CategoryScale, LinearScale, PointElement, LineElement, Title);
 
-export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<number>}> = ({labels, dataFields}) => {
+export const LineChart: React.FC<{styling?: string, labels: Array<string>, dataFields: Array<number>}> = ({styling, labels, dataFields}) => {
     const [color, setColor] = useState('rgb(75, 192, 192)')
     const darkColors = '#FDAD00';
     const lightColors = 'rgb(75, 192, 192)';
@@ -42,7 +42,7 @@ export const LineChart: React.FC<{labels: Array<string>, dataFields: Array<numbe
     };
 
     return(
-        <div>
+        <div className={styling}>
             <Line data={data} options={lineChartOptions} />
         </div>
     )
