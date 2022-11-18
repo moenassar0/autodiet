@@ -25,16 +25,17 @@ Route::get('/email', function () {
     return view('email.mealplan-email');
 });
 
-Route::get('send-email', function(){
-    $user = User::find(5);
+Route::post('/send-email', function(Request $request){
+    $user = auth()->user();
     //$meals = MealRecipe::where('user_id' , '=', $user->id)
     //->join('food_items', 'recipe_item_id', '=', 'food_items.id')->get();
 
-    $userR = new Request();
-    $userR->id = $user->id;
-    $meals = app('App\Http\Controllers\UserController')->getUserMealsPDF($userR);
+    //$userR = new Request();
+    //$userR->id = $user->id;
 
-    Mail::to("mnassar57@gmail.com")->send(new SendMealPlan($meals));
+    $meals = app('App\Http\Controllers\UserController')->getUserMealsPDF($request);
+
+    Mail::to($user->email)->send(new SendMealPlan($meals));
 
     dd("success");
 });
