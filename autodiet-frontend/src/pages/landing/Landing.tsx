@@ -22,11 +22,10 @@ export const Landing = () => {
 
     const navigate = useNavigate();
 
-    const goToRegisterPage = async () => {
+    const goToRegisterPage = () => {
         navigate("/register");
     }
     
-    console.log(inView, "sad")
     useEffect(() => {
         setCurrentTheme('dark');
         document.documentElement.classList.add("dark");
@@ -68,7 +67,7 @@ export const Landing = () => {
             </div>
             <div className="flex items-center justify-center w-full h-5/6 grow relative">
                 <div className="grad"></div>
-                <div className="flex flex-col flex-wrap items-center justify-center w-[400px] sm:w-[600px] h-full relative z-10 gap-3">
+                <div className="animated flex flex-col flex-wrap items-center justify-center w-[400px] sm:w-[600px] h-full relative z-10 gap-3">
                     <span className="stroke-black text-4xl sm:text-5xl text-ad-golden text-center font-medium text-stroke-black">AUTOMATE YOUR DIET</span>
                     <span className="text-xl text-white text-center">You don't have to waste your time, we will do all the work for you. With a click of a button generate your daily mealplan.</span>
                     <button onClick={goToRegisterPage} className="border-2 border-black bg-ad-golden rounded-full w-32 h-10">Get started</button>

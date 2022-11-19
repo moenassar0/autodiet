@@ -49,8 +49,8 @@ export const Home = () => {
         if(response?.response?.user_detail == null){
             console.log(response?.response?.user_detail);
             setHideNotification(false);
+            sendNotification();
         }
-        console.log(response?.response);
         return (calculateCalories(response?.response.user_detail));
     }
 
@@ -95,15 +95,14 @@ export const Home = () => {
                         onClick={() => {setSlide(true); setDate(tomorrowFromDay(date))}}>{">"}</button>
                     </div>
                     <div className="gap-4 flex w-auto h-full items-center">
-                        <Button title="Notification" onclickMethod={() => { sendNotification(); } } styling={""}></Button>
                         <Button title="Email" onclickMethod={() => {sendUserEmail()}} styling=""></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
                 </AdminTopNavbar>
                 <div className="flex h-5/6 grow w-full">
                 <div className="overflow-hidden flex h-full w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
-                    <div className={(slide ? "slideleft" : "slideright") + " w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
-                        <div key={Math.random()} className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
+                    <div className={(slide ? "fadeInLeft" : "slideright") + " grow w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
+                        <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
                             {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
                         </div>
                     </div>

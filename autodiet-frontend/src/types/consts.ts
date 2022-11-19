@@ -18,5 +18,5 @@ export const adminNavbarLinks = [
     { path: "/admin/foods", icon: faDrumstickBite, title: "Foods" },
     { path: "/admin/recipes", icon: faBookOpen, title: "Recipes" },
     { path: "/admin/chat", icon: faMessage, title: "Chat Requests" },
-    { path: "/admin/users", icon: faRightFromBracket, title: "Logout" },
+    { path: "/admin/logout", icon: faRightFromBracket, title: "Logout" },
 ];

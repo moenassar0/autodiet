@@ -34,8 +34,9 @@ export const LineChart: React.FC<{styling?: string, labels: Array<string>, dataF
                 }
             },
             y: {
+                beginAtZero: true,
                 ticks:{
-                    color:color
+                    color:color,
                 }
             }
         }

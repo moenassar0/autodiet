@@ -4,9 +4,12 @@ import { Navbar } from "../../components/landing/Navbar"
 import {checkEmail, checkPassword, checkStringLength} from "../../HelperFunctions";
 import InputField from "../../components/utility/InputField"
 import { useTheme } from "../../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 export const Register = () => {
     const {themeType, setCurrentTheme} = useTheme();
+    const navigate = useNavigate();
+    
     const [username, setUsername] = useState('');
     const [validUsername, setValidUsername] = useState(false);
 
@@ -45,7 +48,7 @@ export const Register = () => {
             <div className="flex items-center bg-black h-14 w-full p-2 z-20">
                 <div className="w-26 h-12"><img className="w-full h-full" src="../AutoDiet-1.png"></img></div>
                 <div className="flex h-full w-1/2 grow justify-end">
-                    <button className="w-24 h-full bg-ad-golden font-medium text-black rounded-full hover:opacity-80">LOGIN</button>
+                    <button onClick={() => {navigate("/login")}} className="w-24 h-full bg-ad-golden font-medium text-black rounded-full hover:opacity-80">LOGIN</button>
                 </div>
             </div>
             <div className="flex items-center justify-center w-full h-5/6 grow relative">
@@ -58,6 +61,7 @@ export const Register = () => {
                         <div className="flex items-center place-content-between w-full h-10 px-2">
                             <span className="w-2/5 text-ad-golden text-lg">Email</span>
                             <input 
+                                
                                 onChange={(e) => setEmail(e.target.value)} 
                                 className={"w-3/5 py-2 px-4 text-white bg-black rounded focus:outline-none focus:ring-2 focus:border-ad-golden focus:ring-ad-golden" +
                                 (!validEmail && email ? "focus:border-red-500 focus:ring-red-500 border-red-500 text-red-600" : "")} type="email">
@@ -67,6 +71,7 @@ export const Register = () => {
                         <div className="flex items-center place-content-between w-full h-10 px-2">
                             <span className="w-2/5 text-ad-golden text-lg">Username</span>
                             <input 
+                            
                                 onChange={(e) => setUsername(e.target.value)} 
                                 className={"w-3/5 py-2 px-4 text-white bg-black rounded focus:outline-none focus:ring-2 focus:border-ad-golden focus:ring-ad-golden" +
                                 (!validUsername && username ? "focus:border-red-500 focus:ring-red-500 border-red-500 text-red-600" : "")} type="text">

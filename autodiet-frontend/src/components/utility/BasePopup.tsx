@@ -5,7 +5,7 @@ import { Button } from "./Button"
 export const BasePopup: React.FC<{buttonChildren?:any, closeButton?:any, message: string, children: any, title: string, trigger: any, setTrigger: any, submitMethod: any, submitButtonTitle: string}> = ({buttonChildren, closeButton, submitButtonTitle, submitMethod, title, setTrigger, trigger, children, message}) => {
     const styles ={
         popupContainer: "absolute flex items-center justify-center w-full h-auto z-20 min-h-screen rounded",
-        popupContent: "w-full h-screen flex flex-wrap bg-white content-start dark:bg-admin-dark-background text-admin-main dark:text-ad-golden overflow-auto gap-2 rounded-t-lg",
+        popupContent: "w-full max-h-screen flex flex-wrap bg-white content-start dark:bg-admin-dark-background text-admin-main dark:text-ad-golden overflow-auto gap-2 rounded-t-lg",
         popupTitle: "flex w-full h-16 text-xl font-medium items-center px-2 rounded-t-lg border-b border-black dark:bg-admin-dark-background text-admin-main dark:text-ad-golden",
         buttonDiv: "grow flex w-full h-16 justify-end items-center py-2 px-2"
     }

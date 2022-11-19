@@ -98,7 +98,7 @@ export const DietLog = () => {
                 <SearchBar setSearchInput={setSearchInput}></SearchBar>
             {currentRecords?.length > 0 
                 ? currentRecords.map((recipe: Recipe) => (
-                    <div key={recipe.id} className={styles.meal} onClick={() => {setCurrentFoodItem(recipe)}}>
+                    <div key={recipe.id} className={(recipe.id === currentFoodItem.id ? "bg-slate-400 " : "" ) + styles.meal} onClick={() => {setCurrentFoodItem(recipe)}}>
                         {recipe.title + " " + recipe.calories + " calories for " + recipe.serving_size + " " + recipe.serving_type + " serving"}
                     </div>
                 ))

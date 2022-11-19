@@ -24,11 +24,9 @@ export const AdminTopNavbar:React.FC<{title: string, username: string, children:
         
         if(themeType === "dark"){
             document.documentElement.classList.add("dark");
-            console.log(themeType);
         }else{
             document.documentElement.classList.remove("dark");
         }
-        console.log(themeType)
     }, [themeType])
 
     return(

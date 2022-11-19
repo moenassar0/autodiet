@@ -23,7 +23,10 @@ export const Login = () => {
             setUser(user2);
             console.log("user", user);
             localStorage.setItem("token", response.data.token.original.access_token)
+            if(response.data.user.user_role === "User")
             navigate("/user/home");
+            if(response.data.user.user_role === "Admin")
+            navigate("/admin/users");
         }catch(err){
             console.log("Error from http request: ", err);
         }
@@ -48,11 +51,11 @@ export const Login = () => {
                     <div className="flex flex-col w-full items-center gap-10">
                         <div className="flex w-full justify-center">
                             <img className="bg-ad-golden w-10 h-10 py-1" src="../user.svg"></img>
-                            <input type="text" onChange={(e) => setEmail(e.target.value)} className="w-4/5 h-10 py-2 px-4 bg-black text-white rounded-t"></input>
+                            <input placeholder="Email" type="text" onChange={(e) => setEmail(e.target.value)} className="w-4/5 h-10 py-2 px-4 bg-black text-white rounded-t"></input>
                         </div>
                         <div className="flex w-full justify-center">
                             <img className="bg-ad-golden w-10 h-10 py-1" src="../password.svg"></img>
-                            <input type="password" onChange={(e) => setPassword(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
+                            <input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} className="w-4/5 py-2 px-4 bg-black text-white rounded-t"></input>
                         </div>
                         <div className="flex w-full justify-center">
                         <button onClick={login} className="flex justify-center w-4/5 py-2 px-4 bg-ad-golden text-black rounded">{waitingForResponse ? <img className="h-6 w-6" src="../loading1.gif"></img> : "Login"}</button>

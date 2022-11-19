@@ -28,7 +28,6 @@ export const validateUser = async() => {
     const headers = {headers:{'Authorization' : "Bearer " + token}};
     try{
         const response = await axios.get("/me", headers);
-        console.log(response);
         return true;
     }catch{
         return false;   
@@ -133,12 +132,13 @@ export const sendNotification = async () => {
 
 export const getNutritionFromMeals = (meals: Array<MealInterface>) => {
   let nutrition: NutritionObjectInterface = {protein:0, fats: 0, carbs: 0, calories: 0}
-  meals.forEach(meal => {
-    nutrition.protein += meal.protein;
-    nutrition.fats += meal.fat;
-    nutrition.carbs += meal.carbohydrate;
-    nutrition.calories += meal.calories;
-  });
+  if(meals)
+    meals.forEach(meal => {
+      nutrition.protein += meal.protein;
+      nutrition.fats += meal.fat;
+      nutrition.carbs += meal.carbohydrate;
+      nutrition.calories += meal.calories;
+    });
   return nutrition;
 }
 
@@ -158,14 +158,17 @@ export const macrosFromNutrition = (nutrtion: NutritionObjectInterface) => {
 
 export const calculateCalories = (userDetails: UserDetails) => {
   let calories = 0;
-  if(userDetails.sex === "Male"){
-    calories = (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) + 5
-  }else{
-    calories = 
-    (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) - 161
+  if(userDetails){
+    if(userDetails.sex === "Male"){
+      calories = (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) + 5
+    }else{
+      calories = 
+      (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) - 161
+    }
+    const mult = activityLevelMultiplier(userDetails.activity_level);
+    return calories * mult;
   }
-  const mult = activityLevelMultiplier(userDetails.activity_level);
-  return calories * mult;
+  return calories;
 }
 
 export const activityLevelMultiplier = (activity: string) => {

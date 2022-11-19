@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { Navbar } from './components/landing/Navbar';
 import { Routes, Route, Outlet, redirect } from "react-router-dom";
@@ -23,15 +23,20 @@ import { useUser } from './context/UserContext';
 import { Landing } from './pages/landing/Landing';
 import { AdminRecipes } from './pages/admin/AdminRecipes';
 import { DietLog } from './pages/user/DietLog';
+import { Logout } from './components/Logout';
 
 //export const UserContext = React.createContext(user);
 
 function App() {
+
+  useEffect(() => {
+    document.title = "AutoDiet";
+  }, [])
   return (
     <>
       <Routes>
 
-        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
         <Route path="/landing" element={<Landing />}></Route>
@@ -44,6 +49,7 @@ function App() {
           <Route path="/user/weight" element={<UserWeightEntries />}></Route>
           <Route path="/user/dietlog" element={<DietLog />}></Route>
           <Route path="/user/chat" element={<Chatbox />}></Route>
+          <Route path="/user/logout" element={<Logout />}></Route>
         </Route>
 
         <Route path="/admin" element={ <div><Outlet /></div> }>
@@ -52,6 +58,7 @@ function App() {
           <Route path="/admin/foods" element={<AdminFoods />}></Route>
           <Route path="/admin/recipes" element={<AdminRecipes />}></Route>
           <Route path="/admin/chat" element={<AdminChat />}></Route>
+          <Route path="/admin/logout" element={<Logout />}></Route>
         </Route>
 
       </Routes>
