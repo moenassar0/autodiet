@@ -17,16 +17,21 @@ class MealController extends Controller
         $meal->protein = $request->protein;
         $meal->carbohydrate = $request->carbohydrate;
         $meal->fat = $request->fat;
-        //$meal->picture_url = $request->picture_url;
+        $meal->picture_url = "test";
         $meal->protein_percentage = $request->protein_percentage;
         $meal->type = $request->type;
 
+
+        //$decoder->move(public_path('public/images'), "ggg");
+        $meal->save();
+
         $base64_string = $request->picture_url;
         $decoder = base64_decode($base64_string);
-        $url = "/home/mohamad/Desktop/autodiet/autodiet-backend/public/images/meals/" . md5($request->title) . ".jpg";
+        $url = "/home/mohamad/Desktop/autodiet/autodiet-frontend/public/images/meals/" 
+        . $meal->id . ".jpg";
         file_put_contents($url, $decoder);
         $meal->picture_url = $url;
-        //$decoder->move(public_path('public/images'), "ggg");
+
         $meal->save();
 
         return response()->json(["result" => "ok", 'meal added:' => $meal], 201);
