@@ -27,7 +27,7 @@ const Meal: React.FC<Props> = ({meal}) => {
                     <span className="w-full h-1/3 text-xs dark:text-admin-grey-background text-slate-500">{macros ? macros : ""}</span>
                 </div>
                 <div className="flex w-full justify-start items-center h-3/5 dark:text-white">
-                    <img className="w-full h-full rounded" src={meal.picture_url}></img>
+                    <img className="w-full h-full rounded" src={"file://" + meal.picture_url}></img>
                 </div>
             </div>
         </section>

@@ -62,7 +62,7 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
            {trigger ? 
             (   <>
                     <PopupOverlay></PopupOverlay>
-                    <Popup setPictureBase64={setPictureBase64} title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
+                    <Popup hasPicture={true} setPictureBase64={setPictureBase64} title={(edit ? "Edit Meal" : "Add Meal")} edit={edit} message={message} inputs={inputs} submitMethod={handleSubmit}>
                         <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800"icon={faClose}></FontAwesomeIcon>
                     </Popup>
                 </>

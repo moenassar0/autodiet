@@ -1,7 +1,7 @@
 import { InputFieldInterface } from "../../types/types";
 import InputField from "./InputField";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faClose } from '@fortawesome/free-solid-svg-icons'
+import { faImage } from '@fortawesome/free-solid-svg-icons'
 import { BasePopup } from "./BasePopup";
 import { convertBase64 } from "../../HelperFunctions";
 
@@ -25,7 +25,12 @@ export const Popup: React.FC<{hasPicture?: boolean, children: any, edit: boolean
             ))
             
         }
-        {hasPicture ? <label htmlFor="edit-picture" className="flex text-center bg-ad-golden text-black rounded-full w-32 p-1 cursor-pointer h-10">Choose Picture<input type="file" id="edit-picture" className='hidden' onChange={(e) => {handleChange(e)}}/></label> : ""}
+        {hasPicture ? 
+            <label htmlFor="edit-picture" className="flex items-center justify-center ml-auto mr-2 bg-ad-golden text-black rounded-full w-40 p-1 cursor-pointer h-10">
+                <FontAwesomeIcon className="mr-1" icon={faImage}></FontAwesomeIcon>
+                Choose Picture
+                <input type="file" id="edit-picture" className='hidden' onChange={(e) => {handleChange(e)}}/>
+            </label> : ""}
         </BasePopup>
     )
 }
