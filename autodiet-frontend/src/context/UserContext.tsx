@@ -5,7 +5,7 @@ interface UserContextProps {
     setUser: Dispatch<SetStateAction<user>>
 }
 
-export type user = {username: "", email: ""};
+export type user = {username: "", email: "", user_role: ""};
 
 export const UserContext = React.createContext<UserContextProps>({
     user:{
@@ -16,7 +16,7 @@ export const UserContext = React.createContext<UserContextProps>({
 } as UserContextProps);
 
 export const UserProvider: React.FC<{children: any}> = ({children}) => {
-    const [user, setUser] = useState<user>({username: "", email: ""});
+    const [user, setUser] = useState<user>({username: "", email: "", user_role: ""});
 
     return(
         <UserContext.Provider value={{
