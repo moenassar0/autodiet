@@ -25,6 +25,10 @@ export const Landing = () => {
     const goToRegisterPage = () => {
         navigate("/register");
     }
+
+    const goToLoginPage = () => {
+        navigate("/login");
+    }
     
     useEffect(() => {
         setCurrentTheme('dark');
@@ -62,7 +66,7 @@ export const Landing = () => {
             <div className="flex items-center bg-black h-14 w-full p-2 z-20">
                 <div className="w-26 h-12"><img className="w-full h-full" src="../AutoDiet-1.png"></img></div>
                 <div className="flex h-full w-1/2 grow justify-end">
-                    <button className="w-24 h-full bg-ad-golden font-medium text-black rounded-full hover:opacity-80">LOGIN</button>
+                    <button onClick={goToLoginPage} className="w-24 h-full bg-ad-golden font-medium text-black rounded-full hover:opacity-80">LOGIN</button>
                 </div>
             </div>
             <div className="flex items-center justify-center w-full h-5/6 grow relative">
@@ -108,40 +112,3 @@ export const Landing = () => {
         </>
     )
 }
-
-/*
-
-        <section className="h-screen w-full snap-y snap-mandatory overflow-y-scroll scroll-smooth">
-            
-            <div className="h-screen w-full snap-start">
-                
-            </div>
-            <div className="flex justify-center items-center w-full h-screen snap-start">
-                <div ref={animRef} className="flex justify-center gap-2 ">
-                    <div className={(inView ? " animated" : "") + " "}></div>
-                    <div className="animated"></div>
-                    <div className="animated"></div>
-                </div>
-            </div>
-        </section>
-
-
-*/
-
-
-
-/*
-        <div className="flex flex-col w-full h-screen">
-            <div className="flex items-center bg-black h-14 w-full p-2">
-                <div className="w-26 h-12"><img className="w-full h-full" src="../AutoDiet-1.png"></img></div>
-                <div className="flex h-full w-1/2 grow justify-end">
-                    <button className="w-24 h-full bg-ad-golden font-medium text-black rounded-full hover:opacity-80">LOGIN</button>
-                </div>
-            </div>
-            <div className="flex w-full h-5/6 grow grad">
-
-            </div>
-        </div>
-
-
-*/
