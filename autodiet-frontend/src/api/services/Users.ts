@@ -1,6 +1,14 @@
 import { getToken } from "../../HelperFunctions";
 import { del, get, post, put } from "./baseAPICall";
 
+export const loginUser = async (data: object) => {
+    return post('/login', data);
+}
+
+export const registerUser = async (data: object) => {
+    return post('/users', data);
+}
+
 export const getUsers = async () => {
     return get("/users", "");
 }
