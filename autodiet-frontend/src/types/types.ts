@@ -98,6 +98,14 @@ export interface UserDetails{
     weight: number
 }
 
+export interface ChatMessageInterface{
+    text: string,
+    name: string,
+    timestamps: string,
+    type: string,
+    userID: number,
+}
+
 //Headers to be used in tables
 export const UserHeaders:Array<string> = ['id', 'username', 'email'];
 export const MealHeaders:Array<string> = ['id', 'title', 'calories', 'protein_percentage'];

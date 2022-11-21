@@ -5,9 +5,11 @@ import { getUser } from "../../api/services/Users"
 import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
+import { ChatMessage } from "../../components/utility/ChatMessage"
 import { getChatDate } from "../../HelperFunctions"
 import { AdminBase } from "../../layouts/AdminBase"
 import { adminNavbarLinks, userNavbarLinks } from "../../types/consts"
+import { ChatMessageInterface } from "../../types/types"
 
 export const AdminChat = () => {
 
@@ -38,45 +40,20 @@ export const AdminChat = () => {
         });*/
     }, [currentUserID])
 
+    //fetch messages sent to admin to find the users
     const fetchMessages = async () => {
-        
         const q = query(collection(db, 'messages'), orderBy('timestamps'));
         const querySnapshot = await getDocs(q);
         let messages: Array<object> = [];
         querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
             messages.push(doc.data()?.userID);
         });
         console.log(messages);
         let uniqueChars = messages.filter((element, index) => {
             return messages.indexOf(element) === index;
         });
+        //set the unique ids found from the sent messages to users
         setUsers(uniqueChars);
-        console.log(uniqueChars);
-    }
-
-    const fetchUsersMessages = async (id: number) => {
-        setCurrentUserID(id);
-        const q = query(collection(db, 'messages'), where("userID", "==", id), orderBy("timestamps"));
-        const querySnapshot = await getDocs(q);
-        let qMessages: Array<object> = [];
-        querySnapshot.forEach((doc) => {
-            // doc.data() is never undefined for query doc snapshots
-            qMessages.push(doc.data());
-        });
-        console.log(qMessages);
-        setMessages(qMessages);
-        /*
-        const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
-            let messages: any = [];
-            querySnapshot.forEach((doc: any) => {
-                messages.push({...doc.data(), id: doc.id});
-            });
-            console.log(messages);
-            setMessages(messages);
-        })
-        return () => unsubscribe()
-        */
     }
 
     const sendMessage = async () => {
@@ -96,46 +73,39 @@ export const AdminChat = () => {
     }
 
     return(
-<div className="flex h-screen w-full">
-        <SideNavbar navbarlinks={adminNavbarLinks}/>
-        <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
-            <AdminTopNavbar title="Chat" username="Admin">
-            </AdminTopNavbar>
-            <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
-            <div className="flex w-full h-full ">
-                <div className="flex flex-wrap drop-shadow content-start h-full w-[175px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
-                    {
-                        users ? users.map((user: any) => (
-                            <div onClick={() => {setCurrentUserID(user)}} key={user} className={(currentUserID == user ? "bg-[#E5F8F9] dark:bg-admin-dark-sidenav " : "") + styles.usersDiv}>
-                                <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
-                                <span className="font-medium">UserID: {user}</span>
-                            </div>
-                        )) : ""
-                    }
-                </div>
-                <div className="flex w-4/6 flex-col grow h-full">
-                    <div className="flex flex-wrap w-full h-full gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
-                        {
-                            messages ? messages.map((message: any, i: number) => (
-                                <div key={i} className={(message.type == "client_r" ? "" : "justify-end") + " flex items-start w-full h-auto"}>
-                                    <div className="flex flex-col flex-wrap w-1/2 bg-[#EDEEF0] p-3 rounded-xl dark:bg-[#1E1E1E] bg-admin-grey-background hover:drop-shadow">
-                                        <span className="dark:text-ad-golden text-admin-button font-medium">{message.name}</span>
-                                        <span className="text-slate-700 dark:text-slate-200">{message.text}</span>
-                                        <span className="flex text-xs self-end opacity-60 dark:text-ad-golden">{ message.timestamps ? getChatDate(message.timestamps) : ""}</span>
+        <div className="flex h-screen w-full">
+            <SideNavbar navbarlinks={adminNavbarLinks}/>
+            <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
+                <AdminTopNavbar title="Chat" username="Admin">
+                </AdminTopNavbar>
+                <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
+                    <div className="flex w-full h-full ">
+                        <div className="flex flex-wrap drop-shadow content-start h-full w-[175px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">
+                            {
+                                users ? users.map((user: any) => (
+                                    <div onClick={() => {setCurrentUserID(user)}} key={user} className={(currentUserID == user ? "bg-[#E5F8F9] dark:bg-admin-dark-sidenav " : "") + styles.usersDiv}>
+                                        <img className="w-8 h-8 rounded-full mr-1" src="../logo512.png"></img>
+                                        <span className="font-medium">UserID: {user}</span>
                                     </div>
-                                </div>
-                                
-                            )) : ""
-                        }
-                    </div>
-                    <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
-                        <input type="text" placeholder="Type a message" value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.value)}} className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background dark:text-ad-golden text-black"></input>
-                        <Button title="Send" onclickMethod={async () => {await sendMessage()}} styling={"w-1/3"}></Button>
+                                )) : ""
+                            }
+                        </div>
+                        <div className="flex w-4/6 flex-col grow h-full">
+                            <div className="flex flex-wrap w-full h-full gap-2 content-start overflow-auto rounded-md drop-shadow bg-white dark:bg-admin-dark-background px-2">
+                                {
+                                    messages ? messages.map((message: ChatMessageInterface, i: number) => (
+                                        <ChatMessage key={i} message={message} admin={true}></ChatMessage>        
+                                    )) : ""
+                                }
+                            </div>
+                            <div className="flex items-center justify-between border-t p-1 border-gray-300 bg-white rounded-b dark:bg-[#2D2D2D] flex w-full h-3/12">
+                                <input type="text" placeholder="Type a message" value={inputMessage} onChange={(e) => {setInputMessage(e.currentTarget.value)}} className="outline-none flex w-2/3 p-1 bg-admin-grey-background dark:bg-admin-dark-background dark:text-ad-golden text-black"></input>
+                                <Button title="Send" onclickMethod={async () => {await sendMessage()}} styling={"w-1/3"}></Button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-       </div>
        </div> 
     )
 }
