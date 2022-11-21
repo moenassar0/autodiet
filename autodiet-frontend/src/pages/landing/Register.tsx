@@ -36,7 +36,7 @@ export const Register = () => {
             const data = {email, password, user_role: "User", username};
             const response = await registerUser(data);
             if(response?.response) setMessage("Successfully registered!")
-            else setMessage("Registeration error, please try again!")
+            if(!response?.success) setMessage("Registeration error, please try again!")
         }
         setWaitingForResponse(false);
     }
@@ -55,7 +55,7 @@ export const Register = () => {
                     <div className="flex items-center self-end w-3/5 h-10 px-1">
                         <button onClick={register} className="w-full h-full mb-10 bg-ad-golden text-black rounded">{waitingForResponse ? <img className="h-6 w-6" src="../loading1.gif"></img> : "Register"}</button>
                     </div>
-                    {message ? message :    ""}
+                    {message ? <div className="flex bg-black rounded-full mb-1 w-full h-10 items-center justify-center text-ad-golden underline">{message}</div> :    ""}
                 </div>
             </div>
         </LandingBase>
