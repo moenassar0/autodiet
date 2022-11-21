@@ -166,6 +166,21 @@ export const calculateCalories = (userDetails: UserDetails) => {
       (10 * userDetails.weight) + (6.25 * userDetails.height) - (5 * userDetails.age) - 161
     }
     const mult = activityLevelMultiplier(userDetails.activity_level);
+    let percentage = 0;
+    switch(userDetails.goal){
+      case("Lose Weight"):
+      percentage = -15;
+      break;
+
+      case("Maintain"):
+      percentage = 0;
+      break;
+
+      case("Gain Weight"):
+      percentage = 10;
+      break;
+    }
+    calories = calories + ((percentage / 100) * calories);
     return calories * mult;
   }
   return calories;
