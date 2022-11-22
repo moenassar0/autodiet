@@ -29,6 +29,10 @@ export const getUserDetails = async () => {
     return get("/user", "");
 }
 
+export const saveUserDetails = async (data: object) => {
+    return post("/user", data)
+}
+
 export const deleteUser = async (urlParams: string) => {
     return del("/user/", urlParams);
 }

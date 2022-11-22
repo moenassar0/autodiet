@@ -1,20 +1,14 @@
 import { useEffect, useState } from "react";
-import { validateUser, getToken } from "../../HelperFunctions";
-import { UserSideNavbar } from "../../components/user/UserSideNavbar"
-import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
-import axios from "../../api/axios";
 import { TopNavbar } from "../../components/admin/TopNavbar";
 import { activityOptions, bfButtonValues, goalButtonValues, sexButtonValues, userNavbarLinks } from "../../types/consts";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { ProfileField } from "../../components/utility/ProfileField";
 import { ProfileInput } from "../../components/utility/ProfileInput";
 import { Select } from "../../components/utility/Select";
+import { getUserDetails, saveUserDetails } from "../../api/services/Users";
 
 export const Profile = () => {
 
-    const navigate = useNavigate();
-
-    const [currentlyFetching, setCurrentlyFetching] = useState(false);
     const [activeGoal, setActiveGoal] = useState('');
     const [sex, setSex] = useState('');
     const [weight, setWeight] = useState('');
@@ -32,32 +26,20 @@ export const Profile = () => {
     }, [activity])
 
     async function fetchUserData(){
-        try{
-            setCurrentlyFetching(true);
-            const response = await axios.get('/user', getToken());
-            const user_detail = (response.data.user_detail);
-            setActiveGoal(user_detail.goal);
-            setAge(user_detail.age);
-            setWeight(user_detail.weight);
-            setHeight(user_detail.height);
-            setSex(user_detail.sex);
-            setBodyFatPercentage(user_detail.bodyfat_percentage);
-            setActivity(user_detail.activity_level);
-            setCurrentlyFetching(false);
-        }catch{
-            setCurrentlyFetching(false);
-        }
+        const response = await getUserDetails();
+        const user_detail = (response?.response.user_detail);
+        setActiveGoal(user_detail.goal);
+        setAge(user_detail.age);
+        setWeight(user_detail.weight);
+        setHeight(user_detail.height);
+        setSex(user_detail.sex);
+        setBodyFatPercentage(user_detail.bodyfat_percentage);
+        setActivity(user_detail.activity_level);
     }
 
     async function updateUserDetails(){
-        try{
-            setCurrentlyFetching(true);
-            const response = await axios.post('/user', {goal: activeGoal, sex, weight, height, age, bodyfat_percentage: bodyFatPercentage, activity_level: activity}, getToken());
-            console.log(response);
-            setCurrentlyFetching(false);
-        }catch{
-            setCurrentlyFetching(false);
-        }
+        const data = {goal: activeGoal, sex, weight, height, age, bodyfat_percentage: bodyFatPercentage, activity_level: activity}
+        await saveUserDetails(data);
     }
 
     return(
@@ -68,8 +50,6 @@ export const Profile = () => {
                 </TopNavbar>
                 <div className="flex h-4/5 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey">
                     <div className="w-full flex flex-wrap content-start h-4/5 sm:w-5/6 py-2 px-2 overflow-auto">
-                        {currentlyFetching ? <img className="flex w-10 h-10 items-center justify-center" src="../logo512.png"></img> :
-                        <>
                         <ProfileField title="Goal" buttonValues={goalButtonValues} hook={activeGoal} setHook={setActiveGoal}>
                         </ProfileField>
                         <ProfileField title="Sex" buttonValues={sexButtonValues} setHook={setSex} hook={sex}>
@@ -91,9 +71,7 @@ export const Profile = () => {
                                 <button onClick={() => updateUserDetails()} className={"flex items-center justify-center h-1/2 justify-self-end w-1/3 rounded dark:bg-ad-golden bg-admin-button"}>Save Changes</button>
                             </div>
                         </div>
-                        </>}
                     </div>
-                    
                 </div>
             </div>
         </div>
