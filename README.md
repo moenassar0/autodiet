@@ -77,13 +77,19 @@ Let us briefly mention the tech stack and technologies the application used:
 
 | User's Weightlog  | User's Dietlog  |
 | -----------------| -----|
-| ![Weight](https://github.com/moenassar0/autodiet/blob/main/demo/WeightLog_Page.png) | ![Diet](https://github.com/moenassar0/autodiet/blob/main/demo/DietLog_Page.gif) |
+| ![Weight](https://github.com/moenassar0/autodiet/blob/main/demo/WeightLog_Page.png) | ![Diet](https://github.com/moenassar0/autodiet/blob/main/demo/DietLog_Page.png) |
 
 
 
-|  Showcasing dark/light modes and live chat  |
+| Dark/Light modes  | Live chat  |
 | ----------------------|
 | ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Multitheme.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/Chat_Page.gif) |
+
+<h2> Admin Panel Screenshots/gifs </h2>
+
+| Admin CRUD  | Admin Chat  |  Admin create/link recipes  |  
+| ----------------------|
+| ![CRUD](https://github.com/moenassar0/autodiet/blob/main/demo/Admin_CRUD.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/AdminChat_Page.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/Admin_Recipes.gif) |
 
 
 <br><br>
