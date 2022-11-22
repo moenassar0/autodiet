@@ -4,7 +4,7 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/moenassar0/autodiet#-project-philosophy) • [WIREFRAMES](https://github.com/moenassar0/autodiet#-wireframes) • [TECH STACK](https://github.com/moenassar0/autodiet#-tech-stack) • [IMPLEMENTATION](https://github.com/moenassar0/autodiet#-impplementation) • [HOW TO RUN?](https://github.com/moenassar0/autodiet#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/moenassar0/autodiet#-user-stories) • [WIREFRAMES](https://github.com/moenassar0/autodiet#-wireframes) • [TECH STACK](https://github.com/moenassar0/autodiet#-tech-stack) • [IMPLEMENTATION](https://github.com/moenassar0/autodiet#-impplementation) • [HOW TO RUN?](https://github.com/moenassar0/autodiet#-how-to-run)**
 
 </div>
 
@@ -12,7 +12,6 @@
 
 
 <img src="./readme/title2.svg"/>
-
 > AutoDiet is an automatic meal planner that is customized to the user's needs. The web app generates a daily plan for the user with dynamic recipes with the user's overall nutrition and health in mind. The app also always the user to log in data like his own diet/meals and weight.
 > 
 > The web app prompts the user to input his physical details first, the user can then generate his own mealplans. The user can also surf all the avaiable meals and their recipes.
