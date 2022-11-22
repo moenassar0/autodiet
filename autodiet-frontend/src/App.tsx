@@ -20,7 +20,7 @@ import { useUser } from './context/UserContext';
 import { Landing } from './pages/landing/Landing';
 import { AdminRecipes } from './pages/admin/AdminRecipes';
 import { DietLog } from './pages/user/DietLog';
-import { Logout } from './components/Logout';
+import { Logout } from './components/utility/Logout';
 
 //export const UserContext = React.createContext(user);
 
