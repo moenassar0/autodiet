@@ -26,7 +26,16 @@
 
 <img src="./readme/title3.svg"/>
 
-> This design was first made on Figma as wireframes then formed into mockups. You will see the design of the website changing along the way as better color palettes and design patterns were used. First let's see the mockups:
+> This design was first made on Figma as wireframes then formed into mockups. You will see the design of the website changing along the way as better color palettes and design patterns were used. First let's see the wireframes:
+
+| Landing  | Browse Foods/Meals  |
+| -----------------| -----|
+| ![Landing](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/Landing_Page.png) | ![Browse Foods/Meals](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/BrowseFoods_Page.png) |
+
+| User's Profile  | User's Mealplan  |
+| -----------------| -----|
+| ![Profile](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/UserDetails_Page.png) | ![Homepage](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/Home_Page.png) |
+
 
 | Landing  | Browse Foods/Meals  |
 | -----------------| -----|
@@ -34,7 +43,7 @@
 
 | User's Profile  | User's Mealplan  |
 | -----------------| -----|
-| ![Artists results](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/UserDetails_Page.png) | ![Artist's Albums](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/Home_Page.png) |
+| ![Profile](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/UserDetails_Page.png) | ![Homepage](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/Home_Page.png) |
 
 
 <br><br>
