@@ -23,3 +23,7 @@ export const deleteMeal = async (params: string) => {
 export const getMealRecipe = async (params: string) => {
     return get("/meal/", params);
 }
+
+export const getMealByTitle = async (params: string) => {
+    return get('/meals/', params);
+}

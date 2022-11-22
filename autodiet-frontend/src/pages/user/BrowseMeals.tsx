@@ -1,6 +1,4 @@
 import { useEffect, useState } from "react"
-import axios from "../../api/axios";
-import { getToken } from "../../HelperFunctions";
 import MealCard from "../../components/user/MealCard";
 import { MealInterface } from "../../types/types";
 import { EmptyState } from "../../components/utility/EmptyState";
@@ -9,6 +7,7 @@ import { userNavbarLinks } from "../../types/consts";
 import { TopNavbar } from "../../components/admin/TopNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { getMealByTitle } from "../../api/services/Meals";
 
 export const BrowseMeals = () => {
 
@@ -20,13 +19,8 @@ export const BrowseMeals = () => {
     }, [searchInput])
 
     const searchQuery = async () => {
-        try{
-            const response = await axios.get('/meals/' + searchInput, getToken());
-            console.log(response.data.meals);
-            setFetchedMeals(response.data.meals);
-        }catch{
-            
-        }
+        const response = await getMealByTitle(searchInput);
+        setFetchedMeals(response?.response.meals);
     }
 
     return(
