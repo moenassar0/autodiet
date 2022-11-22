@@ -4,16 +4,16 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/moenassar0/autodiet#-user-stories) • [WIREFRAMES](https://github.com/moenassar0/autodiet#-wireframes) • [TECH STACK](https://github.com/moenassar0/autodiet#-tech-stack) • [IMPLEMENTATION](https://github.com/moenassar0/autodiet#-impplementation) • [HOW TO RUN?](https://github.com/moenassar0/autodiet#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/moenassar0/autodiet#user-stories) • [WIREFRAMES](https://github.com/moenassar0/autodiet#wireframes) • [TECH STACK](https://github.com/moenassar0/autodiet#stacks) • [IMPLEMENTATION](https://github.com/moenassar0/autodiet#implementation) • [HOW TO RUN?](https://github.com/moenassar0/autodiet#prerequisites)**
 
 </div>
 
 <br><br>
 
-
 <img src="./readme/title2.svg"/>
-> AutoDiet is an automatic meal planner that is customized to the user's needs. The web app generates a daily plan for the user with dynamic recipes with the user's overall nutrition and health in mind. The app also always the user to log in data like his own diet/meals and weight.
-> 
+
+> AutoDiet is an automatic meal planner that is customized to the user's needs. The web app generates a daily plan for the user with dynamic recipes with the user's overall nutrition and health in mind.
+> The app will also allow the user to log in data like his own diet/meals and weight.
 > The web app prompts the user to input his physical details first, the user can then generate his own mealplans. The user can also surf all the avaiable meals and their recipes.
 
 ### User Stories
@@ -27,6 +27,8 @@
 
 > This design was first made on Figma as wireframes then formed into mockups. You will see the design of the website changing along the way as better color palettes and design patterns were used. First let's see the wireframes:
 
+### Wireframes
+
 | Landing  | Browse Foods/Meals  |
 | -----------------| -----|
 | ![Landing](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/Landing_Page.png) | ![Browse Foods/Meals](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/BrowseFoods_Page.png) |
@@ -35,6 +37,7 @@
 | -----------------| -----|
 | ![Profile](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/UserDetails_Page.png) | ![Homepage](https://github.com/moenassar0/autodiet/blob/main/demo/wireframes/Home_Page.png) |
 
+### Mockups
 
 | Landing  | Browse Foods/Meals  |
 | -----------------| -----|
@@ -49,6 +52,8 @@
 
 <img src="./readme/title4.svg"/>
 
+### Stacks
+
 Let us briefly mention the tech stack and technologies the application used:
 
 - This application was built using the ReactJS library. ReactJS [React](https://www.reactjs.org) helps us move from the daunting task of writing vanilla JavaScript by offering its rich library that builds single page applications using components.
@@ -61,6 +66,8 @@ Let us briefly mention the tech stack and technologies the application used:
 
 <br><br>
 <img src="./readme/title5.svg"/>
+
+### Implementation
 
 > Utilising our wireframes and mockups built using Figma, along with the tech stacks and user sotries we have, the implementation of the app is shown as below. The following images and gifs are screenshots from the actual deployed application.
 
