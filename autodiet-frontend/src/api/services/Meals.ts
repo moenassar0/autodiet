@@ -27,3 +27,7 @@ export const getMealRecipe = async (params: string) => {
 export const getMealByTitle = async (params: string) => {
     return get('/meals/', params);
 }
+
+export const getMealByID = async (params: string) => {
+    return get('/meal/', params);
+}
