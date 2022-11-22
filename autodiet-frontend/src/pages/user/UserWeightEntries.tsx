@@ -1,8 +1,6 @@
-import { UserSideNavbar } from "../../components/user/UserSideNavbar"
-import ReactFrappeChart from "react-frappe-charts";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { userNavbarLinks } from "../../types/consts";
-import { AdminTopNavbar } from "../../components/admin/TopNavbar";
+import { TopNavbar } from "../../components/admin/TopNavbar";
 import { LineChart } from "../../components/charts/LineChart";
 import { useEffect, useState } from "react";
 import { addOrUpdateWeightEntries, getUserEntries } from "../../api/services/Users";
@@ -30,9 +28,7 @@ export const UserWeightEntries = () => {
     }
 
     const insertEntry = async () => {
-        const response = await addOrUpdateWeightEntries({date, weight});
-        console.log(date, "date", "weight", weight);
-        console.log(response);
+        await addOrUpdateWeightEntries({date, weight});
         setHideNotification(false);
         fetchEntries();
     }
@@ -42,9 +38,9 @@ export const UserWeightEntries = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Your Weight History" username="Test">
+                <TopNavbar title="Your Weight History" username="Test">
 
-                </AdminTopNavbar>
+                </TopNavbar>
                 <div className="flex flex-col min-h-[83%] h-full gap-2 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey px-4 py-4">
                     <div className="flex flex-wrap items-start justify-start h-16 w-full rounded drop-shadow bg-white dark:bg-admin-dark-background px-2 py-2 gap-2 items-center">
                         <span className="text-lg dark:text-ad-golden text-black font-medium">Insert an entry:</span>
