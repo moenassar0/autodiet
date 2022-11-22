@@ -40,6 +40,7 @@ export const Home = () => {
         }
     }
 
+    //If user has no profile saved prompt him to go to his profile
     const fetchUserDetails = async () => {
         const response = await getUserDetails();
         if(response?.response?.user_detail == null){
@@ -52,11 +53,8 @@ export const Home = () => {
 
     const fetch = async () => {
         setCurrentlyFetching(true);
-        console.time('Execution Time 2');
         const response = await getCustomizedMeals();
         if(response?.success) setMealSet(response.response)
-        console.log(response?.response);
-        console.timeEnd('Execution Time 2');
         setCurrentlyFetching(false);
     }
 
@@ -74,12 +72,10 @@ export const Home = () => {
     const sendUserEmail = async () => {
         const data = {date: date.toISOString().slice(0, 10)};
         const response = await sendEmail(data);
-        console.log(response);
     }
 
     return(
         <div className="flex h-screen w-full">
-            
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <TopNavbar title="Meals" username="Test">

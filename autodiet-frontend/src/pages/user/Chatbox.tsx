@@ -28,14 +28,12 @@ export const Chatbox = () => {
         let userID: any = -1;
         getUserID().then((id) => {
             userID = id
-            console.log(userID);
             const q = query(collection(db, 'messages'), where("userID", "==", userID),orderBy('timestamps'));
             const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
                 let messages: any = [];
                 querySnapshot.forEach((doc: any) => {
                     messages.push({...doc.data(), id: doc.id});
                 });
-                console.log(messages);
                 setMessages(messages);
             })
             return () => unsubscribe()
