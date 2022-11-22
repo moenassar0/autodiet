@@ -55,14 +55,15 @@ Let us briefly mention the tech stack and technologies the application used:
 - This application was built using the ReactJS library. ReactJS [React](https://www.reactjs.org) helps us move from the daunting task of writing vanilla JavaScript by offering its rich library that builds single page applications using components.
 - For the backend we used the framework built for web artisans [Laravel](https://laravel.com). Laravel was used purely for the api calls and database connection. For the database we used MySQL.
 - Firebase was also used as part of our backend. Firebase helped the application send push notifications to the user as well as help build our chatting system using real-time databases.
-- The app uses the font ["Work Sans"](https://fonts.google.com/specimen/Work+Sans) as its main font, and the design of the app adheres to the material design guidelines.
+- The app uses the font ["Poppins"](https://fonts.google.com/specimen/Poppins) as its main font.
+- The app utilizes ChartJs for its multiple uses of pie charts and line charts to display data such as nutrition to the user.
 
 
 
 <br><br>
 <img src="./readme/title5.svg"/>
 
-> Usng the above mentioned tecch stacks and the wireframes build with figma from the user sotries we have, the implementation of the app is shown as below, these are screenshots from the real app
+> Utilising our wireframes and mockups built using Figma, along with the tech stacks and user sotries we have, the implementation of the app is shown as below. The following images and gifs are screenshots from the actual deployed application.
 
 | Landing  | Meals Page  |
 | -----------------| -----|
