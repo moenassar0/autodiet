@@ -17,7 +17,6 @@ import { useNotification } from './context/NotificationContext';
 import { AdminFoods } from './pages/admin/AdminFoods';
 import { Chatbox } from './pages/user/Chatbox';
 import { AdminChat } from './pages/admin/AdminChat';
-import { SlideTest } from './pages/user/SlideTest';
 import { BrowseFoods } from './pages/user/BrowseFoods';
 import { useUser } from './context/UserContext';
 import { Landing } from './pages/landing/Landing';
@@ -39,7 +38,6 @@ function App() {
         <Route path="/" element={<Landing />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/register" element={<Register />}></Route>
-        <Route path="/landing" element={<Landing />}></Route>
 
         <Route path="/user" element={ <AuthenticateUser /> }>
           <Route path="/user/home" element={<Home />}></Route>

@@ -39,17 +39,12 @@ export const UserWeightEntries = () => {
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
                 <TopNavbar title="Your Weight History" username="Test">
-
                 </TopNavbar>
                 <div className="flex flex-col min-h-[83%] h-full gap-2 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey px-4 py-4">
                     <div className="flex flex-wrap items-start justify-start h-16 w-full rounded drop-shadow bg-white dark:bg-admin-dark-background px-2 py-2 gap-2 items-center">
                         <span className="text-lg dark:text-ad-golden text-black font-medium">Insert an entry:</span>
-                        <input className="outline-none border border-slate-500 w-1/3 p-1" type="date" onChange={(e) => {setDate(e.currentTarget.value)}}>
-
-                        </input>
-                        <input className="outline-none border border-slate-500 w-1/3 p-1" type="text" onChange={(e) => {setWeight(parseInt(e.currentTarget.value))}} placeholder="Weight (kg)">
-
-                        </input>
+                        <input className="outline-none border border-slate-500 w-1/3 p-1" type="date" onChange={(e) => {setDate(e.currentTarget.value)}} />
+                        <input className="outline-none border border-slate-500 w-1/3 p-1" type="text" onChange={(e) => {setWeight(parseInt(e.currentTarget.value))}} placeholder="Weight (kg)" />
                         <Button onclickMethod={insertEntry} styling="" title="Submit"></Button>
                     </div>
                     <div className="w-full h-full flex flex-col rounded drop-shadow bg-white dark:bg-admin-dark-background">
