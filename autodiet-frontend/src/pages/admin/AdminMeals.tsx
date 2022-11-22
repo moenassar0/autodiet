@@ -7,7 +7,7 @@ import { DataTable } from "../../components/admin/DataTable"
 import { deleteMeal, getMeals } from "../../api/services/Meals";
 import { MealHeaders } from "../../types/types"
 import { adminNavbarLinks } from "../../types/consts"
-import { AddMealPopup } from "../../components/admin/AddMealPopup"
+import { MealPopup } from "../../components/admin/MealPopup"
 import { PopupOverlay } from "../../components/utility/PopupOverlay"
 import { DeletePopup } from "../../components/utility/DeletePopup"
 import { AdminBase } from "../../layouts/AdminBase"
@@ -42,8 +42,8 @@ export const AdminMeals = () => {
 
     return(
         <section>
-            <AddMealPopup edit={false} trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
-            <AddMealPopup mealID={mealID} edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
+            <MealPopup edit={false} trigger={addMealsPopup} setTrigger={setAddMealsPopup} />
+            <MealPopup mealID={mealID} edit={true} trigger={editMealsPopup} setTrigger={setEditMealsPopup} />
             <AdminBase addButton={<button onClick={() => {setAddMealsPopup(true)}}>Add Meal<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>} 
             navbarProps={<></>} navbarTitle="Meals" dataTable={meals ? <DataTable editFunction={editFun} deleteFunction={(id: number) => {setMealID(id); setDeleteMealsPopup(true)}} data={meals} headers={MealHeaders}></DataTable> : ""}>
                 {deleteMealsPopup ? 

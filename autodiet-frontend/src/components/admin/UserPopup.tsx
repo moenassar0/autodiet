@@ -6,8 +6,7 @@ import { Popup } from "../utility/Popup"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-export const AddUserPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any, trigger: boolean}> = ({userID, edit, setTrigger, trigger}) => {
-
+export const UserPopup: React.FC<{edit:boolean, userID?: number, setTrigger: any, trigger: boolean}> = ({userID, edit, setTrigger, trigger}) => {
 
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -15,15 +14,9 @@ export const AddUserPopup: React.FC<{edit:boolean, userID?: number, setTrigger: 
     const [message, setMessage] = useState("");
 
     const inputs: Array<InputFieldInterface> = [
-        {
-            title:"Username", error:"asd", setHook:setUsername, state:username, valid:true
-        },
-        {
-            title:"Email", error:"asd", setHook:setEmail, state:email, valid:true
-        },
-        {
-            title:"Password", error:"asd", setHook:setPassword, state:password, valid:true
-        },
+        {title:"Username", error:"asd", setHook:setUsername, state:username, valid:true},
+        {title:"Email", error:"asd", setHook:setEmail, state:email, valid:true},
+        {title:"Password", error:"asd", setHook:setPassword, state:password, valid:true},
     ];
 
     const handleSubmit = async () => {

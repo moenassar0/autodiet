@@ -8,7 +8,7 @@ import axios from "axios";
 import { sendNotification } from "../../HelperFunctions";
 import { getUsers, editUser, addUser, deleteUser } from "../../api/services/Users";
 import { UserInterface, UserHeaders } from '../../types/types'
-import { AddUserPopup } from "../../components/admin/AddUserPopup";
+import { UserPopup } from "../../components/admin/UserPopup";
 import { adminNavbarLinks } from "../../types/consts";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
 import { Popup } from "../../components/utility/Popup";
@@ -47,8 +47,8 @@ export const AdminUsers = () => {
 
     return(
         <section>
-            <AddUserPopup edit={false} trigger={addUsersPopup} setTrigger={setAddUsersPopup}/>
-            <AddUserPopup userID={userID} edit={true} trigger={editUsersPopup} setTrigger={setEditUsersPopup}/>
+            <UserPopup edit={false} trigger={addUsersPopup} setTrigger={setAddUsersPopup}/>
+            <UserPopup userID={userID} edit={true} trigger={editUsersPopup} setTrigger={setEditUsersPopup}/>
             <AdminBase navbarProps={<></>} navbarTitle={"Users"} 
             addButton={<button onClick={() => {setAddUsersPopup(true)}}>Add User<FontAwesomeIcon className="ml-2" icon={faPlus}/></button>}
             dataTable={users ? <DataTable editFunction={editfunc} deleteFunction={(id:number)=>{setUserID(id); setDeleteUsersPopup(true)}} deletePopup={deleteUsersPopup} setDeletePopup={setDeleteUsersPopup} data={users} headers={UserHeaders}></DataTable> : ""}>

@@ -7,7 +7,7 @@ import { addMeal, editMeal } from "../../api/services/Meals"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faClose } from "@fortawesome/free-solid-svg-icons"
 
-export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: any, trigger: boolean}> = ({edit, mealID, setTrigger, trigger}) => {
+export const MealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: any, trigger: boolean}> = ({edit, mealID, setTrigger, trigger}) => {
 
     const [title, setTitle] = useState("");
     const [calories, setCalories] = useState(0);
@@ -37,10 +37,10 @@ export const AddMealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: 
         { title:"Type", error:"asd", setHook: setType, state:type, valid:true },
         { title:"Fat", error:"asd", setHook: setFat, state:fat.toString(), valid:true },
         { title:"Protein Percentage", error:"asd", setHook: setProteinPercentage, state:proteinPercentage.toString(), valid:true },
-    
     ];
 
     const handleSubmit = async () => {
+        //If edit is true then use the edit api call otherwise use the add api call.
         if(!edit){
             const data = {title, calories, type, protein, carbohydrate, fat, protein_percentage: proteinPercentage.toString(), picture_url: pictureBase64}
             console.log("data sent:", data);
