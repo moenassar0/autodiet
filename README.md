@@ -71,19 +71,19 @@ Let us briefly mention the tech stack and technologies the application used:
 
 | User's Profile  | User's Mealplan  |
 | -----------------| -----|
-| ![Profile](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/UserDetails_Page.png) | ![Homepage](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/Home_Page.gif) |
+| ![Profile](https://github.com/moenassar0/autodiet/blob/main/demo/UserDetails_Page.png) | ![Homepage](https://github.com/moenassar0/autodiet/blob/main/demo/Home_Page.gif) |
 
 
 
-| Landing  | Meals Page  |
+| User's Weightlog  | User's Dietlog  |
 | -----------------| -----|
-| ![Landing](https://github.com/moenassar0/autodiet/blob/main/demo/Meals_Page.png) | ![Browse Foods/Meals](https://github.com/moenassar0/autodiet/blob/main/demo/Meals_Page.png) |
+| ![Weight](https://github.com/moenassar0/autodiet/blob/main/demo/WeightLog_Page.png) | ![Diet](https://github.com/moenassar0/autodiet/blob/main/demo/DietLog_Page.gif) |
 
 
 
-|  Showcasing dark and light modes  |
+|  Showcasing dark/light modes and live chat  |
 | ----------------------|
-| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Multitheme.gif) |
+| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Multitheme.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/Chat_Page.gif) |
 
 
 <br><br>
