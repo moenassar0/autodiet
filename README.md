@@ -134,9 +134,11 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    composer install
    ```
-4. Create a MySQL database and connect it using your .env file in your laravel project.
+4. Setup your .env file in the frontend and backend folders. Connect your MySQL database and Firebase app using the .env.example files.
 5. Run the migrations (inside your laravel project)
    ```sh
    php artisan migrate
    ```
 
+### Important Note
+For the application to properly function, you will need a already populated database with meals, foods, and recipes added.
