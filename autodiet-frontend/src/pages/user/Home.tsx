@@ -1,10 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import Meal from "../../components/user/Meal";
 import { calculateCalories, getNutritionFromMeals, getToken, sendNotification, tomorrowFromDay, yesterdayFromDay } from "../../HelperFunctions";
-import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
 import { Generator } from "../../Generator";
-import { firebase_init } from "../../api/firebase_init_test";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { userNavbarLinks } from "../../types/consts";
 import { Button } from "../../components/utility/Button";
