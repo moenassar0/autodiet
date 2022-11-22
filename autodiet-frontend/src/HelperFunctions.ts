@@ -81,6 +81,16 @@ export const getMultiplierFromFood = (number: number, foodItem: FoodItem) => {
   return ratio;
 }
 
+export const multiplyFoodNutrition = (mult: any, currentFoodItem: any) => {
+  currentFoodItem['calories'] *= mult;
+  currentFoodItem['protein'] *= mult;
+  currentFoodItem['carbohydrate'] *= mult;
+  currentFoodItem['fat'] *= mult;
+  currentFoodItem['mult'] = mult;
+  return currentFoodItem;
+}
+
+
 export const convertBase64 = (file: any) => {
   return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
