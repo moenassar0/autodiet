@@ -115,7 +115,12 @@ export const AdminRecipes = () => {
                 <>
                 <PopupOverlay></PopupOverlay>
                     <BasePopup trigger={linkPopup} setTrigger={setLinkPopup} message={responseMessage} submitMethod={addRecipeLink} title="Link meal" submitButtonTitle="Link">
-                        <div className="flex w-full h-10 rounded bg-white drop-shadow">Linking <span className="font-medium underline">{currentMeal.title}</span> with <span className="font-medium underline">{"  " + currentFoodItem.title}</span></div>
+                        <div className="flex w-full h-10 rounded bg-white drop-shadow">
+                            <span className="font-medium mr-1 ml-1">Linking</span>
+                            <span className="font-medium underline">{currentMeal.title}</span>
+                            <span className="font-medium mr-1 ml-1">with</span>
+                            <span className="font-medium underline">{"  " + currentFoodItem.title}</span>
+                        </div>
                         <InputField placeholder={currentFoodItem.serving_type} error="" title="Multipler" setHook={setMultiplier} state={multiplier.toString()} valid={true}></InputField>
                     </BasePopup> 
                 </> 

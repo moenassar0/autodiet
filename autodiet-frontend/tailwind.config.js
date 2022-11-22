@@ -17,11 +17,13 @@ module.exports = {
         wiggle: 'wiggle 1s ease-in-out infinite',
       },
       colors: {
+        //Darkmode main colors
         "ad-golden": "#FDAD00",
         "ad-darkgrey": "#141414",
         "ad-lightgrey": "#1F1F1F",
         "ad-hoveredblack": "#0d0d0d",
         
+        //Lightmode main colors
         "admin-main": "#0E2238",
         "admin-grey-background": "#F1F5F7",
         "admin-button": "#00BAC7",
