@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import { Navbar } from './components/landing/Navbar';
 import { Routes, Route, Outlet, redirect } from "react-router-dom";
 import { Home } from './pages/user/Home';
-import { LandingPage } from './pages/landing/LandingPage';
 import { Login } from './pages/landing/Login';
 import { Register } from './pages/landing/Register';
 import { Profile } from './pages/user/Profile';

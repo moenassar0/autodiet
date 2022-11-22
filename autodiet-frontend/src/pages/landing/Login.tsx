@@ -1,11 +1,8 @@
 import { useState } from "react";
-import axios from "../../api/axios";
-import { Navbar } from "../../components/landing/Navbar"
 import { useNavigate, useRoutes } from 'react-router-dom';
 import { useUser } from "../../context/UserContext";
 import { LandingBase } from "../../layouts/LandingBase";
 import { loginUser } from "../../api/services/Users";
-import InputField from "../../components/utility/InputField";
 
 export const Login = () => {
 

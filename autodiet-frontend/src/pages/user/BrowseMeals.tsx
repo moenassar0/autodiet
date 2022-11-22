@@ -2,7 +2,6 @@ import { useEffect, useState } from "react"
 import axios from "../../api/axios";
 import { getToken } from "../../HelperFunctions";
 import MealCard from "../../components/user/MealCard";
-import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import { MealInterface } from "../../types/types";
 import { EmptyState } from "../../components/utility/EmptyState";
 import { SideNavbar } from "../../components/admin/SideNavbar";
