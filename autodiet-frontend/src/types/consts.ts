@@ -20,3 +20,9 @@ export const adminNavbarLinks = [
     { path: "/admin/chat", icon: faMessage, title: "Chat Requests" },
     { path: "/admin/logout", icon: faRightFromBracket, title: "Logout" },
 ];
+
+//Profile page
+export const goalButtonValues = ["Lose Weight", "Maintain", "Gain Muscle"];
+export const bfButtonValues = ["Lean", "Medium", "High"];
+export const sexButtonValues = ["Male", "Female"];
+export const activityOptions = ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"];

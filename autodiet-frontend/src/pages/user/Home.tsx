@@ -1,9 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "../../api/axios"
 import Meal from "../../components/user/Meal";
-import PlanGenerator from "../../PlanGenerator";
-import { Link, Outlet } from "react-router-dom";
-import { UserSideNavbar } from "../../components/user/UserSideNavbar";
 import { calculateCalories, getNutritionFromMeals, getToken, sendNotification, tomorrowFromDay, yesterdayFromDay } from "../../HelperFunctions";
 import { TopNavBar } from "../../components/utility/TopNavBar";
 import { MealInterface } from "../../types/types";
@@ -12,7 +8,7 @@ import { firebase_init } from "../../api/firebase_init_test";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { userNavbarLinks } from "../../types/consts";
 import { Button } from "../../components/utility/Button";
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
+import { TopNavbar } from "../../components/admin/TopNavbar";
 import { getCustomizedMeals } from "../../api/services/Meals";
 import { addOrUpdateUserMeals, getUser, getUserDetails, getUserMeals, sendEmail } from "../../api/services/Users";
 import { CustomNotification } from "../../components/utility/CustomNotification";
@@ -86,7 +82,7 @@ export const Home = () => {
             
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Meals" username="Test">
+                <TopNavbar title="Meals" username="Test">
                     <div className="flex w-1/2 h-full items-center gap-3">
                     <button className="w-10 h-1/2 dark:bg-ad-golden bg-admin-button text-white text-2xl dark:text-black rounded" title=">" 
                     onClick={() => {setSlide(false); setDate(yesterdayFromDay(date))}}>{"<"}</button>
@@ -98,16 +94,16 @@ export const Home = () => {
                         <Button title="Email" onclickMethod={() => {sendUserEmail()}} styling=""></Button>
                         <Button title="Generate" onclickMethod={async () => { getMealPlan(); } } styling={meals?.length === 0 ? "animate-bounce" : ""}></Button>
                     </div>
-                </AdminTopNavbar>
+                </TopNavbar>
                 <div className="flex h-5/6 grow w-full">
-                <div className="overflow-hidden flex h-full w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
-                    <div className={(slide ? "fadeInLeft" : "slideright") + " grow w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
-                        <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
-                            {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
+                    <div className="overflow-hidden flex h-full w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
+                        <div className={(slide ? "fadeInLeft" : "slideright") + " grow w-full flex h-full sm:w-9/12 bg-admin-grey-background px-2 py-2 dark:bg-[#1F1F1F]"}>
+                            <div className="flex flex-wrap content-start w-full h-auto overflow-y-scroll">
+                                {meals?.map((meal: MealInterface) => (<div key={meal.id}><Meal meal={meal}></Meal></div>))}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
+                    <NutritionDetails meals={meals} nutritionData={nutritionData}></NutritionDetails>
                 </div>
             </div>
             <CustomNotification body="Go to your profile and save your details" turnOff={hideNotification} setTurnOff={setHideNotification}></CustomNotification>

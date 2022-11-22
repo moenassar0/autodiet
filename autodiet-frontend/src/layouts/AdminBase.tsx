@@ -1,5 +1,5 @@
 import React from "react"
-import { AdminTopNavbar } from "../components/admin/AdminTopNavbar"
+import { AdminTopNavbar } from "../components/admin/TopNavbar"
 import { SideNavbar } from "../components/admin/SideNavbar"
 import { adminNavbarLinks } from "../types/consts"
 

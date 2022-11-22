@@ -3,8 +3,8 @@ import { validateUser, getToken } from "../../HelperFunctions";
 import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 import axios from "../../api/axios";
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
-import { userNavbarLinks } from "../../types/consts";
+import { TopNavbar } from "../../components/admin/TopNavbar";
+import { activityOptions, bfButtonValues, goalButtonValues, sexButtonValues, userNavbarLinks } from "../../types/consts";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { ProfileField } from "../../components/utility/ProfileField";
 import { ProfileInput } from "../../components/utility/ProfileInput";
@@ -22,11 +22,6 @@ export const Profile = () => {
     const [height, setHeight] = useState('');
     const [bodyFatPercentage, setBodyFatPercentage] = useState('');
     const [activity, setActivity] = useState('');
-
-    const goalButtonValues = ["Lose Weight", "Maintain", "Gain Muscle"];
-    const bfButtonValues = ["Lean", "Medium", "High"];
-    const sexButtonValues = ["Male", "Female"];
-    const activityOptions = ["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extremely Active"]
 
     useEffect(() => {
         fetchUserData();
@@ -69,8 +64,8 @@ export const Profile = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Profile" username="Test">
-                </AdminTopNavbar>
+                <TopNavbar title="Profile" username="Test">
+                </TopNavbar>
                 <div className="flex h-4/5 grow w-full bg-admin-grey-background dark:bg-ad-lightgrey">
                     <div className="w-full flex flex-wrap content-start h-4/5 sm:w-5/6 py-2 px-2 overflow-auto">
                         {currentlyFetching ? <img className="flex w-10 h-10 items-center justify-center" src="../logo512.png"></img> :

@@ -38,7 +38,6 @@ export const DietLog = () => {
 
     useEffect(() => {
         searchQuery();
-        console.log(currentFoodItem);
     }, [currentFoodItem])
 
     const addFoodItem = () => {

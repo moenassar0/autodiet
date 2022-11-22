@@ -1,6 +1,6 @@
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { AdminTopNavbar } from "../components/admin/AdminTopNavbar"
+import { AdminTopNavbar } from "../components/admin/TopNavbar"
 import { SideNavbar } from "../components/admin/SideNavbar"
 import { userNavbarLinks } from "../types/consts"
 

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { getFoods, getFoodsByTitle } from "../../api/services/Foods"
 import { addLink } from "../../api/services/MealRecipe"
 import { getMealRecipe, getMeals } from "../../api/services/Meals"
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
+import { TopNavbar } from "../../components/admin/TopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { BasePopup } from "../../components/utility/BasePopup"
 import { Button } from "../../components/utility/Button"
@@ -86,8 +86,8 @@ export const AdminRecipes = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={adminNavbarLinks}/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
-                <AdminTopNavbar title={"Recipes"} username="Admin">
-                </AdminTopNavbar>
+                <TopNavbar title={"Recipes"} username="Admin">
+                </TopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
                     <div className="flex h-5/6 grow w-full">
                         <div className="flex flex-col h-full w-1/2 bg-white drop-shadow">

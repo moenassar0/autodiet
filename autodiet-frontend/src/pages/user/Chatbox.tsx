@@ -2,7 +2,7 @@ import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, where 
 import { useEffect, useRef, useState } from "react"
 import { db } from "../../api/firebase"
 import { getUser } from "../../api/services/Users"
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
+import { TopNavbar } from "../../components/admin/TopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
 import { getChatDate } from "../../HelperFunctions"
@@ -72,8 +72,8 @@ export const Chatbox = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Chat history" username="Test">
-                </AdminTopNavbar>
+                <TopNavbar title="Chat history" username="Test">
+                </TopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-2 py-2 dark:text-ad-golden">
                     <div className="flex flex-col gap-2 h-full w-full px-3 py-2 rounded bg-white drop-shadow dark:bg-admin-dark-background gap-1 overflow-auto">
                     {messages?.map((message: any, i: number) => (

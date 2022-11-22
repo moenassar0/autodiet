@@ -8,7 +8,6 @@ import axios from "axios";
 import { sendNotification } from "../../HelperFunctions";
 import { getUsers, editUser, addUser, deleteUser } from "../../api/services/Users";
 import { UserInterface, UserHeaders } from '../../types/types'
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
 import { AddUserPopup } from "../../components/admin/AddUserPopup";
 import { adminNavbarLinks } from "../../types/consts";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";

@@ -7,7 +7,7 @@ import { MealInterface } from "../../types/types";
 import { EmptyState } from "../../components/utility/EmptyState";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { userNavbarLinks } from "../../types/consts";
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
+import { TopNavbar } from "../../components/admin/TopNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
@@ -34,7 +34,7 @@ export const BrowseMeals = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={userNavbarLinks}/>
             <div className="flex flex-col h-min-screen w-4/6 grow">
-                <AdminTopNavbar title="Meals" username="Test">
+                <TopNavbar title="Meals" username="Test">
                 <div className="px-2 flex self-center h-10 w-full py-2 dark:bg-[#1D1D1E] rounded">
                     <div className="flex w-10 h-full items-center justify-end">
                             <FontAwesomeIcon icon={faSearch} className="text-admin-main dark:text-ad-golden" />
@@ -42,7 +42,7 @@ export const BrowseMeals = () => {
                         <input onChange={(e) => setSearchInput(e.target.value)} type="text" placeholder="Search.."
                         className="w-full h-full flex px-2 py-2 outline-0 dark:bg-[#1F1F1F] dark:text-ad-golden" />
                 </div>
-                </AdminTopNavbar>
+                </TopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
                     {!(fetchedMeals.length > 0) 

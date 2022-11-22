@@ -5,23 +5,12 @@ import React, { useEffect, useState } from "react"
 import { useTheme } from "../../context/ThemeContext";
 import { useUser } from "../../context/UserContext";
 
-export const AdminTopNavbar:React.FC<{title: string, username: string, children: any}> = ({title, username, children}) => {
+export const TopNavbar:React.FC<{title: string, username: string, children: any}> = ({title, username, children}) => {
 
-    //const [theme, setTheme] = useState("light");
     const {setCurrentTheme, themeType} = useTheme();
     const {setUser, user} = useUser();
 
-    /*useEffect(() => {
-        if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-            setCurrentTheme('dark');
-        }
-        else {
-            setCurrentTheme('light');
-        }
-      }, [])*/
-
     useEffect(() => {
-        
         if(themeType === "dark"){
             document.documentElement.classList.add("dark");
         }else{

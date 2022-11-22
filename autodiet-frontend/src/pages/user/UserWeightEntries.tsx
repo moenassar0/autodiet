@@ -2,7 +2,7 @@ import { UserSideNavbar } from "../../components/user/UserSideNavbar"
 import ReactFrappeChart from "react-frappe-charts";
 import { SideNavbar } from "../../components/admin/SideNavbar";
 import { userNavbarLinks } from "../../types/consts";
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar";
+import { AdminTopNavbar } from "../../components/admin/TopNavbar";
 import { LineChart } from "../../components/charts/LineChart";
 import { useEffect, useState } from "react";
 import { addOrUpdateWeightEntries, getUserEntries } from "../../api/services/Users";
