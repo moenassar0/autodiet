@@ -66,15 +66,24 @@ Let us briefly mention the tech stack and technologies the application used:
 
 | Landing  | Meals Page  |
 | -----------------| -----|
+| ![Landing](https://github.com/moenassar0/autodiet/blob/main/demo/Landing_Page.gif) | ![Browse Foods/Meals](https://github.com/moenassar0/autodiet/blob/main/demo/Browse_Page.gif) |
+
+
+| User's Profile  | User's Mealplan  |
+| -----------------| -----|
+| ![Profile](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/UserDetails_Page.png) | ![Homepage](https://github.com/moenassar0/autodiet/blob/main/demo/mockups/Home_Page.gif) |
+
+
+
+| Landing  | Meals Page  |
+| -----------------| -----|
 | ![Landing](https://github.com/moenassar0/autodiet/blob/main/demo/Meals_Page.png) | ![Browse Foods/Meals](https://github.com/moenassar0/autodiet/blob/main/demo/Meals_Page.png) |
 
-|  Browse Meals/Foods  |
-| ----------------------|
-| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/BrowseMeals_Page.png) |
+
 
 |  Showcasing dark and light modes  |
 | ----------------------|
-| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Lightmode-Darkmode.gif) |
+| ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Multitheme.gif) |
 
 
 <br><br>
