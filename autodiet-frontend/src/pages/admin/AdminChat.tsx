@@ -2,7 +2,7 @@ import { query, collection, onSnapshot, orderBy, addDoc, serverTimestamp, getDoc
 import { useEffect, useState } from "react"
 import { db } from "../../api/firebase"
 import { getUser } from "../../api/services/Users"
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
+import { TopNavbar } from "../../components/admin/TopNavbar"
 import { SideNavbar } from "../../components/admin/SideNavbar"
 import { Button } from "../../components/utility/Button"
 import { ChatMessage } from "../../components/utility/ChatMessage"
@@ -76,8 +76,8 @@ export const AdminChat = () => {
         <div className="flex h-screen w-full">
             <SideNavbar navbarlinks={adminNavbarLinks}/>
             <div className="w-4/6 sm:w-5/6 flex flex-col grow h-screen">
-                <AdminTopNavbar title="Chat" username="Admin">
-                </AdminTopNavbar>
+                <TopNavbar title="Chat" username="Admin">
+                </TopNavbar>
                 <div className="h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F] px-4 py-4">
                     <div className="flex w-full h-full ">
                         <div className="flex flex-wrap drop-shadow content-start h-full w-[175px] bg-white dark:bg-admin-dark-background dark:text-ad-golden rounded-md overflow-auto mr-2">

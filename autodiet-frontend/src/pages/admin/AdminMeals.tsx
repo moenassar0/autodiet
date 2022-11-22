@@ -2,7 +2,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useEffect, useState } from "react"
 import { SideNavbar } from "../../components/admin/SideNavbar"
-import { AdminTopNavbar } from "../../components/admin/AdminTopNavbar"
+import { TopNavbar } from "../../components/admin/TopNavbar"
 import { DataTable } from "../../components/admin/DataTable"
 import { deleteMeal, getMeals } from "../../api/services/Meals";
 import { MealHeaders } from "../../types/types"
