@@ -4,7 +4,7 @@
 
 > Hello world! This is the project’s summary that describes the project plain and simple, limited to the space available.  
 
-**[PROJECT PHILOSOPHY](https://github.com/moenassar0/autodiet#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/moenassar0/autodiet#-project-philosophy) • [WIREFRAMES](https://github.com/moenassar0/autodiet#-wireframes) • [TECH STACK](https://github.com/moenassar0/autodiet#-tech-stack) • [IMPLEMENTATION](https://github.com/moenassar0/autodiet#-impplementation) • [HOW TO RUN?](https://github.com/moenassar0/autodiet#-how-to-run)**
 
 </div>
 
@@ -82,13 +82,13 @@ Let us briefly mention the tech stack and technologies the application used:
 
 
 | Dark/Light modes  | Live chat  |
-| ----------------------|
+| -----------------| -----|
 | ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Multitheme.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/Chat_Page.gif) |
 
 <h2> Admin Panel Screenshots/gifs </h2>
 
 | Admin CRUD  | Admin Chat  |  Admin create/link recipes  |  
-| ----------------------|
+| -----------------| -----|-----|
 | ![CRUD](https://github.com/moenassar0/autodiet/blob/main/demo/Admin_CRUD.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/AdminChat_Page.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/Admin_Recipes.gif) |
 
 
