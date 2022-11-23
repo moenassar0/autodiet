@@ -31,13 +31,9 @@ export const AdminChat = () => {
             querySnapshot.forEach((doc: any) => {
                 messages.push({...doc.data(), id: doc.id});
             });
-            console.log(messages);
             setMessages(messages);
         })
         return () => unsubscribe()
-        /*const unsub = onSnapshot(doc(db, "messages", "text"), (doc) => {
-            console.log("Current data: ", doc.data());
-        });*/
     }, [currentUserID])
 
     //fetch messages sent to admin to find the users
@@ -48,7 +44,6 @@ export const AdminChat = () => {
         querySnapshot.forEach((doc) => {
             messages.push(doc.data()?.userID);
         });
-        console.log(messages);
         let uniqueChars = messages.filter((element, index) => {
             return messages.indexOf(element) === index;
         });
@@ -58,9 +53,7 @@ export const AdminChat = () => {
 
     const sendMessage = async () => {
         const response = await getUser();
-        console.log(response);
         if(response?.response){
-            const userID = response.response.id;
             const userName = response.response.username;
             await addDoc(collection(db, 'messages'), {
                 text: inputMessage,
@@ -109,21 +102,3 @@ export const AdminChat = () => {
        </div> 
     )
 }
-
-
-
-    /*useEffect(() => {
-        const q = query(collection(db, 'messages'), orderBy('timestamps'));
-        const unsubscribe = onSnapshot(q, (querySnapshot: any) => {
-            let messages: any = [];
-            let users: any = [];
-            querySnapshot.forEach((doc: any) => {
-                messages.push({...doc.data(), id: doc.id});
-                console.log(doc._document.data.value.mapValue.fields.userID);
-            });
-            console.log(messages);
-            console.log(users);
-            setMessages(messages);
-        })
-        return () => unsubscribe()
-    }, [])*/
