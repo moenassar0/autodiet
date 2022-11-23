@@ -93,22 +93,21 @@ export const multiplyFoodNutrition = (mult: any, currentFoodItem: any) => {
 
 export const convertBase64 = (file: any) => {
   return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
 
-      fileReader.onload = () => {
+    fileReader.onload = () => {
       resolve(fileReader.result);
-      };
+    };
 
-      fileReader.onerror = (error) => {
+    fileReader.onerror = (error) => {
       reject(error);
-      };
+    };
   });
-  };
+};
 
 export const sendNotification = async () => {
-    const myVar = setTimeout(async () => {
-        console.log("test");    
+  const myVar = setTimeout(async () => { 
     var key = 'AAAAVdmFftU:APA91bHzbdpUcQ1Huf3qMB4iaVrpXeSUxRDblVA0i_uLIZOknNaCY14L_IlI23nDCUHoH--V5hJDyDLEK9so5wCZZy7Mylx3dvGHjmRZ-g4HyE2gRva3iLQvR8yIxeBkDswHwwUe_FZ3';
     var to = localStorage.getItem("firebasetoken");
     var notification = {
@@ -134,10 +133,7 @@ export const sendNotification = async () => {
       console.error(error);
     })
     clearTimeout(myVar);
-}, 5000)
-    
-    //}, 5000);
-    
+  }, 5000)
 }
 
 export const getNutritionFromMeals = (meals: Array<MealInterface>) => {

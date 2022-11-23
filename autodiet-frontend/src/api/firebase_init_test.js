@@ -32,15 +32,15 @@ function requestPermission(){
 )}
 
 function initToken(){
-getToken(messaging, {vapidKey: "BM9L9BDzDJoRMVhgsK9T8Od8PTcj3CmvytApjd6pTOPBeFRykYjfylOhoYTKFPzsQ406Nc4dsEfYvwAS2VZfZU0"})
-.then((currentToken) => {
-    if(currentToken){
-        console.log("curr token", currentToken);
-        localStorage.setItem("firebasetoken", currentToken);
-    }else{
-        console.log("no token");
-    }
-})
+  getToken(messaging, {vapidKey: process.env.REACT_APP_VAPID_KEY})
+  .then((currentToken) => {
+      if(currentToken){
+          console.log("curr token", currentToken);
+          localStorage.setItem("firebasetoken", currentToken);
+      }else{
+          console.log("no token");
+      }
+  })
 }
 
 onMessage(messaging, (payload) => {
