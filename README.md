@@ -70,7 +70,7 @@ Let us briefly mention the tech stack and technologies the application used:
 
 ### Implementation
 
-> Utilising our wireframes and mockups built using Figma, along with the tech stacks and user sotries we have, the implementation of the app is shown as below. The following images and gifs are screenshots from the actual deployed application.
+> Utilizing our wireframes and mockups built using Figma, along with the tech stacks and user stories we have, the implementation of the app is shown as below. The following images and gifs are screenshots from the actual deployed application.
 
 | Landing  | Meals Page  |
 | -----------------| -----|
@@ -104,12 +104,11 @@ Let us briefly mention the tech stack and technologies the application used:
 <img src="./readme/title6.svg"/>
 
 
-> This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+> This following chapter and steps will give you insight on how to get a local version of the application successfully running.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+You are going to need the following installers/package managers to run the app.
 * NodeJS
   ```sh
   https://nodejs.org/en/download/
@@ -118,10 +117,14 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   (https://getcomposer.org/)
   ```
+* PHP 8.1 or higher development environment (application originally used XAMPP)
+  ```sh
+  (https://www.apachefriends.org/)
+  ```
 
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+_The following steps should help you successfully run the application and install or setup any dependencies._
 
 1. Clone the repo
    ```sh
@@ -140,6 +143,11 @@ _Below is an example of how you can instruct your audience on installing and set
    ```sh
    php artisan migrate
    ```
-
-### Important Note
+6. Setup JWT authentication. You might have to run other commands. Visit the [docs](https://laravel-jwt-auth.readthedocs.io/en/latest/)
+   ```sh
+   php artisan jwt:secret
+   ```
+### Important Notes
 For the application to properly function, you will need a already populated database with meals, foods, and recipes added.
+You will find an example of food items and meals in example.sql found in the backend folder.
+To setup an admin account, you have to insert the account info using your database.
