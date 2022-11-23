@@ -21,10 +21,6 @@ export const Profile = () => {
         fetchUserData();
     }, [])
 
-    useEffect(() => {
-        console.log(activity);
-    }, [activity])
-
     async function fetchUserData(){
         const response = await getUserDetails();
         const user_detail = (response?.response.user_detail);

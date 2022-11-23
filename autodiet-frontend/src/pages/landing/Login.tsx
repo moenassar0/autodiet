@@ -23,7 +23,6 @@ export const Login = () => {
         let user = response?.response.user;
         user = {email: user.email, username: user.username, user_role: user.user_role}
         setUser(user);
-        console.log("user", user);
         localStorage.setItem("token", response?.response.token.original.access_token)
         if(user.user_role === "User")
         navigate("/user/home");

@@ -9,8 +9,6 @@ use App\Http\Controllers\FoodItemController;
 use App\Http\Controllers\WeightEntryController;
 use App\Http\Controllers\MealRecipeController;
 use App\Http\Controllers\MailController;
-use App\Http\Middleware\IsUser;
-use App\Http\Middleware\IsAdmin;
 use App\Mail\SendMealPlan;
 use App\Models\User;
 
@@ -21,7 +19,7 @@ Route::get("/me", [AuthController::class, "me"]);
 Route::post('/send-email', [MailController::class, "sendUserMealPlan"]);
 Route::post("/pdf", [UserController::class, "getUserMealsPDF"]);
 
-Route::middleware([IsUser::class])->group(function () {
+Route::middleware(['is-user'])->group(function () {
     Route::get("/foods", [FoodItemController::class, "getFoodItems"]);
     Route::get("/foods/{search_string}", [FoodItemController::class, "getFoodsByTitle"]);
 
@@ -39,7 +37,7 @@ Route::middleware([IsUser::class])->group(function () {
     Route::put("/user/mealplan", [UserController::class, "addOrUpdateUserMeals"]);
 });
 
-Route::middleware([IsAdmin::class])->group(function () {
+Route::middleware(['is-admin'])->group(function () {
     Route::post("/meal", [MealController::class, "addMeal"]);
     Route::post("/food_item", [FoodItemController::class, "addFoodItem"]);
     Route::post("/meal_recipe", [MealRecipeController::class, "addLink"]);

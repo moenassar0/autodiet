@@ -38,11 +38,6 @@ class MealController extends Controller
     }
 
     public function getMeals(){
-        //Pick a higher protein meal
-
-        //Pick a snack
-
-        //Pick a random set from db
         $meals = Meal::all();
         return response()->json(["meals" => $meals], 200);
     }
