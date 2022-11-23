@@ -38,7 +38,7 @@ export const BrowseMeals = () => {
                 </TopNavbar>
                 <div className="flex flex-col h-5/6 grow w-full bg-admin-grey-background dark:bg-[#1F1F1F]">
                     <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
-                    {!(fetchedMeals.length > 0) 
+                    {!fetchedMeals 
                         ? <EmptyState/>
                         : fetchedMeals.map((meal: MealInterface) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
                     </div>

@@ -1,4 +1,5 @@
 import axios from "./api/axios";
+import { getUser } from "./api/services/Users";
 import { FoodItem, MealInterface, NutritionObjectInterface, UserDetails } from "./types/types";
 
 //Declare helper function's variables
@@ -21,17 +22,12 @@ export const checkPassword = (password:string):boolean => {
     return false;
 }
 
-export const validateUser = async() => {
-    const token = localStorage.getItem("token");
-    if(!token) return false;
-
-    const headers = {headers:{'Authorization' : "Bearer " + token}};
-    try{
-        const response = await axios.get("/me", headers);
-        return true;
-    }catch{
-        return false;   
+export const validateUser = async(type: string) => {
+    const response = await getUser();
+    if(response?.response){
+      if(response.response.user_role == type) return true;
     }
+    return false;
 }
 
 export const getRandomInt = (min:number, max:number) => {

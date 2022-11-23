@@ -17,12 +17,7 @@ export const MealPopup: React.FC<{edit:boolean, mealID?: number, setTrigger: any
     const [type, setType] = useState("");
     const [proteinPercentage, setProteinPercentage] = useState(0);
     const [pictureBase64, setPictureBase64] = useState("");
-
     const [message, setMessage] = useState("");
-
-    useEffect(() => {
-        console.log(pictureBase64);
-    }, [pictureBase64])
 
     useEffect(() => {
         if(calories && protein) {

@@ -21,6 +21,7 @@ import { Landing } from './pages/landing/Landing';
 import { AdminRecipes } from './pages/admin/AdminRecipes';
 import { DietLog } from './pages/user/DietLog';
 import { Logout } from './components/utility/Logout';
+import { AuthenticateAdmin } from './components/admin/AuthenticateAdmin';
 
 //export const UserContext = React.createContext(user);
 
@@ -48,7 +49,7 @@ function App() {
           <Route path="/user/logout" element={<Logout />}></Route>
         </Route>
 
-        <Route path="/admin" element={ <div><Outlet /></div> }>
+        <Route path="/admin" element={ <AuthenticateAdmin /> }>
           <Route path="/admin/users" element={<AdminUsers/>}></Route>
           <Route path="/admin/meals" element={<AdminMeals />}></Route>
           <Route path="/admin/foods" element={<AdminFoods />}></Route>

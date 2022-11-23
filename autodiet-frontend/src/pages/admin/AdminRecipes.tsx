@@ -52,7 +52,6 @@ export const AdminRecipes = () => {
     const getRecipe = async () => {
         if(currentMeal){
             const response = await getMealRecipe(currentMeal.id?.toString());
-            console.log(response);
             setMealRecipe(response?.response.recipe);
         }
     }

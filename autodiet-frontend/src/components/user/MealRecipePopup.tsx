@@ -39,8 +39,8 @@ export const MealRecipePopup: React.FC<Props> = ({meal_multiplier, setTrigger, m
                             <FontAwesomeIcon onClick={() => {setTrigger(false)}} className="cursor-pointer text-slate-500 hover:text-slate-800 dark:hover:text-ad-golden"icon={faClose}></FontAwesomeIcon>
                         </span>
                     </div>
-                        {recipe.map((recipe:Recipe) => (
-                            <RecipeCard recipe={recipe} meal_multiplier={meal_multiplier}></RecipeCard>
+                        {recipe.map((recipe:Recipe, i: number) => (
+                            <RecipeCard key={i} recipe={recipe} meal_multiplier={meal_multiplier}></RecipeCard>
                         ))}
                     <div className="flex w-full h-full justify-end items-center py-2 px-2">
                         {/*<button onClick={submitMethod} className="flex w-24 h-8 items-center justify-center px-2 py-2 bg-admin-button text-white dark:text-black dark:bg-ad-golden rounded-2xl ml-0">Add</button>*/}

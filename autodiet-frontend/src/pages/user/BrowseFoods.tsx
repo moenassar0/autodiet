@@ -18,7 +18,7 @@ export const BrowseFoods = () => {
     const [recordsPerLoad] = useState(10);
 
     const indexOfLastRecord = currentPage * recordsPerLoad;
-    const currentRecords = fetchedFoods.slice(0, indexOfLastRecord);
+    const currentRecords = fetchedFoods?.slice(0, indexOfLastRecord);
 
     useEffect(() => {
         searchQuery();
@@ -45,7 +45,7 @@ export const BrowseFoods = () => {
         }>
             <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
                 <div className="flex flex-wrap h-auto w-full overflow-auto px-4 py-4">
-                    {!(true) 
+                    {!currentRecords
                         ? <EmptyState/>
                         : currentRecords.map((meal: MealInterface) => (<div key={meal.id}><MealCard meal={meal}></MealCard></div>))}
                 </div>
