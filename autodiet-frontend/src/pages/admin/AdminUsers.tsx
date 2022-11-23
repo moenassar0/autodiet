@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react"
-import { SideNavbar } from "../../components/admin/SideNavbar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { DataTable } from "../../components/admin/DataTable"
-import { firebase_init } from "../../api/firebase_init_test";
-import axios from "axios";
-import { sendNotification } from "../../HelperFunctions";
 import { getUsers, editUser, addUser, deleteUser } from "../../api/services/Users";
 import { UserInterface, UserHeaders } from '../../types/types'
 import { UserPopup } from "../../components/admin/UserPopup";
-import { adminNavbarLinks } from "../../types/consts";
 import { PopupOverlay } from "../../components/utility/PopupOverlay";
 import { Popup } from "../../components/utility/Popup";
 import { DeletePopup } from "../../components/utility/DeletePopup";
@@ -25,14 +20,12 @@ export const AdminUsers = () => {
     
     async function fetchUsers(){
         const response = await getUsers();
-        if(response?.success){ setUsers(response.response.users);
-        console.log(response)}
+        if(response?.success) setUsers(response.response.users);
         else setUsers([]);
     }
 
     const deletefunc = async (id:number) => {
         const response = await deleteUser(userID.toString());
-        console.log(response?.response)
         fetchUsers();
     }
 
