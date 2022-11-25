@@ -57,7 +57,7 @@
 Let us briefly mention the tech stack and technologies the application used:
 
 - This application was built using the ReactJS library. ReactJS [React](https://www.reactjs.org) helps us move from the daunting task of writing vanilla JavaScript by offering its rich library that builds single page applications using components.
-- For the backend we used the framework built for web artisans [Laravel](https://laravel.com). Laravel was used purely for the api calls and database connection. For the database we used MySQL.
+- For the backend we used the framework built for web artisans [Laravel](https://laravel.com). Laravel was used purely for the api calls, database management, and mailing. For the database we used MySQL.
 - An admin panel was developed to perform CRUD operations and receive feedback/questions from users.
 - Firebase was also used as part of our backend. Firebase helped the application send push notifications to the user as well as help build our chatting system using real-time databases.
 - The app uses the font ["Poppins"](https://fonts.google.com/specimen/Poppins) as its main font.
@@ -92,6 +92,10 @@ Let us briefly mention the tech stack and technologies the application used:
 | Dark/Light modes  | Live chat  |
 | -----------------| -----|
 | ![Browse](https://github.com/moenassar0/autodiet/blob/main/demo/Multitheme.gif) | ![Chat](https://github.com/moenassar0/autodiet/blob/main/demo/Chat_Page.gif) |
+
+Sample Email Sent to User (meal plan) | Meal Recipe  |
+| -----------------| -----|
+| ![Email](https://github.com/moenassar0/autodiet/blob/main/demo/SampleEmail.png) | ![Recipe](https://github.com/moenassar0/autodiet/blob/main/demo/ShowingMeal.gif) |
 
 <h2> Admin Panel Screenshots/gifs </h2>
 
